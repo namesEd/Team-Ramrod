@@ -1,0 +1,11 @@
+#healthpic {
+	background-image: url("./bgrnd.jpg");
+	height: 100vh;
+	width:  100vh;
+}
+/* Height for devices larger than 576px */
+@media (min-width: 992px) {
+#intro {
+  		margin-top: -58.59px;
+	}
+}
