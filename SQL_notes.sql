@@ -4,7 +4,8 @@ CREATE TABLE `user` (
   `first_name` varchar(100) NOT NULL,                                                                             
   `last_name` varchar(100) NOT NULL,                                                                                                                                                  
   `password` varchar(100) NOT NULL,                                                                      
-  `birthday` date NOT NULL,                                                                               
+  `birthday` date NOT NULL,
+  `username` varchar(100),                                                                                
   PRIMARY KEY (`userID`)                                                                                     
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
@@ -82,3 +83,33 @@ AS
 select * FROM 
 user, insurance, location
 ; 
+
+
+PREPARED STATEMENTS: 
+
+
+DROP PROCEDURE IF EXISTS RegisterUser;
+
+DELIMITER //
+
+CREATE PROCEDURE `RegisterUser`(param_email varchar(100), param_fname varchar(100), param_lname varchar(100), passhash varchar(100),
+param_date date, param_uname varchar(100))
+BEGIN
+
+    SELECT COUNT(*) INTO @usernameCount
+    FROM user
+    WHERE username = param_uname;
+
+    IF @usernameCount > 0 THEN
+        SELECT NULL as userid, "Username already exists" AS 'Error';
+    ELSE
+        INSERT INTO user (email, first_name, last_name, password, birthday, username) VALUES (param_email, param_fname, param_lname, passhash, param_date, param_uname);
+        SELECT last_insert_id() AS id, NULL as 'Error';
+    END IF;
+
+    COMMIT;
+END;
+//
+DELIMITER ;
+
+# call RegisterUser ('bigbill@AOL.net', 'Bill', 'Bobson', 'billyBobbin', 'qwerty123');
