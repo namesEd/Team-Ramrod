@@ -2,12 +2,23 @@
 <html class="no-js" lang="">
     <head>
     	<link rel="stylesheet" href="usrReg.css">
+    	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
     	<div class="topnav">
-		  <a  href="#home">Home</a>
-		  <a href="#news">News</a>
-		  <a class="active" href="#usrReg">Register</a>
-		  <a href="#about">About</a>
+	    	<ul class="m1">
+			  <a class="m2 material-symbols-outlined" href="#home">Home</a>
+			  <a class="m2" href="#news">News</a>
+			  <a class="active m2" href="#usrReg">Register</a>
+			  <a class="m2" href="#about">About</a>
+			</ul>
 		  <h2 class="hnav">RowdyHealth</h2>
+
+		  <button class="ham">
+		  	    <i class="menuIcon material-icons">menu</i>
+    			<i class="closeIcon material-icons">close</i>
+		  </button>
+		  <script src="usrReg.js"></script>
 		</div>
 
     </head>
@@ -15,43 +26,44 @@
 
     <h2> Register an Account </h2>
     <div>
-    <form>
+    <form >
      
- 
-		<p>
-	      <label>Username : <input type="text" /></label>
+
+ 		<p   >
+	      <label>Username : <input class="rcorners" type="text"  /></label>
 	    </p>
+
 	 
 	 
 	     
 	 
 		<p>
-	      <label>Password : <input type="password" /></label>
+	      <label>Password : <input class="rcorners"  type="password" /></label>
 	    </p>
 
 	    <p>
-	      <label>Re-Type Password : <input type="password" /></label>
+	      <label>Re-Type Password : <input class="rcorners"  type="password" /></label>
 	    </p>
 
 	    <p>
-	      <label>First Name : <input type="password" /></label>
+	      <label>First Name : <input class="rcorners"  type="password" /></label>
 	    </p>
 
 
 
 	    <p>
-	      <label>Last Name : <input type="password" /></label>
-	    </p>
-	 
-
-	    <p>
-	      <label>DOB(xx/xx/xxx) : <input type="password" /></label>
+	      <label>Last Name : <input class="rcorners"  type="password" /></label>
 	    </p>
 	 
 
+	    <p>
+	      <label>DOB(xx/xx/xxx) : <input class="rcorners"  type="password" /></label>
+	    </p>
+	 
+
 
 	    <p>
-	      <label>Email : <input type="password" /></label>
+	      <label>Email : <input class="rcorners"  type="password" /></label>
 	    </p>
 	 
 	 
@@ -60,7 +72,7 @@
 		<p>
 	       <button type="submit" class="button button2">Submit</button>
 	    </p>
- 
+ 		
  
   </form>
   <h3> Have an Account already login here<button > Login </button> </h3>

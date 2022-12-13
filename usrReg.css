@@ -7,13 +7,19 @@
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
-  color: #f2f2f2;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
-
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
 /* Change the color of links on hover */
 .topnav a:hover {
   background-color: #ddd;
@@ -23,7 +29,54 @@
 /* Add a color to the active/current link */
 .topnav a.active {
   background-color: #FDB913;
+  color: black;
+}
+.rcorners
+{
+  border-radius: 10px;
+  border: 2px solid #3154A3;
+  padding: 5px; 
+}
+.m1 {
+  position: fixed;
+  transform: translateY(-120%);
+  transition: transform 0.2s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+
   color: white;
+  list-style: none;
+  padding-top: 4rem;
+}
+.ham {
+  position: fixed;
+  z-index: 100;
+  top: 1rem;
+  right: 1rem;
+  padding: 4px;
+  border: black solid 1px;
+  background: white;
+  cursor: pointer;
+}
+.m2 {
+  display: block;
+  margin: 2rem 4rem;
+  font-size: 1.8rem;
+  color: white;
+  text-decoration: none;
+}
+
+.m2:hover {
+  text-decoration: underline;
+}
+.closeIcon {
+  display: none;
+}
+.showMenu {
+  transform: translateY(0);
 }
 
 input[type=submit] {
