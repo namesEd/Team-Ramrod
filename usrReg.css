@@ -1,13 +1,14 @@
-/* Add a black background color to the top navigation */
+
 .topnav {
   background-color: #3154A3;
+  padding-top: 5rem;
   overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
+
 .topnav a {
   float: left;
-  color: black;
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -37,6 +38,13 @@
   border: 2px solid #3154A3;
   padding: 5px; 
 }
+.lnks
+{
+  border-radius: 10px;
+  border: 2px solid #3154A3;
+  padding: 5px;
+  background-color: black; 
+}
 .m1 {
   position: fixed;
   transform: translateY(-120%);
@@ -49,7 +57,8 @@
 
   color: white;
   list-style: none;
-  padding-top: 4rem;
+  padding-right: 2rem;
+
 }
 .ham {
   position: fixed;
@@ -63,10 +72,10 @@
 }
 .m2 {
   display: block;
-  margin: 2rem 4rem;
   font-size: 1.8rem;
   color: white;
   text-decoration: none;
+
 }
 
 .m2:hover {
@@ -126,5 +135,6 @@ label {
 .hnav{
   text-align: right;
   font-size: 45px;
+  color: black;
 
 }
