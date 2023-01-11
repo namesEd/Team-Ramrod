@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Homepage.css">
+    <title>User Profile</title>
+</head>
+<body>
+    <div class = "Profile">
+        <form class="userform" action="" method="post" enctype="multipart/form-data">
+              <!-- This image will be switched once we switch this to php-->
+             <img src="bgrnd.jpg" alt="userimage">
+            <div class="flex">
+                <div class="inputBox">
+                    <span>username: </span> 
+                    <input type="text" name="name" value="example name" class ="box" >
+                    <span>email: </span> 
+                    <input type="email" name="email" value="example email" class ="box" >
+                    <span>update user profile picture: </span> 
+                    <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class ="box" >
+                </div>
+                <div class="inputBox">
+                    <input type="hidden" name="old_name" value="old_name" >
+                    <span>Current Password:</span>
+                    <input type="password" name="update_password" placeholder="Enter current password" class="box">
+                    <span>New Password:</span>
+                    <input type="password" name="new_password" placeholder="Enter new password" class="box">
+                    <span>Confirm Password:</span>
+                    <input type="password" name="confirm_password" placeholder="Confirm password" class="box">
+                </div>
+            </div>
+            <input type="submit" value="Update" name="update_profile" class="btn">
+            <a href="HomePage.html" class="delete-btn">Go Back</a>
+        </form>
+    </div>
+</body>
+</html>
