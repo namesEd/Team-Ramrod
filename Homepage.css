@@ -191,3 +191,13 @@ body#loginbody{
   header {font-size: 10px;}
   header {height: 9em;}
 }
+
+@media (max-width:650px){
+  .Profile .userform .flex{
+    flex-wrap: wrap;
+    gap:0;
+  }
+  .Profile .userform .flex .inputBox{
+    width: 100%;
+  }
+}
