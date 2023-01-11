@@ -124,6 +124,60 @@ body#loginbody{
 
 /*************** END OF MAP STYLING*******************/
 
+/*************** BEGINNING OF PROFILE STYLING*******************/
+
+.Profile
+{
+  min-height: 100vh ; /*vh is = to 1% of the height of the viewport*/
+  background-color: #818181;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.Profile .userform{
+  padding: 20px;
+  background-color: #f1f1f1;
+  box-shadow: #111;
+  text-align: center;
+  width: 700px;
+  border-radius: 5px;
+}
+.Profile .userform img{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+.Profile .userform .flex{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+.Profile .userform .flex .inputBox{
+  width:49%;
+}
+.Profile .userform .flex .inputBox span{
+  text-align: left;
+  display: block;
+  margin-top: 15px;
+  font-size: 17px;
+  color: #111;
+}
+.Profile .userform .flex .inputBox .box{
+  width: 90%;
+  border-radius: 5px;
+  background-color: #818181;
+  padding: 12px 14px;
+  font-size: 17px;
+  margin-top: 10px;
+  color: #111;
+}
+
+/*************** END OF PROFILE STYLING*******************/
+
 /* styles for mobile protrait screen */
 @media only screen and (max-width:480px){
   header {font-size: 10px;}
