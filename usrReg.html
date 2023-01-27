@@ -1,25 +1,19 @@
 <!doctype html>
 <html class="no-js" lang="">
     <head>
-    	<link rel="stylesheet" href="usrReg.css">
+
+		  <link rel="stylesheet" href="usrReg.css">
     	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    	<div class="topnav">
-	    	<ul class="m1">
-			  <a class="m2 material-symbols-outlined lnks" href="#home">Home</a>
-			  <a class="m2 lnks" href="#news">Login</a>
-			  <a class="active m2 " href="#usrReg">Register</a>
-			  <a class="m2 lnks" href="#about">About</a>
-			  <h2 class="hnav">RowdyHealth</h2>
-			</ul>
-		  
+    	<script src="usrReg.js"></script>
 
-		  <button class="ham">
-		  	    <i class="menuIcon material-icons">menu</i>
-    			<i class="closeIcon material-icons">close</i>
-		  </button>
-		  <script src="usrReg.js"></script>
-		</div>
+
+		  <!-- Jquery CDN -->
+		  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+		  <!-- AJAX CDN -->
+		  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 
     </head>
     <body>
@@ -30,13 +24,13 @@
 
     	<h2> Register an Account </h2>
    
-    <form>
+    <form id="form">
      
     <div class="mb-3 row">
     		<div class="col-sm-6">
 			 			<p>
 
-				      <label>Username : <input class="rcorners form-control" type="text"  /></label>
+				      <label>Username : <input class="rcorners form-control" type="text" name="uname" id="uname"/></label>
 				    </p>
 				</div>
 
@@ -45,7 +39,7 @@
 	     
 				 <div class="col-sm-6">
 								<p>
-							    <label>Password : <input class="rcorners form-control"  type="password" /></label>
+							    <label>Password : <input class="rcorners form-control"  type="password" name="pword" id="pword" /></label>
 							   </p>
 				  </div>
 	  </div>
@@ -54,7 +48,7 @@
 
 			<div class="col-sm-6">
 		    <p>
-		      <label>First Name : <input class="rcorners form-control"  type="password" /></label>
+		      <label>First Name : <input class="rcorners form-control"  type="text" name="fname" id="fname" /></label>
 		    </p>
 	  	</div>
 
@@ -62,7 +56,7 @@
 	  	<div class="col-sm-6">
 
 	  		<p>
-		      <label>Re-Type Password : <input class="rcorners form-control"  type="password" /></label>
+		      <label>Re-Type Password : <input class="rcorners form-control"  type="password" name="rpword" id="rpword" /></label>
 		    </p>
 		  </div>
 
@@ -78,7 +72,7 @@
 
 	 	<div class="col-sm-6">
 	    <p>
-	      <label>DOB(xx/xx/xxx) : <input class="rcorners form-control"  type="password" />
+	      <label>DOB(xx/xx/xxx) : <input class="rcorners form-control"  type="text" name="dob" id="dob" />
 	      </label>
 	    </p>
 	  </div>
@@ -89,7 +83,7 @@
 		
 		<div class="col-sm-6">
 	    <p>
-	      <label>Email : <input class="rcorners form-control"  type="password" /></label>
+	      <label>Email : <input class="rcorners form-control"  type="text" name="email" id="email" /></label>
 	    </p>
 	  </div>
 	 
