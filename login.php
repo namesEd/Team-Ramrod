@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="stylin.css">
 <?php 
 require_once "utilities.php";
 if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
@@ -8,7 +7,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
 if(isset($_POST) && !empty($_POST)) {
     if (!empty($_POST['DJ_Name']) && !empty($_POST['password'])) {
         $db = get_connection();
-        $stmt = $db->prepare("SELECT * FROM User WHERE DJ_Name = ?");
+        $stmt = $db->prepare("SELECT * FROM user WHERE DJ_Name = ?");
         $stmt->bind_param("s", $DJ_Name);
         $stmt->execute();
         $result = $stmt->get_result();
