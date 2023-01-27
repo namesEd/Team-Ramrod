@@ -2,7 +2,8 @@
 <title>Ramrod register</title>
 <?php
 
-require_once("utilities.php");
+require_once("utility.php");
+require("usrReg.html")
 #include "nav.php";
 
 
@@ -18,7 +19,7 @@ if (isset($_POST['Register'])) {
     $password = htmlspecialchars($_POST['password']);
     if (strlen($username) == 0 || strlen($password) == 0 || strlen($fname) == 0 || strlen($lname) == 0 || strlen($email) == 0) {
 	    $_SESSION["error"] = "Make sure to fill in all the fields!";
-	    header("Location: register.php");
+	    header("Location: usrReg.html");
     }
 
         $statement = $db->prepare("CALL RegisterUser(? ,? ,? ,? ,?)");
