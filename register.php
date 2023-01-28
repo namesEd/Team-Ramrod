@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="usrReg.css">
+<link rel="stylesheet" href="App/css/usrReg.css">
 <title>Ramrod register</title>
 <?php
 
