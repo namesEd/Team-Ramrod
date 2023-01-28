@@ -33,7 +33,7 @@ if (isset($_POST['Register'])) {
             // If user id is null, then something went wrong in registration
             if (is_null($res_id)) {
                 $_SESSION["error"] = $res_error;
-                header("Location: signup.php");
+                header("Location: usrReg.html");
             }
             else {
                 echo '<script type="text/javascript">'; 
