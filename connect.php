@@ -6,7 +6,7 @@ function get_connection() {
      static $connection;
 
      if (!isset($connection)) {
-         $connection = mysqli_connect('localhost', 'ekyles', 'Fek9xem' ,'buddydj')
+         $connection = mysqli_connect('localhost', 'ekyles', 'Fek9xem' ,'ramrod')
          	or die(mysqli_connect_error());
      }
 
