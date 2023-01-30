@@ -12,11 +12,11 @@ if (isset($_POST['Register'])) {
     unset($_POST['Register']);
     $db = get_connection();
     $email = htmlspecialchars($_POST['email']);
-    $fname = htmlspecialchars($_POST['first_name']);
-    $lname = htmlspecialchars($_POST['last_name']);
-    $bday= htmlspecialchars($_POST['birthday']);
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
+    $fname = htmlspecialchars($_POST['fname']);
+    $lname = htmlspecialchars($_POST['lname']);
+    $bday= htmlspecialchars($_POST['dob']);
+    $username = htmlspecialchars($_POST['uname']);
+    $password = htmlspecialchars($_POST['pword']);
     if (strlen($username) == 0 || strlen($password) == 0 || strlen($fname) == 0 || strlen($lname) == 0 || strlen($email) == 0) {
 	    $_SESSION["error"] = "Make sure to fill in all the fields!";
 	    header("Location: usrReg.html");
