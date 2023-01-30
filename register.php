@@ -27,8 +27,8 @@ if (isset($_POST['Register'])) {
 	    header("Location: usrReg.html");
     }
 
-        $statement = $db->prepare("CALL RegisterUser(? ,? ,? ,? ,?)");
-        $statement->bind_param('sssss', $email, $fname, $lname, password_hash($password, PASSWORD_DEFAULT), $bday, $username);
+        $statement = $db->prepare("CALL RegisterUser(? ,? ,? ,? ,?, ?)");
+        $statement->bind_param('ssssss', $email, $fname, $lname, password_hash($password, PASSWORD_DEFAULT), $bday, $username);
     
         if ($statement->execute()) {
             mysqli_stmt_bind_result($statement, $res_id, $res_error);
