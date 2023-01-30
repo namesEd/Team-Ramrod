@@ -51,7 +51,7 @@ if (isset($_POST['Register'])) {
 <?php if (!isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == false): ?>
     <br/><br/><br/><br/><br/><br/>
 <h1 class = "spaced" >Sign Up</h1>
-<form action= "signup.php" method="POST" class = "spaced">
+<form action= "register.php" method="POST" class = "spaced">
     E-Mail: <input type="email" name="email" required />
     <br />
     First Name: <input type="text" name="fname" required autofocus/>
