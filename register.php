@@ -1,4 +1,9 @@
-<link rel="stylesheet" href="App/css/usrReg.css">
+<link rel="stylesheet" href="usrReg.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
+<link rel="stylesheet" href="Homepage.css">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
 <title>Ramrod register</title>
 <?php
 
@@ -48,24 +53,4 @@ if (isset($_POST['Register'])) {
         }
 }
 ?>
-<?php if (!isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == false): ?>
-    <br/><br/><br/><br/><br/><br/>
-<h1 class = "spaced" >Sign Up</h1>
-<form action= "register.php" method="POST" class = "spaced">
-    E-Mail: <input type="email" name="email" required />
-    <br />
-    First Name: <input type="text" name="fname" required autofocus/>
-    <br/>
-    Last Name: <input type="text" name="lname" required />
-    <br />
-    Password: <input type="password" name="password" required />
-    <br />
-    Birthday: <input type="date" name="bday" required />
-    <br />
-    Username: <input type="text" name="username" required autofocus/>
-    <br/>
-    <input type="submit" value="Sign Up" name="Register"/>
-</form>
-<?php else: ?>
-<h1>You're already logged in</h1>
-<?php endif; ?>
+
