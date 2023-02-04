@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <link rel="stylesheet" href="usrReg.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
@@ -10,9 +11,23 @@
 require_once("utility.php");
 require("usrReg.html")
 #include "nav.php";
+=======
+<?php
 
+session_start();
+>>>>>>> Stashed changes
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  require 'utility.php';
+  require 'connect.php';
 
+  $first_name = sanitize($_POST["first_name"]);
+  $last_name = sanitize($_POST["last_name"]); 
+  $email = sanitize($_POST["email"]);
+  $username = sanitize($_POST["username"]);
+  $password = sanitize($_POST["password"]);
+
+<<<<<<< Updated upstream
 if (isset($_POST['Register'])) {
     unset($_POST['Register']);
     $db = get_connection();
@@ -54,3 +69,29 @@ if (isset($_POST['Register'])) {
 }
 ?>
 
+=======
+
+  //Check if username is in database
+  $check_user ="SELECT username FROM users WHERE username = '$username';";
+  $result = $conn->query($check_user);
+  
+
+  $sql = "INSERT INTO users (first_name, last_name, email, username, password) 
+    VALUES ('$first_name', '$last_name', '$email', '$username', '$password')";
+
+
+  if($result -> num_rows > 0 ) {
+    echo 'Error: This username already exists';
+    $conn->close();
+  } elseif ($conn->query($sql) === TRUE) {  //Insert new user into db
+    $_SESSION['message'] = "You have successfully registered, and will be redirected to the login page.";
+    header("Location: login.html");
+    exit;
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+  $conn->close();
+}
+?>
+>>>>>>> Stashed changes
