@@ -13,17 +13,9 @@ if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
 }
 
 if(isset($_POST) && !empty($_POST)) {
-<<<<<<< Updated upstream
-    if (!empty($_POST['DJ_Name']) && !empty($_POST['password'])) {
-        $db = get_connection();
-        $stmt = $db->prepare("SELECT * FROM user WHERE DJ_Name = ?");
-        $stmt->bind_param("s", $DJ_Name);
-        $stmt->execute();
-=======
     if (!empty($_POST['username']) && !empty($_POST['password'])) {
         $conn = get_connection();
 
->>>>>>> Stashed changes
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         echo $row['name'];
