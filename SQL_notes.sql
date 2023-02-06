@@ -1,11 +1,11 @@
-CREATE TABLE `user` (                                                                              
-  `userID` int(15) NOT NULL AUTO_INCREMENT,                                                                  
-  `email` varchar(100) NOT NULL,                                                                             
+CREATE TABLE `users` (                                                                              
+  `userID` int(15) NOT NULL AUTO_INCREMENT,                                                                             
   `first_name` varchar(100) NOT NULL,                                                                             
-  `last_name` varchar(100) NOT NULL,                                                                                                                                                  
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `username` varchar(100),                                                                                                                                                   
   `password` varchar(100) NOT NULL,                                                                      
-  `birthday` date NOT NULL,
-  `username` varchar(100),                                                                                
+  `birthday` date,
   PRIMARY KEY (`userID`)                                                                                     
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
