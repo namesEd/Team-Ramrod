@@ -12,9 +12,9 @@ CREATE TABLE `users` (
 
 #date = YYYY/MM/DD
 
-INSERT INTO user
-(email, first_name, last_name, password, birthday) 
-VALUES('bBob@hotmail.com','Billy', 'Bobbert', 'sw0rdf!sh', '1970-01-01');
+INSERT INTO users
+(first_name, last_name, email, username,  password, birthday) 
+VALUES('Billy', 'Bobbert', 'bBob@hotmail.com', 'BBOB', 'sw0rdf!sh');
 ;
 INSERT INTO user
 (email, first_name, last_name, password, birthday) 
