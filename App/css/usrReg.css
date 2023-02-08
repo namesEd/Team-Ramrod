@@ -2,17 +2,28 @@
 .rcorners
 {
   border-radius: 10px;
-  border: 2px solid #3154A3;
+  border: 2px solid black;
+  border-color: black;
   padding: 5px; 
   height: 25px;
 }
 
 
-div {
+.c3 {
   border-radius: 5px;
-  background-color: #f2f2f2;
-  /*padding: 15px;*/
+  background-color: grey;
   text-align: center;
+  margin-left: 5vh;
+  margin-top: 5vh;
+}
+
+.plc {
+  border-radius: 5px;
+  background-color: grey;
+  text-align: right;
+
+
+
 }
 
 
@@ -22,18 +33,35 @@ label {
   text-align: Left;
 }
 
-.containerx {
+.container {
   position: fixed;
   left: 1%;
-  top: 15%;
+  top: 20%;
   height: 50%;
   width:  50%;
 }
 
 .c2 {
   position: fixed;
-  left: 70%;
-  top: 15%;
-  height: 74%;
+  left: 60%;
+  top: 20%;
+  height: 10%;
   width:  27%;
+  background-color: #f2f2f2;
+}
+
+
+/* https://dev.to/dawnind/3-ways-to-display-two-divs-side-by-side-3d8b */
+.flex-parent-element {
+  display: flex;
+  width: 50%;
+}
+
+.flex-child-element {
+  flex: 1;
+  margin: 10px;
+}
+
+.flex-child-element:first-child {
+  margin-right: 20px;
 }
