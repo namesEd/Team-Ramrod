@@ -1,20 +1,20 @@
-CREATE TABLE `user` (                                                                              
-  `userID` int(15) NOT NULL AUTO_INCREMENT,                                                                  
-  `email` varchar(100) NOT NULL,                                                                             
+CREATE TABLE `users` (                                                                              
+  `userID` int(15) NOT NULL AUTO_INCREMENT,                                                                             
   `first_name` varchar(100) NOT NULL,                                                                             
-  `last_name` varchar(100) NOT NULL,                                                                                                                                                  
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `username` varchar(100),                                                                                                                                                   
   `password` varchar(100) NOT NULL,                                                                      
-  `birthday` date NOT NULL,
-  `username` varchar(100),                                                                                
+  `birthday` date,
   PRIMARY KEY (`userID`)                                                                                     
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
 
 #date = YYYY/MM/DD
 
-INSERT INTO user
-(email, first_name, last_name, password, birthday) 
-VALUES('bBob@hotmail.com','Billy', 'Bobbert', 'sw0rdf!sh', '1970-01-01');
+INSERT INTO users
+(first_name, last_name, email, username,  password, birthday) 
+VALUES('Billy', 'Bobbert', 'bBob@hotmail.com', 'BBOB', 'sw0rdf!sh');
 ;
 INSERT INTO user
 (email, first_name, last_name, password, birthday) 
