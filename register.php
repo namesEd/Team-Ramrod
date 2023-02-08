@@ -12,19 +12,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = sanitize($_POST["email"]);
   $username = sanitize($_POST["username"]);
   $password = sanitize($_POST["password"]);
-  $repeat_password = sanitize($_POST["rpword"]);
+  $password_confirmation = sanitize($_POST["rpword"]);
+
   //Check if fields are empty
   if (strlen($username) == 0 || strlen($password) == 0 || strlen($repeat_password) == 0 || strlen($first_name) == 0 || strlen($last_name) == 0 || strlen($email) == 0 ) {
     $_SESSION["error"] = "All fields must be filled to register user.";
     echo "All fields are required.";
     header("Location: usrReg.html");
-  } else {
+  } elseif ($password != $password_confirmation) {
+      echo "Error: passwords do not match";
+    } else {
     //Check if username is in database
     $check_user ="SELECT username FROM users WHERE username = '$username';";
-    $result = $conn->query($check_user);
+    $result_user = $conn->query($check_user);
     //Check if email is in database
-            
-    if($result -> num_rows > 0 ) {
+    
+    if($result_user -> num_rows > 0 ) {
       echo 'Error: This username already exists';
       //$conn->close();
     } else { 
