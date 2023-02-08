@@ -30,97 +30,108 @@
 
 	<header-component></header-component>
     
-    <div class="containerx c1">
+    <h2> Register an Account </h2>
+    
+  
 
-    <div class="container c1">
 
 
-
-    	<h2> Register an Account </h2>
+<div>
+  
    
 	<form action= "register.php" method="POST" class = "spaced" id="form1">
      
-    <div class="mb-3 row">
-    		<div class="col-sm-6">
+    <div class="flex-parent-element">
+    		<div class="flex-child-element magenta">
 			 			<p>
 
-				      <label>First name: <input class="rcorners form-control" type="text" name="first_name" id="first_name"/></label>
+				      <label>First name: <input class="rcorners " type="text" name="first_name" id="first_name"/></label>
 				    </p>
 				</div>
 	     
-				<div class="col-sm-6">
-								<p>
-							    <label>Last name: <input class="rcorners form-control"  type="text" name="last_name" id="last_name" /></label>
+		
+				<div class="flex-child-element green">
+								<p>							   
+							    <label>Last name: <input class="rcorners"  type="text" name="last_name" id="last_name" /></label>
 							   </p>
 				  </div>
 	  </div>
 
-	  <div class="mb-3 row">
+	  <div class="flex-parent-element">
 
-			<div class="col-sm-6">
+			<div class="flex-child-element magenta">
 		    <p>
-		      <label>Email:<input class="rcorners form-control"  type="email" name="email" id="email" /></label>
+		      
+		      <label>Username: <input class="rcorners "  type="text" name="username" id="username" /></label>
 		    </p>
 	  	</div>
 
 
-	  	<div class="col-sm-6">
+	  	<div class="flex-child-element green">
 
 	  		
-	  		<!-- <p>
-		      <label>Re-Type Password : <input class="rcorners form-control"  type="password" name="rpword" id="rpword" /></label>
+	  		<p>
+		   
+		      
+		      <label>Email:<input class="rcorners "  type="email" name="email" id="email" /></label>
 		    </p>
-			-->
+			
 
 		  </div>
 
 		</div>
 	 
-  <div class="mb-3 row">
+  <div class="flex-parent-element">
 
-  	<div class="col-sm-6">
+  	<div  class="flex-child-element magenta">
 	    <p>
-	      <label>Password<input class="rcorners form-control"  type="password" name = "password" /></label>
+	    
+	      <label>Password<input class="rcorners "  type="password" name = "password" /></label>
 	    </p>
 	 	</div>
 
-	 	<div class="col-sm-6">
-	    <!--p>
-	      <label>DOB(xxxx-xx-xx) : <input class="rcorners form-control"  type="text" name="dob" id="dob" />
-	      </label>
+	 	<div class="flex-child-element green">
+	    <p>
+	 			<label>Re-Type Password : <input class="rcorners "  type="password" name="rpword" id="rpword" /></label>
 	    </p>
-	  -->
+	 
 	  </div>
 
 	</div>
 
-	<div class="mb-3 row">
+	<div class="flex-parent-element">
 		
-		<div class="col-sm-6">
+		<div class="flex-child-element magenta">
 	    <p>
-	      <label>Username: <input class="rcorners form-control"  type="text" name="username" id="username" /></label>
+	       <label>DOB(xxxx-xx-xx) : <input class="rcorners "  type="text" name="dob" id="dob" /></label>
 	    </p>
 	  </div>
 	     
-	  <div class="col-sm-6">
+	  <div class="flex-child-element green">
 			<p>
 	       <button type="submit" class="button button2 btn btn-primary btn-rounded"> Submit </button>
 	    </p>
 	  </div>
 
+
+
+
+
+
+
  	</div>
 
- 	<div>
-
- 		<img class="img-fluid" src="placeholder.png" alt="Placeholder">
- 		
- 	</div>
  
   </form>
+
+ <div class="c2">
+   <img class="img-fluid" src="placeholder.png" alt="Placeholder">
+ </div>
+ 
+ </div>
+
   <h3> Have an Account already login here</h3>
   <button class="btn btn-success btn-rounded button button2" > Login </button> 
-
-  </div>
 
     </body>
 </html>
