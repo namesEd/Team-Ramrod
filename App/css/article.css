@@ -1,0 +1,89 @@
+/* need to immport the same font being used throughout the ramrod website */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200:400:700&display=swap');
+body {
+	background-color: rgb(252, 252, 252);
+	color: #000000;
+	font-family: 'Poppins', sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+form {
+	float: right;
+
+/*	align-content: right;*/
+}
+.search_bar {
+	float: right;
+	border: 1px rgb(250,199,44);
+	padding: 1%;
+	display: inline-flex;
+	background-color: rgb(250,199,44);
+}
+/* Commenting things i do not need rn but will most likely still need as the article page progress and i 
+develop a better understanding of adjust the infomration being retrieved */
+/* .card-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+	height: 300px;
+	grid-auto-rows: minmax(100px, auto);
+
+	align-items: end;
+
+
+} */
+/* 
+.rounded-image {
+	border-radius: 50% 50%;
+	width: 200px;
+	height: 200px;
+	border: 5px salmon;
+	border-radius: 5px;
+}
+
+.one {
+	grid-column: 1;
+	grid-row: 2;
+	border:2px solid black;
+	border-radius: 5px;
+}
+
+.two {
+	grid-column: 2;
+	grid-row: 2;
+	border:2px solid black;
+	border-radius: 5px;
+} */
+
+/* .card {
+	border: 1px rgb(250,199,44);
+	padding: 1%;
+	background-color: rgb(250, 199, 44);
+} */
+/* .card-body {
+	border: 2px solid black;
+	border-radius: 5px;
+} */
+/* 
+section {
+	display: grid;
+	place-items: center;
+	align-content: center;
+	min-height: 30vh;
+} 
+
+.hidden {
+	opacity: 1;
+	filter: blur(0px);
+	transform: translateX(1%);
+	transition: all 0.5s;
+}
+
+
+.show {
+	opacity: 0;
+	filter: blur(5px);
+	transform: translateX(0%);
+} 
+*/
