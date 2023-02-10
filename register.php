@@ -5,59 +5,56 @@ error_reporting(E_ALL);
 
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["submit"])) {
   require 'utility.php';
   require 'connect.php';
   require_once 'functions_inc.php';
 #test   
 
-  $first_name = sanitize($_POST["first_name"]);
-  $last_name = sanitize($_POST["last_name"]); 
-  $email = sanitize($_POST["email"]);
-  $username = sanitize($_POST["username"]);
-  $password = sanitize($_POST["password"]);
-  $password_repeat = sanitize($_POST["rpword"]);
+  $first_name = ($_POST["first_name"]);
+  $last_name = ($_POST["last_name"]); 
+  $email = ($_POST["email"]);
+  $username = ($_POST["username"]);
+  $password = ($_POST["password"]);
+  $password_repeat = ($_POST["rpword"]);
 
 
 
   //Check if fields are empty
   if (emptyInputReg($first_name, $last_name, $email, $username, $password, $password_repeat) !== false) {
-    header("Location:usrReg.html?error=emptyInput");
+    header("Location:usrReg.php?error=emptyinput");
     exit();
     }
   
-  
+  //check if paswords match
   if(passwordMismatch($password, $password_repeat) !== false) {
     echo "Error: passwords do not match";
-    header("Location: usrReg.html?error=passwordmismatch");
+    header("Location: usrReg.html?error=password_mismatch");
     exit();
   }
-  
 
-  //Check if username is in database
-  $check_user ="SELECT username FROM users WHERE username = '$username';";
-  $result = $conn->query($check_user);
-  //Check if email is in database
-  
-  if($result -> num_rows > 0 ) {
-    echo 'Error: This username already exists';
-    header("Location: usrReg.html?error=usernametaken");
+  //check is username or email is in the db
+  if(userExists($conn, $username, $email) !== false) {
+    header("Location: usrReg.html?error=userExists");
     exit();
-    } else { 
-        $sql = "INSERT INTO users (first_name, last_name, email, username, password)
-        VALUES ('$first_name', '$last_name', '$email', '$username', '$password')";
-        
-        if ($conn->query($sql) === TRUE) {  
-            //Inserts new user into db
-            $_SESSION['message'] = "You have successfully registered, please login";
-            //redirect the user to a new page (either login or homepage)
-            header("Location: login.html");
-            exit;
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-    $conn->close();
-}
+  }
 
+  //else: insert user into database
+  $sql = "INSERT INTO users (first_name, last_name, email, username, password) VALUES (?, ?, ?, ?, ?);";
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $sql)) {
+    header("Location: usrReg.html?error==stmtFailed");
+    exit();
+  }
+  $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+  mysqli_stmt_bind_param($stmt, 'sssss', $first_name, $last_name, $email, $username, $hashed_pass);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_close($stmt);
+  header("Location: usrReg.html?error=none");
+  exit();
+
+} else {
+header("Location: usrReg.html");
+exit();
+}
 ?>

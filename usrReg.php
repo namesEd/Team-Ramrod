@@ -109,20 +109,22 @@
 	     
 	  <div class="flex-child-element green">
 			<p>
-	       <button type="submit" class="button button2 btn btn-primary btn-rounded"> Submit </button>
+	       <button type="submit" name = "submit" class="button button2 btn btn-primary btn-rounded"> Submit </button>
 	    </p>
 	  </div>
 
-
-
-
-
-
-
  	</div>
-
- 
   </form>
+
+
+	<?php 
+  	//error messages
+  	if (isset($_GET["error"])) {
+  			if ($_GET["error"] == "emptyinput") {
+  				echo "<p> Fill in all fields to register!</p>";
+  			}
+  	}
+  ?>
 
  <div class="c2">
    <img class="img-fluid" src="placeholder.png" alt="Placeholder">
