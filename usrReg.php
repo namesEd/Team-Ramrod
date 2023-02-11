@@ -119,19 +119,19 @@
 
 	<?php 
   	//error messages displayed to user
-  	if (isset($_GET["error"])) {
+  if (isset($_GET["error"])) {
 		if ($_GET["error"] == "emptyinput") {
 			echo "<p> Fill in all fields to register!</p>";
 		} elseif ($_GET["error"] == "stmtfailed") {
 			echo "<p>There was an error!</p>";
 		} elseif ($_GET["error"] == "passwordmismatch") {
 			echo "<p>Passwords do not match</p>";
-		}  elseif ($_GET["error"] == "userexists") {
+		} elseif ($_GET["error"] == "userexists") {
 			echo "<p>This username or email is taken</p>";
-		}  elseif ($_GET["error"] == "none") {
+		} elseif ($_GET["error"] == "none") {
 			echo "<p>You have registered! Please login.</p>";
 			} 
-  	}
+  }
   ?>
 
  <div class="c2">
