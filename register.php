@@ -26,6 +26,17 @@ if (isset($_POST["submit"])) {
     exit();
     }
   
+  //check for valid username
+    if(invalidUsername($username) !== false) { 
+      header("Location: usrReg.php?error=invalidusername");
+      exit();
+    }
+
+    if(invalidEmail($email) !== false) { 
+      header("Location: usrReg.php?error=invalidemail");
+      exit();
+    }
+
   //check if paswords match
   if(passwordMismatch($password, $password_repeat) !== false) {
     echo "Error: passwords do not match";

@@ -11,6 +11,28 @@ function emptyInputReg($first_name, $last_name, $email, $username, $password, $p
 	return $result; 
 }
 
+function invalidUsername($username) 
+{
+	$result;
+	if (!preg_match('/^[a-zA-Z0-9_]{3,24}$/', $username)) {
+		$result = true; 
+	} else {
+		$result = false;
+	}
+	return $result; 	
+}
+
+function invalidEmail($email) 
+{
+	$result;
+	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$result = true;
+	} else {
+		$result = false;	
+	}
+		return $result; 
+}
+
 function passwordMismatch($password, $password_repeat) 
 { 
 	$result;
@@ -21,7 +43,6 @@ function passwordMismatch($password, $password_repeat)
 	}
 	return $result; 
 }
-
 
 function userExists($conn, $username, $email)
 {
