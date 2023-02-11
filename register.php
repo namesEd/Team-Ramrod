@@ -29,13 +29,13 @@ if (isset($_POST["submit"])) {
   //check if paswords match
   if(passwordMismatch($password, $password_repeat) !== false) {
     echo "Error: passwords do not match";
-    header("Location: usrReg.html?error=password_mismatch");
+    header("Location: usrReg.php?error=password_mismatch");
     exit();
   }
 
   //check is username or email is in the db
   if(userExists($conn, $username, $email) !== false) {
-    header("Location: usrReg.html?error=userExists");
+    header("Location: usrReg.php?error=userExists");
     exit();
   }
 
@@ -43,18 +43,18 @@ if (isset($_POST["submit"])) {
   $sql = "INSERT INTO users (first_name, last_name, email, username, password) VALUES (?, ?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: usrReg.html?error==stmtFailed");
+    header("Location: usrReg.php?error==stmtFailed");
     exit();
   }
   $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
   mysqli_stmt_bind_param($stmt, 'sssss', $first_name, $last_name, $email, $username, $hashed_pass);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
-  header("Location: usrReg.html?error=none");
+  header("Location: usrReg.php?error=none");
   exit();
 
 } else {
-header("Location: usrReg.html");
+header("Location: usrReg.php");
 exit();
 }
 ?>
