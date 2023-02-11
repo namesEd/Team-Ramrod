@@ -1,5 +1,5 @@
 <?php
-
+//Include functions for login and register files
 function emptyInputReg($first_name, $last_name, $email, $username, $password, $password_repeat)
 {
 	$result; 

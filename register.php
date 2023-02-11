@@ -29,13 +29,13 @@ if (isset($_POST["submit"])) {
   //check if paswords match
   if(passwordMismatch($password, $password_repeat) !== false) {
     echo "Error: passwords do not match";
-    header("Location: usrReg.php?error=password_mismatch");
+    header("Location: usrReg.php?error=passwordmismatch");
     exit();
   }
 
   //check is username or email is in the db
   if(userExists($conn, $username, $email) !== false) {
-    header("Location: usrReg.php?error=userExists");
+    header("Location: usrReg.php?error=userexists");
     exit();
   }
 
@@ -43,7 +43,7 @@ if (isset($_POST["submit"])) {
   $sql = "INSERT INTO users (first_name, last_name, email, username, password) VALUES (?, ?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: usrReg.php?error==stmtFailed");
+    header("Location: usrReg.php?error==stmtfailed");
     exit();
   }
   $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
