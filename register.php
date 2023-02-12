@@ -27,15 +27,20 @@ if (isset($_POST["submit"])) {
     }
   
   //check for valid username
-    if(invalidUsername($username) !== false) { 
-      header("Location: usrReg.php?error=invalidusername");
-      exit();
+  if(invalidUsername($username) !== false) { 
+    header("Location: usrReg.php?error=invalidusername");
+    exit();
     }
 
-    if(invalidEmail($email) !== false) { 
-      header("Location: usrReg.php?error=invalidemail");
-      exit();
+  if(invalidEmail($email) !== false) { 
+    header("Location: usrReg.php?error=invalidemail");
+    exit();
     }
+
+  if(invalidPassword($password) !== false) {
+    header("Location: usrReg.php?error=invalidpassword");
+    exit();
+  }
 
   //check if paswords match
   if(passwordMismatch($password, $password_repeat) !== false) {

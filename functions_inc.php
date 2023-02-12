@@ -33,6 +33,17 @@ function invalidEmail($email)
 		return $result; 
 }
 
+function invalidPassword($password)
+{
+	$result;
+	if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{7,24}$/', $password)) {
+		$result = true;
+	} else {
+		$result = false;
+	}
+	return $result;
+}
+
 function passwordMismatch($password, $password_repeat) 
 { 
 	$result;

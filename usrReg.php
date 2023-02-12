@@ -123,14 +123,17 @@
 		if ($_GET["error"] == "emptyinput") {
 			echo "<p> Fill in all fields to register!</p>";
 		} elseif ($_GET["error"] == "stmtfailed") {
-			echo "<p>There was an error!</p>";
+				echo "<p>There was an error!</p>";
 		} elseif ($_GET["error"] == "passwordmismatch") {
-			echo "<p>Passwords do not match</p>";
+				echo "<p>Passwords do not match</p>";
 		} elseif ($_GET["error"] == "userexists") {
-			echo "<p>This username or email is taken</p>";
+				echo "<p>This username or email is taken</p>";
+		} elseif ($_GET["error"] == "invalidpassword") {
+				echo "<p>Email must be between 7-24 characters, and contain a min of 1 letter and 1 number.</p>";
 		} elseif ($_GET["error"] == "none") {
-			echo "<p>You have registered! Please login.</p>";
+				echo "<p>You have registered! Please login.</p>";
 			} 
+
   }
   ?>
 
