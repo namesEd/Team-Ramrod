@@ -130,10 +130,13 @@
 				echo "<p>This username or email is taken</p>";
 		} elseif ($_GET["error"] == "invalidpassword") {
 				echo "<p>Email must be between 7-24 characters, and contain a min of 1 letter and 1 number.</p>";
+		} elseif ($_GET["error"] == "invalidusername") {
+			echo "<p>Username must be between 3-24 characters and only contains leters, numbers, and underscores</p>";
+		} elseif ($_GET["error"] == "invalidemail") {
+			echo "<p>Email must be a valid email address</p>";
 		} elseif ($_GET["error"] == "none") {
-				echo "<p>You have registered! Please login.</p>";
+			echo "<p>You have registered! Please login.</p>";
 			} 
-
   }
   ?>
 
