@@ -1,5 +1,6 @@
 <?php
 //Include functions for login and register files
+
 function emptyInputReg($first_name, $last_name, $email, $username, $password, $password_repeat)
 {
 	$result; 
@@ -86,8 +87,37 @@ function userExists($conn, $username, $email)
 	mysqli_stmt_close($stmt);
 }
 
+function emptyInputLogin($username, $password)
+{
+	$result; 
+	if (empty($username) || empty($password)) { 
+		$result = true; 
+	} else {
+		$result = false; 
+	} 
+	return $result; 
+}
 
+function loginUser($conn, $username, $password) 
+{	
+	//check for username or email to login the user 
+	$userExists = userExists($conn, $username, $username);
 
+	if ($userExists === false) {
+		header("Location: userLogin?error=incorrectlogin");
+		exit();
+	}
+	$hashedPass = $userExists["password"];
+  	$verifyPassword = password_verify($password, $hashedPass);
 
-
-?>
+  	if(verifyPassword === false) {
+    	header("Location: userLogin?error=incorrectlogin");
+    	exit(); 
+  	} else if($verifyPassword === true) {
+	    session_start();
+	    $_SESSION['userid'] = $userExists["userID"];
+	    $_SESSION['username'] = $userExists["username"];
+	    header("Location: HomePage.html");
+	    exit();
+	}
+}
