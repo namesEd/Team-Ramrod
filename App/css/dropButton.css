@@ -1,0 +1,22 @@
+.button-with-arrow {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  position: relative;
+}
+
+.button-with-arrow::after {
+  content: "";
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid white;
+  position: absolute;
+  top: 40%;
+  right: 12px;
+  transform: translateY(-90%); 
+  transform: rotate(90deg);
+}
