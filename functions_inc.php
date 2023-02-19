@@ -1,5 +1,6 @@
 <?php
 //Include functions for login and register files
+
 function emptyInputReg($first_name, $last_name, $email, $username, $password, $password_repeat)
 {
 	$result; 
@@ -55,7 +56,7 @@ function passwordMismatch($password, $password_repeat)
 	return $result; 
 }
 
-function userExists($conn, $username, $email)
+function userExists($conn, $username)
 {
 	$query = "SELECT * FROM users WHERE username = ? OR email = ?;";
 	//initialize prepared statment for db connection
@@ -67,16 +68,17 @@ function userExists($conn, $username, $email)
 	}
 
 	//bind statement before executing
-	mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+	mysqli_stmt_bind_param($stmt, "ss", $username, $username);
 	mysqli_stmt_execute($stmt);
 
-	// getResult returns the results from the prepared statement
+	//Return the results from the prepared statement
 	$getResult = mysqli_stmt_get_result($stmt);
 
 	//if username or email exists in database it will return false, which will be used for register.php
 	//if the prepared statement returns true, then the user exists and can be verified for login.php
-	if ($data = mysqli_fetch_assoc($getResult)) {
-		return $row;
+	$result;
+	if ($result = mysqli_fetch_assoc($getResult)) {
+		return $result;
 	}
 	else {
 		$result = false;
@@ -86,8 +88,42 @@ function userExists($conn, $username, $email)
 	mysqli_stmt_close($stmt);
 }
 
+function emptyLogin($username, $password)
+{
+	echo("Here2");
+	$result; 
+	if (empty($username) || empty($password)) { 
+		$result = true;
+		return $result;
+	} else {
+		return $result;
+		$result = false; 
+	} 
+	return $result;
+}
 
+function loginUser($conn, $username, $password) 
+{	
+	echo("Here3");
+	//check for username or email to login the user 
+	$userExists = userExists($conn, $username);
 
+	if ($userExists === false) {
+		echo("Here4");
+		header("Location: userLogin.php?error=incorrectlogin");
+		exit();
+	}
+	$hashedPass = $userExists["password"];
+  	$verifyPassword = password_verify($password, $hashedPass);
 
-
-?>
+  	if($verifyPassword === false) {
+    	header("Location: userLogin?error=incorrectlogin2");
+    	exit(); 
+  	} else if($verifyPassword === true) {
+	    session_start();
+	    $_SESSION['userid'] = $userExists["userID"];
+	    $_SESSION['username'] = $userExists["username"];
+	    header("Location: HomePage.html");
+	    exit();
+	}
+}

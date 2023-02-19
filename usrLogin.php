@@ -15,18 +15,28 @@
     <header-component></header-component>
 <main>
     <div id="form">
-        <form action="/login.php" method="get">
+        <form action="login.php" method="post">
             <p>
-                <label><input type="text" placeholder="Email"></label>
+                <label><input type="text" name="uname" placeholder="Username/Email"></label>
               </p>
               <p>
-                <label><input type="password" placeholder="Password"></label>
+                <label><input type="password" name="pword" placeholder="Password"></label>
               </p>
-              <button id="log">Log In</button>
+              <button id="log" type="submit" name="submit">Log In</button>
         </form>
+    <?php 
+        //error messages displayed to user
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == "emptyinput") {
+                echo "<p> Fill in all fields to login!</p>";
+            } elseif ($_GET["error"] == "incorrectlogin1") {
+                echo "<p>Change later. Username bug</p>";
+            } elseif ($_GET["error"] == "incorrectlogin2") {
+                echo "<p>Change later. Password bug</p>";
+            }
+        }
+    ?>
     </div>
-  
-
 </main>
     
 </body>
