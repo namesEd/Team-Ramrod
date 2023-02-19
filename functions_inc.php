@@ -88,6 +88,7 @@ function userExists($conn, $username)
 	mysqli_stmt_close($stmt);
 }
 
+<<<<<<< HEAD
 function emptyLogin($username, $password)
 {
 	echo("Here2");
@@ -100,10 +101,22 @@ function emptyLogin($username, $password)
 		$result = false; 
 	} 
 	return $result;
+=======
+function emptyInputLogin($username, $password)
+{
+	$result; 
+	if (empty($username) || empty($password)) { 
+		$result = true; 
+	} else {
+		$result = false; 
+	} 
+	return $result; 
+>>>>>>> c6e4ce058904723bc6a951e36ac5650d213369c5
 }
 
 function loginUser($conn, $username, $password) 
 {	
+<<<<<<< HEAD
 	echo("Here3");
 	//check for username or email to login the user 
 	$userExists = userExists($conn, $username);
@@ -111,13 +124,25 @@ function loginUser($conn, $username, $password)
 	if ($userExists === false) {
 		echo("Here4");
 		header("Location: userLogin.php?error=incorrectlogin");
+=======
+	//check for username or email to login the user 
+	$userExists = userExists($conn, $username, $username);
+
+	if ($userExists === false) {
+		header("Location: userLogin?error=incorrectlogin");
+>>>>>>> c6e4ce058904723bc6a951e36ac5650d213369c5
 		exit();
 	}
 	$hashedPass = $userExists["password"];
   	$verifyPassword = password_verify($password, $hashedPass);
 
+<<<<<<< HEAD
   	if($verifyPassword === false) {
     	header("Location: userLogin?error=incorrectlogin2");
+=======
+  	if(verifyPassword === false) {
+    	header("Location: userLogin?error=incorrectlogin");
+>>>>>>> c6e4ce058904723bc6a951e36ac5650d213369c5
     	exit(); 
   	} else if($verifyPassword === true) {
 	    session_start();

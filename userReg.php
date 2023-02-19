@@ -1,7 +1,7 @@
 <!doctype html>
 
 
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
     <head>
 
 		  <link rel="stylesheet" href="App/css/usrReg.css">
@@ -37,19 +37,14 @@
 
 
 <div>
-  
-   
 	<form action= "register.php" method="POST" class = "spaced" id="form1">
-     
     <div class="flex-parent-element">
     		<div class="flex-child-element magenta">
 			 			<p>
-
 				      <label>First name: <input class="rcorners " type="text" name="first_name" id="first_name"/></label>
 				    </p>
 				</div>
-	     
-		
+
 				<div class="flex-child-element green">
 								<p>							   
 							    <label>Last name: <input class="rcorners"  type="text" name="last_name" id="last_name" /></label>
@@ -129,7 +124,7 @@
 		} elseif ($_GET["error"] == "userexists") {
 				echo "<p>This username or email is taken</p>";
 		} elseif ($_GET["error"] == "invalidpassword") {
-				echo "<p>Email must be between 7-24 characters, and contain a min of 1 letter and 1 number.</p>";
+				echo "<p>Password must be between 7-24 characters, and contain a min of 1 letter and 1 number.</p>";
 		} elseif ($_GET["error"] == "invalidusername") {
 			echo "<p>Username must be between 3-24 characters and only contains leters, numbers, and underscores</p>";
 		} elseif ($_GET["error"] == "invalidemail") {
@@ -147,7 +142,7 @@
  </div>
 
   <h3> Have an Account already login here</h3>
-  <button class="btn btn-success btn-rounded button button2" ><a href="login.html"> Login  </a> </button> 
+  <button class="btn btn-success btn-rounded button button2" ><a href="userLogin.php"> Login  </a> </button> 
 
     </body>
 </html>
