@@ -17,16 +17,11 @@
     <div id="form">
         <form action="login.php" method="post">
             <p>
-<<<<<<<< HEAD:usrLogin.php
                 <label><input type="text" name="uname" placeholder="Username/Email"></label>
-========
-                <label><input type="text" name = "uname" placeholder="Username/Email"></label>
->>>>>>>> c6e4ce058904723bc6a951e36ac5650d213369c5:userLogin.php
               </p>
               <p>
                 <label><input type="password" name="pword" placeholder="Password"></label>
               </p>
-<<<<<<<< HEAD:usrLogin.php
               <button id="log" type="submit" name="submit">Log In</button>
         </form>
     <?php 
@@ -40,19 +35,6 @@
                 echo "<p>Change later. Password bug</p>";
             }
         }
-========
-              <button id="log" name="submit">Log In</button>
-        </form>
-    <?php 
-    //error messages displayed to user
-    if (isset($_GET["error"])) {
-        if ($_GET["error"] == "emptyinput") {
-            echo "<p> Fill in all fields to register!</p>";
-        } elseif ($_GET["error"] == "incorrectlogin") {
-            echo "<p>Wrong login information</p>";
-        } 
-    }
->>>>>>>> c6e4ce058904723bc6a951e36ac5650d213369c5:userLogin.php
     ?>
     </div>
 </main>
