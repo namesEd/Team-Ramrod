@@ -12,7 +12,7 @@ body{
 #form{ 
   display: inline;
   text-align: center;
-  margin: 0;
+  margin: auto auto;
   padding: 0 16px;
 }
 
