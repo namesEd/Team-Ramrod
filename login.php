@@ -4,8 +4,8 @@ require "connect.php";
 require "utility.php";
 
 if(isset($_POST["submit"])) {
-  $username = $_POST['uname'];
-  $password = $_POST["pword"];
+  $username = sanitize($_POST['uname']);
+  $password = sanitize($_POST["pword"]);
 
   if(emptyLogin($username, $password) === true) {
     header("Location: userLogin.php?error=emptyinput");
