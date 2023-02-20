@@ -1,0 +1,55 @@
+/* need to immport the same font being used throughout the ramrod website */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200:400:700&display=swap'); */
+body {
+	background-color: rgb(252, 252, 252);
+	color: #000000;
+	font-family: 'Poppins', sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+.search_bar {
+	float: right;
+	border: 1px rgb(250,199,44);
+	padding: 1%;
+	display: inline-flex;
+	background-color: rgb(250,199,44);
+}
+
+/* Add some basic styling for the articles */
+.article {
+	border: 1px solid #000000;
+	padding: 1%;
+	margin-bottom: 1%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.article img {
+	max-width: 10%;
+	max-height: 10%;
+	margin-right: 1%;
+}
+/* Commenting things i do not need rn but will most likely still need as the article page progress and i 
+develop a better understanding of adjust the infomration being retrieved */
+/* .card-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+	height: 300px;
+	grid-auto-rows: minmax(100px, auto);
+
+	align-items: end;
+} */
+/* 
+/* .card {
+	border: 1px rgb(250,199,44);
+	padding: 1%;
+	background-color: rgb(250, 199, 44);
+} */
+/* .card-body {
+	border: 2px solid black;
+	border-radius: 5px;
+} */
+/* 
