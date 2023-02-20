@@ -29,9 +29,9 @@
         if (isset($_GET["error"])) {
             if ($_GET["error"] == "emptyinput") {
                 echo "<p> Fill in all fields to login!</p>";
-            } elseif ($_GET["error"] == "incorrectlogin1") {
-                echo "<p>Change later. Username bug</p>";
-            } elseif ($_GET["error"] == "incorrectlogin2") {
+            } elseif ($_GET["error"] == "incorrectlogin") {
+                echo "<p>Username or Password incorrect</p>";
+            } elseif ($_GET["error"] == "incorrectlogin") {
                 echo "<p>Change later. Password bug</p>";
             }
         }

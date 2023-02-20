@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Include functions for login and register files
 
 function emptyInputReg($first_name, $last_name, $email, $username, $password, $password_repeat)
@@ -63,7 +64,7 @@ function userExists($conn, $username)
 	$stmt = mysqli_stmt_init($conn);
 	//check if sql query will fail or not before continuing
 	if (!mysqli_stmt_prepare($stmt, $query)) {
-		header("Location: usrReg.html?error=stmtFailed");
+		header("Location: userReg.php?error=stmtFailed");
 		exit();
 	}
 
@@ -104,12 +105,10 @@ function emptyLogin($username, $password)
 
 function loginUser($conn, $username, $password) 
 {	
-	echo("Here3");
 	//check for username or email to login the user 
 	$userExists = userExists($conn, $username);
 
 	if ($userExists === false) {
-		echo("Here4");
 		header("Location: userLogin.php?error=incorrectlogin");
 		exit();
 	}
@@ -117,13 +116,13 @@ function loginUser($conn, $username, $password)
   	$verifyPassword = password_verify($password, $hashedPass);
 
   	if($verifyPassword === false) {
-    	header("Location: userLogin?error=incorrectlogin2");
+    	header("Location: userLogin.php?error=incorrectlogin");
     	exit(); 
   	} else if($verifyPassword === true) {
 	    session_start();
-	    $_SESSION['userid'] = $userExists["userID"];
+	    $_SESSION['userID'] = $userExists["userID"];
 	    $_SESSION['username'] = $userExists["username"];
-	    header("Location: HomePage.html");
+	    header("Location: HomePage.php");
 	    exit();
 	}
 }
