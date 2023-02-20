@@ -17,8 +17,8 @@ connectedCallback(){
   <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
   <a href="#">About</a>
   <a href="#">Services</a>
-  <a href="login.html">Login</a>
-  <a href="usrReg.html">Create an Account</a>
+  <a href="../userLogin.php">Login</a>
+  <a href="../userReg.php">Create an Account</a>
   <a href="#">Contact</a>
 </div>
 `;
