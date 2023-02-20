@@ -15,11 +15,9 @@ connectedCallback(){
 
 <div id="mySidenav" class="sideNav">
   <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="../userLogin.php">Login</a>
-  <a href="../userReg.php">Create an Account</a>
-  <a href="#">Contact</a>
+  <a href="about_page.html">About</a>
+  <a href="userLogin.php">Login</a>
+  <a href="userReg.php">Create an Account</a>
 </div>
 `;
 }
