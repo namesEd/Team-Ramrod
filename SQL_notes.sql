@@ -1,26 +1,22 @@
-CREATE TABLE `user` (                                                                              
-  `userID` int(15) NOT NULL AUTO_INCREMENT,                                                                  
-  `email` varchar(100) NOT NULL,                                                                             
-  `first_name` varchar(100) NOT NULL,                                                                             
-  `last_name` varchar(100) NOT NULL,                                                                                                                                                  
-  `password` varchar(100) NOT NULL,                                                                      
-  `birthday` date NOT NULL,
-  `username` varchar(100),                                                                                
-  PRIMARY KEY (`userID`)                                                                                     
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
+
+CREATE TABLE `users` (                                                                                                     
+  `userID` int(15) NOT NULL AUTO_INCREMENT,                                                                                          
+  `first_name` varchar(100) NOT NULL,                                                                                                
+  `last_name` varchar(100) NOT NULL,                                                                                                 
+  `email` varchar(100) NOT NULL,                                                                                                     
+  `username` varchar(100) NOT NULL,                                                                                                  
+  `password` varchar(100) NOT NULL,                                                                                                  
+  `birthday` date DEFAULT NULL,                                                                                                      
+  PRIMARY KEY (`userID`)                                                                                                             
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 ;
 
 #date = YYYY/MM/DD
 
-INSERT INTO user
-(email, first_name, last_name, password, birthday) 
-VALUES('bBob@hotmail.com','Billy', 'Bobbert', 'sw0rdf!sh', '1970-01-01');
-;
-INSERT INTO user
-(email, first_name, last_name, password, birthday) 
+INSERT INTO users 
+(first_name, last_name, email, username, password, birthday) 
 VALUES
-('marshman@hotmail.com','Miguel', 'Marshmellow', 'qwerty123', '1988-06-22');
-
+('John', 'Doe', 'NODOEJOE@gmail.com', 'jdoe', 'qwerty123', '1980-10-02');
 
 
 
