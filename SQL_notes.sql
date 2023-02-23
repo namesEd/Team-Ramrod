@@ -9,7 +9,7 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,                                                                                                  
   `birthday` date DEFAULT NULL,                                                                                                      
   PRIMARY KEY (`userID`)                                                                                                             
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 ;
+) DEFAULT CHARSET=utf8mb4 ;
 
 #date = YYYY/MM/DD
 
@@ -17,7 +17,6 @@ INSERT INTO users
 (first_name, last_name, email, username, password, birthday) 
 VALUES
 ('John', 'Doe', 'NODOEJOE@gmail.com', 'jdoe', 'qwerty123', '1980-10-02');
-
 
 
 CREATE TABLE `location` (                                                                       
@@ -54,11 +53,11 @@ CREATE TABLE insurance (
   `insurance_name` varchar(100) NOT NULL, 
   `userID` int(15) NOT NULL,
   PRIMARY KEY (`userID`), 
-  CONSTRAINT `fk_insurance_user`
-    FOREIGN KEY (`userID`) REFERENCES `user` (`id`)
+  CONSTRAINT `fk_insurance_users`
+    FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
     ON DELETE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
-
+;
 
 INSERT INTO insurance
 (userID, policy_number, insurance_name)
@@ -109,3 +108,60 @@ END;
 DELIMITER ;
 
 # call RegisterUser ('bigbill@AOL.net', 'Bill', 'Bobson', 'billyBobbin', 'qwerty123');
+
+
+CREATE TABLE profile (
+  `history` varchar(100),
+  `allergies` varchar(100),
+  `medications` varchar(100),
+  `userID` int(15) NOT NULL,
+  PRIMARY KEY (`userID`), 
+  CONSTRAINT `fk_profile_users`
+    FOREIGN KEY (`userID`) REFERENCES `users` (`userID`)
+    ON DELETE CASCADE 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+/*
+CREATE TABLE medical_profile (
+  `medID` int(15) NOT NULL AUTO_INCREMENT,
+  `userID` int(15) NOT NULL,
+  `condition` varchar(100) NOT NULL,
+  PRIMARY KEY (`medID`),
+  CONSTRAINT `fk_medical_history_users`
+    FOREIGN KEY (`userID`) REFERENCES `users`(userID)
+    ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+*/
+
+
+
+
+CREATE TABLE medical_problems (
+  `probID` int(11) NOT NULL AUTO_INCREMENT,
+  `problem` varchar(100) NOT NULL,
+  PRIMARY KEY (`probID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+INSERT INTO medical_problems (`problem`)
+VALUES ('High Blood Pressure'),
+       ('Diabetes'),
+       ('Asthma'),
+       ('Stroke'),
+       ('High Cholesterol'),
+       ('Heart Attack');
+
+Vendors: 
+  
+
+  CREATE TABLE vendors (
+  `vendor_name` varchar(100) NOT NULL,
+  `userID` int(15) NOT NULL,
+  `locID` int(15) NOT NULL,
+  PRIMARY KEY (`userID`, `locID`), 
+  CONSTRAINT `fk_users_loc_vendors`
+    FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+    FOREIGN KEY (`locID`) REFERENCES `location` (`locID`)
+    ON DELETE CASCADE 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4

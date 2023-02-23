@@ -1,3 +1,15 @@
+<?php
+  session_start();
+  require "connect.php";
+  
+  if (isset($_SESSION["userID"])) {
+    $userID = $_SESSION['userID'];
+  } else {
+    header("Location: userLogin.php?error=notallowed");
+    exit();
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,11 +31,12 @@
 
 
   <header-component></header-component>
-  <form action="userHealth.php" method="post">
+  <form action="health.php" method="post">
 
-      
+    
       <div class="container" >
         <div class = "item">
+            <!--
           <input type="checkbox" id="type1" name="ham[]" value="type1">
           <label for="type1">Diabetes: Type 1</label><br>
       
@@ -34,20 +47,39 @@
         
         <input type="checkbox" id="cancer" name="ham[]" value="cancer">
         <label for="cancer">Cancer</label><br>
+-->
 
-
-        <input type="submit">
+        <input type="submit" name="submit">
 
         </div>
       
       </div>
-
+  
   </form>
 
 </body>
 
+<select name="problem">
+  <?php
+  // query the medical problems table
+  $query = "SELECT * FROM medical_problems";
+  $result = mysqli_query($conn, $query);
+  
+  // loop through the results and create an option for each problem
+  while ($row = mysqli_fetch_assoc($result)) {
+    echo "<option value=\"" . $row['id'] . "\">" . $row['problem'] . "</option>";
+  }
+  ?>
+</select>
 
 <?php 
+
+ if (isset($_GET["message"])) {
+      if ($_GET["message"] == "success") {
+      echo "<p>Medical History Successfully added!</p>";
+  } 
+ }
+
   $ham = $_POST['ham'];
 
 
@@ -55,6 +87,7 @@
       echo $ham[$x];
       echo "\n";
   } 
+
 
 
  ?>
