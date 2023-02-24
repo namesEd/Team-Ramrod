@@ -27,17 +27,19 @@ body {
 }
 
 .article img {
+	border-radius: 5px 5px 5px 5px;
 	max-width: 10%;
 	max-height: 10%;
 	margin-right: 1%;
+	border: 1px solid black;
 }
 /* Commenting things i do not need rn but will most likely still need as the article page progress and i 
 develop a better understanding of adjust the infomration being retrieved */
-/* .card-container {
+/* .cards{
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 10px;
-	height: 300px;
+	height: 25%;
 	grid-auto-rows: minmax(100px, auto);
 
 	align-items: end;
