@@ -1,7 +1,7 @@
 <?php
 require 'connect.php';
 
-$stmt = $conn->prepare("SELECT medID, problem FROM medical_problems");
+$stmt = $conn->prepare("SELECT probID, medical_problem FROM medical_problems");
 $stmt->execute();
 $result = $stmt->get_result();
 
