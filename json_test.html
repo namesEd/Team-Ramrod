@@ -8,10 +8,10 @@
 			$.ajax({
 				url: 'get_data.php',
 				type: 'GET',
-				dataType: 'json',
+					dataType: 'json',
 				success: function(response) {
 					$.each(response, function(index, med) {
-						$('#med-probs').append('<li>' + med.medID + ' - ' + med.problem + '</li>');
+						$('#med-probs').append('<li>' + med.probID + ' - ' + med.medical_problem + '</li>');
 					});
 				},
 				error: function(xhr, status, error) {
