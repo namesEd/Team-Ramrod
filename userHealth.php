@@ -18,9 +18,10 @@
   <title>Medical History</title>
 
 
+    
   
   <link rel="stylesheet" href="App/css/header.css">
-  <link rel="stylesheet" href="App/css/userHealth.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
+  <link rel="stylesheet" href="App/css/userHealth.css">
 
   <script type = "text/javascript" src="App/js/Hompage.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -31,77 +32,59 @@
 
 
   <header-component></header-component>
-  <form class="container" action="health.php" method="post">
-
-    
-   
-        
-
-
-
-          <select name="problem">
+  <form action="health.php" method="post">
+      <div class="container" >
+        <div class = "item">
+          <select name="problem" >
             <?php
-            // query the medical problems table
-            $query = "SELECT * FROM medical_problems";
-            $result = mysqli_query($conn, $query);
-            
-            // loop through the results and create an option for each problem
-            while ($row = mysqli_fetch_assoc($result)) {
-              echo "<option value=\"" . $row['id'] . "\">" . $row['problem'] . "</option>";
-            }
+              // query the medical_problems table
+              $query = "SELECT * FROM medical_problems";
+              $result = mysqli_query($conn, $query);
+              
+              // loop through the results and create an option for each problem
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value=\"" . $row['id'] . "\">" . $row['medical_problem'] . "</option>";
+              }
             ?>
-
-
           </select>
+            <!--
+          <input type="checkbox" id="type1" name="ham[]" value="type1">
+          <label for="type1">Diabetes: Type 1</label><br>
+      
 
-          <input type="submit" name="submit" value="submit">
 
+        <input type="checkbox" id="type2" name="ham[]" value="type2">
+        <label for="type2">Diabetes: Type 2</label><br>
         
+        <input type="checkbox" id="cancer" name="ham[]" value="cancer">
+        <label for="cancer">Cancer</label><br>
+-->
 
-      
-      
-
-  
+        <input type="submit" name="submit">
+        </div>
+      </div>
   </form>
-
-      <?php 
-
-       if (isset($_GET["message"])) {
-            if ($_GET["message"] == "success") {
-              echo <<<HTML
-                    <div id="popup-container">
-                      <div id="popup-content">
-                          <p>Medical History Successfully added!</p>
-                          <button class="button" onclick="window.location.href='userHealth.php';"> Add More </button>
-                          
-                          <br>
-                          <p>Done?</p>
-                          <button class="button2" onclick="window.location.href='HomePage.php';"> Go Home </button>
-
-
-                      </div>
-                    </div>
-                  HTML;
-        } 
-       }
-
-        $ham = $_POST['ham'];
-
-
-        for ($x = 0; $x < 3; $x+=1) {
-            echo $ham[$x];
-            echo "\n";
-        } 
-
-
-
-       ?>
-
 </body>
 
+<?php 
+
+ if (isset($_GET["message"])) {
+      if ($_GET["message"] == "success") {
+      echo "<p>Medical History Successfully added!</p>";
+  } 
+ }
+/*
+  $ham = $_POST['ham'];
 
 
+  for ($x = 0; $x < 3; $x+=1) {
+      echo $ham[$x];
+      echo "\n";
+  } 
 
+*/
+
+ ?>
 
 
 </html>
