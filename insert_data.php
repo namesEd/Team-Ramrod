@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'connect.php';
- $userID = $_SESSION['userID'];
+$userID = $_SESSION['userID'];
 
 // Check if a medical problem was submitted
 if (isset($_POST['medical_problem'])) {
