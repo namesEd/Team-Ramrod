@@ -30,7 +30,6 @@
 							success: function(response) {
 								// Update the page with the new medical problem
 								alert('Item added!');
-								$('#med-probs').append('<li>' + response.medical_problem + '</li>');
 							},
 							error: function(xhr, status, error) {
 								alert('Error: ' + error);
