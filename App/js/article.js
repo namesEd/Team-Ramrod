@@ -1,6 +1,8 @@
+apikey = 'c87b1359e7115d43ca071dba973b1931';
+category = 'general';
+url = 'https://gnews.io/api/v4/top-headlines?category=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
 
-// Make a request to the News API for health articles
-fetch('https://newsapi.org/v2/top-headlines?q=health&apiKey=fa866543d18b41079d52374abb103298')
+fetch(url)
 .then(response => {
 	// If the response is successful, parse the JSON data
 	if (response.ok) {
@@ -14,7 +16,7 @@ fetch('https://newsapi.org/v2/top-headlines?q=health&apiKey=fa866543d18b41079d52
 		// Extract the title, description, and image for each article
 		var title = article.title;
 		var description = article.description;
-		var image = article.urlToImage;
+		var image = article.image;
 		var url = article.url;
 
 		// Create a div to hold the article
@@ -57,11 +59,29 @@ fetch('https://newsapi.org/v2/top-headlines?q=health&apiKey=fa866543d18b41079d52
 .catch(error => {
 	console.error('Error:', error);
 });
+// apikey = 'c87b1359e7115d43ca071dba973b1931';
+// category = 'general';
+// url = 'https://gnews.io/api/v4/top-headlines?category=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
 
-// Needed search bar for people can see what types of articles to view
-// document.querySelector('form').addEventListener('submit', function(e) {
-// 	e.preventDefault();
-// 	let searchInput = document.querySelector('#search-input').value;
-// 	// perform search using the searchInput value
+// fetch(url)
+//   .then(function (response) {
+//     return response.json();
+//   })
+//   .then(function (data) {
+//     articles = data.articles;
+
+//     for (i = 0; i < articles.length; i++) {
+//       // articles[i].title
+//       console.log("Title: " + articles[i]['title']);
+//       // articles[i].description
+//       console.log("Description: " + articles[i]['description']);
+//       // You can replace {property} below with any of the article properties returned by the API.
+//       // articles[i].{property}
+//       // console.log(articles[i]['{property}']);
+
+//       // Delete this line to display all the articles returned by the request. Currently only the first article is displayed.
+//       break;
+//     }
 //   });
+
   
