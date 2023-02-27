@@ -5,11 +5,11 @@ $userID = $_SESSION['userID'];
 
 // Check if a medical problem was submitted
 if (isset($_POST['medical_problem'])) {
-    $medicalProblem = $_POST['medical_problem'];
+    $medicalProblemID = $_POST['medical_problem'];
     
     // Prepare the SQL statement
-    $stmt = $conn->prepare("INSERT INTO medical_history (userID, medical_problem) VALUES (?, ?)");
-    $stmt->bind_param("is", $userID, $medicalProblem);
+    $stmt = $conn->prepare("INSERT INTO medical_history (userID, medical_problemID) VALUES (?, ?)");
+    $stmt->bind_param("is", $userID, $medicalProblemID);
     
     // Execute the statement
     if ($stmt->execute()) {
