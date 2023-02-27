@@ -1,5 +1,5 @@
 apikey = 'c87b1359e7115d43ca071dba973b1931';
-category = 'general';
+category = 'health';
 url = 'https://gnews.io/api/v4/top-headlines?category=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
 
 fetch(url)
