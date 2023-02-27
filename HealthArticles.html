@@ -10,42 +10,14 @@
 </head>
 <body>
   <header-component></header-component>
-	<h1>General news related to health</h1>
-  
-  <div class ="search_wrapper">
-    <label for="search">Search Articles</label>
-    <input type="search" id = "search">
-  </div>
-  
-  <div id ="articles"></div>
-  
-  <!-- Define the template for each article -->
-  <div id="article-template" style="display:none;">
-    <div class="article">
-      <h3 class="title"></h3>
-      <img class="image" src="">
-      <div class="text">
-        <p class="description"></p>
-        <a class="url" href="" target="_blank">Read more</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Container for the articles -->
-  <div id="articles-container"></div>
-
-  <!-- Include the JavaScript code -->
-  <!-- <script src="news-api.js"></script> -->
+	<h1>Health News</h1>
+  <!-- Seach Bar that will be implemented after i do the ast finishing touches for the articles page -->
+  <!-- <form>
+    <input type="text" id="search-input" placeholder="Search...">
+    <button type="submit">Search</button>
+  </form>   -->
+	<div id ="articles"></div>
   <script defer src = "App\js\article.js"></script>
-
-  <!-- <template art-template>
-    <div class = "art">
-      <div class ="image" data-img></div>
-      <div class ="title" data-title></div>
-      <div class ="description" data-descript></div>
-      <div class ="link" data-link></div>
-    </div>
-  </template> -->
 </body>
 </html>
 
