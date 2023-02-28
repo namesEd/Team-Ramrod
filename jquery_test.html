@@ -3,49 +3,9 @@
 <head>
 	<title>Medical Problems</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			// Get the list of medical problems using AJAX
-			$.ajax({
-				url: 'get_data.php',
-				type: 'GET',
-				dataType: 'json',
-				success: function(response) {
-					$.each(response, function(index, med) {
-						$('#med-probs').append('<li data-id="' + med.probID + '">' + med.medical_problem + '</li>');
-					});
-					
-					// Add a click event listener to each list item
-					$('#med-probs li').click(function() {
-						var selectedID = $(this).data('id');
-						
-						// Send an AJAX request to insert the selected medical problem into the database
-						$.ajax({
-							url: 'insert_data.php',
-							type: 'POST',
-							dataType: 'json',
-							data: {
-								'medical_problem': selectedID
-							},
-							success: function(response) {
-								// Update the page with the new medical problem
-								alert('Item added!');
-							},
-							error: function(xhr, status, error) {
-								alert('Error: ' + error);
-									console.log(xhr);
-									console.log(status);
-									console.log(error);
-							}
-						});
-					});
-				},
-				error: function(xhr, status, error) {
-					alert('Error: ' + error);
-				}
-			});
-		});
-	</script>
+	<script src="App/js/jquery_test.js"></script>
+	<script src="App/js/clicked.js"></script>
+	<link rel="stylesheet" href="App/css/jquery_test.css">
 </head>
 <body>
 	<h1>Medical Problems</h1>
