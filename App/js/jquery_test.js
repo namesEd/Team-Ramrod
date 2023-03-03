@@ -23,7 +23,18 @@ $(document).ready(function() {
 					},
 					success: function(response) {
 						// Update the page with the new medical problem
-						alert('Item added!');
+
+						//fade animation that displays an h2 tag if a problem
+						//is added to the database - G.Z
+						$('#med-added').append('<h2 class="added">  added successfully </h2>');
+
+			                setTimeout(function() {
+			 
+			                	$('.added').fadeOut('fast');
+
+			                }, 1000);
+
+
 					},
 					error: function(xhr, status, error) {
 						alert('Error: ' + error);
