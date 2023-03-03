@@ -2,37 +2,34 @@
 session_start();
 require 'connect.php';
 
-if (!isset($_SESSION["userID"])) {
-    http_response_code(401);
+if (isset($_SESSION["userID"])) {
+    $userID = $_SESSION['userID'];
+} else {
     header("Location: userLogin.php?error=notallowed");
     exit();
 }
 
-$userID = $_SESSION['userID'];
+$stmt = $conn->prepare("SELECT u.userID, u.first_name, u.last_name, mp.medical_problem
+FROM medical_history mh
+INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID
+INNER JOIN users u ON u.userID = mh.userID
+WHERE u.userID = ?
+ORDER BY u.userID");
 
-$stmt = $conn->prepare("SELECT * FROM view_profile WHERE userID = ?");
 $stmt->bind_param("i", $userID);
 $stmt->execute();
-
 $result = $stmt->get_result();
-$rows = $result->fetch_all(MYSQLI_ASSOC);
-$stmt->close();
+
+$data = array();
+if ($result->num_rows > 0) {
+    // Output data of each row
+    while($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+}
+
 $conn->close();
 
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=ramrod', 'ramrod', 'Fiwv0%Xig');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $stmt = $pdo->prepare('SELECT * FROM user_history');
-    $stmt->execute();
-
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    header('Content-Type: application/json');
-    echo json_encode($result);
-} catch (PDOException $e) {
-    http_response_code(500);
-    header('Content-Type: text/plain; charset=UTF-8');
-    echo 'Database error: ' . $e->getMessage();
-    exit();
-}
+header("Content-Type: application/json");
+echo json_encode($data);
 ?>
