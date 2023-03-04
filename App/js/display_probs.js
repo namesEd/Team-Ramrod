@@ -1,12 +1,12 @@
 $(document).ready(function() {
 	// Get the list of medical problems using AJAX
 	$.ajax({
-		url: 'get_data.php',
+		url: 'get_probs.php',
 		type: 'GET',
 		dataType: 'json',
 		success: function(response) {
 			$.each(response, function(index, med) {
-				$('#med-probs').append('<li data-id="' + med.probID + '"><button id="myButton">' + med.medical_problem + '</button></li>');
+				$('#med-probs').append('<li><button id="myButton">' + med.medical_problem + '</button></li>');
 			});
 			
 			// Add a click event listener to each list item
@@ -15,7 +15,7 @@ $(document).ready(function() {
 				
 				// Send an AJAX request to insert the selected medical problem into the database
 				$.ajax({
-					url: 'insert_data.php',
+					url: 'insert_probs.php',
 					type: 'POST',
 					dataType: 'json',
 					data: {

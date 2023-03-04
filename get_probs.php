@@ -10,7 +10,7 @@ if (isset($_SESSION["userID"])) {
     exit();
 }
 
-$stmt = $conn->prepare("SELECT probID, medical_problem FROM medical_problems");
+$stmt = $conn->prepare("SELECT medical_problem FROM medical_problems");
 $stmt->execute();
 $result = $stmt->get_result();
 
