@@ -1,0 +1,84 @@
+c
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>User Profile</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="App/css/Homepage.css">
+    <link rel="stylesheet" href="App/css/header.css">
+    <link rel="stylesheet" href="App/css/userProfile.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
+    
+    <script type = "text/javascript" src="App/js/Hompage.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script>    
+        $(document).ready(function() {
+            $.ajax({
+                url: 'test.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $.each(response, function(index, hist) {
+                        $('#user-hist').append('<li>' + hist.userID + ' - ' + hist.first_name
+                            + ' - ' + hist.last_name + ' - ' + hist.medical_problem + '</li>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+
+            $.ajax({
+                url: 'get_allergies.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $.each(response, function(index, allerg) {
+                        $('#user-allerg').append('<li>' + allerg.userID + ' - ' + allerg.medical_problem + '</li>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        
+            $.ajax({
+                url: 'get_meds.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $.each(response, function(index, meds) {
+                        $('#user-meds').append('<li>' + meds.userID + ' - ' + meds.medical_problem + '</li>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        });
+
+    </script>
+  
+</head>
+<body>
+    <header-component></header-component>
+    <div class = "Profile">
+    <h2>History</h2>
+    <ul id="user-hist"></ul>
+
+
+    <h2>Allergies</h2>
+    <ul id="user-allerg"></ul>
+
+    <h2>Medications</h2>
+    <ul id="user-meds"></ul>
+
+    </div>
+
+
+</body>
+</html>
