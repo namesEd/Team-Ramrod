@@ -1,22 +1,17 @@
 <?php
-	session_start();
+session_start();
+// require 'connect.php';
+require 'utility.php';
+require 'connect.php';
+require_once 'functions_inc.php';
+$userID = $_SESSION['userID'];
+  
+if (isset($_SESSION["userID"])) {
+    $userID = $_SESSION['userID'];
+	$_SESSION['isLoggedIn'] = true;
+} else {
+	$_SESSION['isLoggedIn'] = false;
+}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-  	<?php
-	if (isset($_SESSION["userID"])) { 
-		echo "<li><a href = 'HomePage.php'>HomePage</a></li>";
-		echo "<li><a href = 'logout.php.'>Logout</a></li>";
-	} else {
-		echo "<li><a href = 'userReg.php'>Register</a></li>";
-		echo "<li><a href = 'userLogin.php'>Login</a></li>";
-	}
-	?>
-  </body>
-</html>
+   <header-component loginStatus='<?= $_SESSION['isLoggedIn'] ?>'></header-component>
