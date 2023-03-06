@@ -1,5 +1,4 @@
-c
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -15,68 +14,31 @@ c
     <script type = "text/javascript" src="App/js/Hompage.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script>    
-        $(document).ready(function() {
-            $.ajax({
-                url: 'test.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    $.each(response, function(index, hist) {
-                        $('#user-hist').append('<li>' + hist.userID + ' - ' + hist.first_name
-                            + ' - ' + hist.last_name + ' - ' + hist.medical_problem + '</li>');
-                    });
-                },
-                error: function(xhr, status, error) {
-                    alert('Error: ' + error);
-                }
-            });
+    <script type = "text/javascript" src="App/js/userProfile.js"></script>
 
-            $.ajax({
-                url: 'get_allergies.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    $.each(response, function(index, allerg) {
-                        $('#user-allerg').append('<li>' + allerg.userID + ' - ' + allerg.medical_problem + '</li>');
-                    });
-                },
-                error: function(xhr, status, error) {
-                    alert('Error: ' + error);
-                }
-            });
-        
-            $.ajax({
-                url: 'get_meds.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    $.each(response, function(index, meds) {
-                        $('#user-meds').append('<li>' + meds.userID + ' - ' + meds.medical_problem + '</li>');
-                    });
-                },
-                error: function(xhr, status, error) {
-                    alert('Error: ' + error);
-                }
-            });
-        });
-
-    </script>
-  
 </head>
 <body>
     <header-component></header-component>
+  
+    <div class="profile-header"></div>
+
     <div class = "Profile">
-    <h2>History</h2>
-    <ul id="user-hist"></ul>
+    
+    <div class="hist">
+        <h2>History</h2>
+        <ul id="user-hist"></ul>
+    </div>
 
+    <div class = "alleg">
+        <h2>Allergies</h2>
+        <ul id="user-allerg"></ul>
+    </div>
 
-    <h2>Allergies</h2>
-    <ul id="user-allerg"></ul>
-
-    <h2>Medications</h2>
-    <ul id="user-meds"></ul>
-
+    <div class="meds">
+        <h2>Medications</h2>
+        <ul id="user-meds"></ul>
+    </div>
+    
     </div>
 
 
