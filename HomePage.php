@@ -1,7 +1,3 @@
-<?php
-  require "header.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,16 +11,18 @@
     <link rel="stylesheet" href="App/css/header.css">
     <script type = "text/javascript" src="App/js/Hompage.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
+  
   </head>
 
   <body>
+  
     <!--Call for the header icon-->
-    <header-component></header-component>
+    <?php require_once "header.php"?>
     <div id="map"></div>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5exh7JYQlhm_leOXPpi8WkfEjlhwrHe4&callback=initMap&v=weekly">
     </script>
 
-  </body>
+
+            </body>
 </html>
