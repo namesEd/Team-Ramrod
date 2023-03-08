@@ -6,7 +6,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(response) {
 			$.each(response, function(index, med) {
-				$('#med-probs').append('<li><button id="myButton">' + med.medical_problem + '</button></li>');
+				$('#med-probs').append('<li data-id="' + med.medical_problemID + '"><button id="myButton">' + med.medical_problem + '</button></li>');
 			});
 			
 			// Add a click event listener to each list item
@@ -26,6 +26,8 @@ $(document).ready(function() {
 
 						//fade animation that displays an h2 tag if a problem
 						//is added to the database - G.Z
+
+						console.log(response);
 						$('#med-added').append('<h2 class="added">  added successfully </h2>');
 
 			                setTimeout(function() {
