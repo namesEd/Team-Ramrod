@@ -5,47 +5,37 @@
   <link rel="stylesheet" href="App\css\article.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
   <link rel="stylesheet" href="App/css/header.css">
+
   <script type = "text/javascript" src="App/js/Hompage.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
   <header-component></header-component>
-	<h1>General news related to health</h1>
-  
-  <div class ="search_wrapper">
-    <label for="search">Search Articles</label>
-    <input type="search" id = "search">
+  <h1>Health News</h1>
+  <div class="test">
+    <ul id="user-meds"> </ul>
   </div>
-  
+  <div class= "container">
+    <div class="dropdown">
+      <button class= "btn btn-primary dropdown-toggle" type= "button" data-toggle="dropdown">Filter
+        <span class= "caret"></span>
+      </button>
+      <ul class= "dropdown-menu">
+        <input class= "form-control" id="myInput" type= "text" placeholder="Search...">
+        <li><a href="#">Anxiety</a></li>
+        <li><a href="#">Depression</a></li>
+        <li><a href="#">COPD</a></li>
+        <li><a href="#">Congestive Heart Failure</a></li>
+        <li><a href="#">Cancer</a></li>
+        <li><a href="#">High Blood Pressure</a></li>
+      </ul>
+    </div>
+  </div>
   <div id ="articles"></div>
-  
-  <!-- Define the template for each article -->
-  <div id="article-template" style="display:none;">
-    <div class="article">
-      <h3 class="title"></h3>
-      <img class="image" src="">
-      <div class="text">
-        <p class="description"></p>
-        <a class="url" href="" target="_blank">Read more</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Container for the articles -->
-  <div id="articles-container"></div>
-
-  <!-- Include the JavaScript code -->
-  <!-- <script src="news-api.js"></script> -->
   <script defer src = "App\js\article.js"></script>
-
-  <!-- <template art-template>
-    <div class = "art">
-      <div class ="image" data-img></div>
-      <div class ="title" data-title></div>
-      <div class ="description" data-descript></div>
-      <div class ="link" data-link></div>
-    </div>
-  </template> -->
 </body>
 </html>
-
