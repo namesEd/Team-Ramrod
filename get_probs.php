@@ -1,7 +1,16 @@
 <?php
+session_start();
 require 'connect.php';
+$userID = $_SESSION['userID'];
+  
+if (isset($_SESSION["userID"])) {
+    $userID = $_SESSION['userID'];
+} else {
+    header("Location: userLogin.php?error=notallowed");
+    exit();
+}
 
-$stmt = $conn->prepare("SELECT medID, problem FROM medical_problems");
+$stmt = $conn->prepare("SELECT medical_problem FROM medical_problems");
 $stmt->execute();
 $result = $stmt->get_result();
 

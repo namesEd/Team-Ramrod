@@ -18,6 +18,7 @@
   <title>Medical History</title>
 
 
+    
   
   <link rel="stylesheet" href="App/css/header.css">
   <link rel="stylesheet" href="App/css/userHealth.css">
@@ -32,10 +33,20 @@
 
   <header-component></header-component>
   <form action="health.php" method="post">
-
-    
       <div class="container" >
         <div class = "item">
+          <select name="problem" >
+            <?php
+              // query the medical_problems table
+              $query = "SELECT * FROM medical_problems";
+              $result = mysqli_query($conn, $query);
+              
+              // loop through the results and create an option for each problem
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value=\"" . $row['id'] . "\">" . $row['medical_problem'] . "</option>";
+              }
+            ?>
+          </select>
             <!--
           <input type="checkbox" id="type1" name="ham[]" value="type1">
           <label for="type1">Diabetes: Type 1</label><br>
@@ -50,27 +61,10 @@
 -->
 
         <input type="submit" name="submit">
-
         </div>
-      
       </div>
-  
   </form>
-
 </body>
-
-<select name="problem">
-  <?php
-  // query the medical problems table
-  $query = "SELECT * FROM medical_problems";
-  $result = mysqli_query($conn, $query);
-  
-  // loop through the results and create an option for each problem
-  while ($row = mysqli_fetch_assoc($result)) {
-    echo "<option value=\"" . $row['id'] . "\">" . $row['problem'] . "</option>";
-  }
-  ?>
-</select>
 
 <?php 
 
@@ -79,7 +73,7 @@
       echo "<p>Medical History Successfully added!</p>";
   } 
  }
-
+/*
   $ham = $_POST['ham'];
 
 
@@ -88,7 +82,7 @@
       echo "\n";
   } 
 
-
+*/
 
  ?>
 

@@ -34,7 +34,9 @@
                 echo "<p>Username or Password incorrect</p>";
             } elseif ($_GET["error"] == "incorrectlogin") {
                 echo "<p>Change later. Password bug</p>";
-            }
+            }  elseif ($_GET["error"] == "notallowed") {
+                echo "<p>Please login to access this page.</p>";
+            } 
         }
     ?>
     </div>

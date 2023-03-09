@@ -80,6 +80,66 @@ user, insurance, location
 ; 
 
 
+CREATE OR REPLACE VIEW view_profile
+AS 
+SELECT u.userID, u.first_name, u.last_name, mp.medical_problem
+FROM 
+medical_history mh
+INNER JOIN
+medical_problems mp
+INNER JOIN
+users u
+WHERE mh.medical_problemID = mp.probID
+AND
+u.userID = mh.userID
+ORDER BY
+userID;
+
+
+SELECT u.userID, u.first_name, u.last_name, mp.medical_problem
+FROM medical_history mh
+INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID
+INNER JOIN users u ON u.userID = mh.userID
+WHERE u.userID = ?
+ORDER BY u.userID
+
+CREATE OR REPLACE VIEW test
+AS SELECT
+medical_problems.medical_problem
+FROM 
+medical_problems;
+
+
+CREATE TABLE test_table (
+  person varchar(100),
+  PRIMARY KEY (person)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+;
+
+
+
+CREATE OR REPLACE VIEW view_profile
+SELECT u.userID, u.first_name, u.last_name, mh.medical_problem
+FROM users u
+INNER JOIN medical_history mh ON u.userID = mh.userID
+INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID;
+
+
+
+SELECT 
+    view_profile
+FROM 
+    information_schema.tables 
+WHERE 
+    table_type   = 'VIEW';
+
+CREATE OR REPLACE VIEW view_profile
+SELECT userID, first_name, last_name, medical_problem
+FROM users u
+INNER JOIN medical_history ON u.userID = mh.userID
+INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID;
+
+
 PREPARED STATEMENTS: 
 
 
@@ -121,36 +181,85 @@ CREATE TABLE profile (
     ON DELETE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
-/*
-CREATE TABLE medical_profile (
+DROP TABLE IF EXISTS medical_history;
+CREATE TABLE medical_history (
   `medID` int(15) NOT NULL AUTO_INCREMENT,
   `userID` int(15) NOT NULL,
-  `condition` varchar(100) NOT NULL,
+  `medical_problemID` varchar(100) NOT NULL,
   PRIMARY KEY (`medID`),
   CONSTRAINT `fk_medical_history_users`
     FOREIGN KEY (`userID`) REFERENCES `users`(userID)
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-*/
+
+ALTER TABLE medical_history CHANGE COLUMN medical_problem medical_problemID varchar(100);
 
 
+INSERT INTO medical_history (userID, medical_problem) VALUES(1, 'Anxiety');
 
 
+DROP TABLE IF EXISTS medical_problems;
 CREATE TABLE medical_problems (
   `probID` int(11) NOT NULL AUTO_INCREMENT,
-  `problem` varchar(100) NOT NULL,
+  `medical_problem` varchar(100) NOT NULL,
   PRIMARY KEY (`probID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 
-INSERT INTO medical_problems (`problem`)
-VALUES ('High Blood Pressure'),
+
+INSERT INTO medical_problems (`medical_problem`)
+VALUES 
+       ('Anxiety'),
+       ('Depression'),
+       ('COPD'),
+       ('Congestive Heart Failure'),
+       ('Cancer')
+       ('High Blood Pressure'),
        ('Diabetes'),
        ('Asthma'),
        ('Stroke'),
        ('High Cholesterol'),
        ('Heart Attack');
+
+
+INSERT INTO allergies(`allergy`)
+VALUES 
+       ('Penicillin'),
+       ('Sulfa'),
+       ('Iodine'),
+       ('Fentanyl'),
+       ('NSAIDS');
+
+
+DROP TABLE IF EXISTS allergies;
+CREATE TABLE allergies (
+  `allergyID` int(11) NOT NULL AUTO_INCREMENT,
+  `allergy` varchar(100) NOT NULL,
+  PRIMARY KEY (`allergyID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+DROP TABLE IF EXISTS medications;
+CREATE TABLE medications (
+  `medicationID` int(11) NOT NULL AUTO_INCREMENT,
+  `medication` varchar(100) NOT NULL,
+  PRIMARY KEY (`medicationID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+INSERT INTO medications(`medication`)
+VALUES 
+       ('Aspirin'),
+       ('Metformin'),
+       ('Lisinopril'),
+       ('Xanax'),
+       ('Tylenol'),
+       ('Ibuprofen'),
+       ('Adderall');
+
 
 Vendors: 
   

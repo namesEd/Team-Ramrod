@@ -1,60 +1,67 @@
-/* Style for checkboxes */
-input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  height: 0;
-  width: 0;
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #333;
+  vertical-align: middle;
+  margin: 10px;
 }
 
-/* Checkbox style */
-input[type="checkbox"] + label {
-  display: inline-block;
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 10px;
+form {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form:select {
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  width: 200px;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  margin-block: 30px;
 }
 
-/* Custom checkbox design */
-input[type="checkbox"] + label:before {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  left: 0;
-  top: 3px;
-  width: 15px;
-  height: 15px;
-  border: 2px solid black;
-  border-radius: 5px;
+input[type="submit"]:hover {
+    background-color: red;
 }
 
-/* Custom checkmark design */
-input[type="checkbox"]:checked + label:before {
-  content: '\2713';
-  display: inline-block;
-  position: absolute;
-  left: 0;
-  top: 3px;
-  width: 22px;
-  height: 22px;
-  border: 2px solid #2695F7;
-  border-radius: 5px;
-  color: #2695F7;
-  text-align: center;
-  font-size: 18px;
+select:focus {
+  border-color: #06c;
+  outline: none;
 }
 
-/* Hover state for label */
-input[type="checkbox"] + label:hover:before {
-  border: 2px solid #2695F7;
+select:option {
+  background-color: #fff;
+  color: #333;
+  font-weight: normal;
 }
 
-/* Focus state for label */
-input[type="checkbox"]:focus + label:before {
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+select option:hover {
+  background-color: red;
+  color: #fff;
 }
 
+select option:checked {
+  background-color: #06c;
+  color: #fff;
+}
 .container {
   position: absolute;
   top: 55%;
@@ -71,4 +78,50 @@ input[type="checkbox"]:focus + label:before {
   width: 200px;
   height: 200px;
   background-color: #ccc;
+}
+/* Styling for the popup container */
+#popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for the popup content */
+#popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.button {
+  background-color: transparent;
+  color: black;
+  padding: 10px 20px;
+  border: 2px solid lightblue;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.button2 {
+  background-color: transparent;
+  color: black;
+  padding: 10px 20px;
+  border: 2px solid lightblue;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.button:hover {
+  background-color: green;
+  color: #fff;
+}
+.button2:hover {
+  background-color: red;
+  color: #fff;
 }
