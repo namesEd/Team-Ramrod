@@ -19,9 +19,10 @@ $(document).ready(function() {
 					type: 'POST',
 					dataType: 'json',
 					data: {
-						'medical_problem': selectedID
+						'medical_problemID': selectedID
 					},
 					success: function(response) {
+						console.log('Selected ID:', selectedID);
 						// Update the page with the new medical problem
 
 						//fade animation that displays an h2 tag if a problem

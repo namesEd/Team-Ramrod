@@ -22,19 +22,18 @@
     });
 
     $.ajax({
-        url: 'get_allergies.php',
+        url: 'get_user_allergies.php',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            $.each(response, function(index, allerg) {
-                $('#user-allerg').append('<li>' + allerg.medical_problem + '</li>');
+            $.each(response, function(index, allergy) {
+                $('#user-allergies').append('<li>' + allergy.allergy + '</li>');
             });
         },
         error: function(xhr, status, error) {
             alert('Error: ' + error);
         }
     });
-
     $.ajax({
         url: 'get_meds.php',
         type: 'GET',

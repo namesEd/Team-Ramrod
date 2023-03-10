@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Allergies</title>
+	<title>My Allergies</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(document).ready(function() {
-	// Get the list of medical problems using AJAX
-	$.ajax({
-		url: 'get_allergy_list.php',
-		type: 'GET',
-		dataType: 'json',
-		success: function(response) {
-			$.each(response, function(index, a) {
-				$('#user-a').append('<li><button id="myButton">' + a.allergy + '</button></li>');
+			$.ajax({
+				url: 'get_allergies.php',
+				type: 'GET',
+				dataType: 'json',
+				success: function(response) {
+					$.each(response, function(index, a) {
+						$('#allergy-list').append('<li data-allergy-id="' + a.allergyID + '">' + a.allergy + '</li>');
+					});
+				},
+				error: function(xhr, status, error) {
+					alert('Error: ' + error);
+				}
 			});
-			
-			// Add a click event listener to each list item
-			$('#user-a li').click(function() {
-				var selectedID = $(this).data('id');
-				
-				// Send an AJAX request to insert the selected medical problem into the database
-				$.ajax({
-					url: 'insert_probs.php',
-					type: 'POST',
-					dataType: 'json',
-					data: {
-						'allergy': selectedID
-					},
-					success: function(response) {
+		});
+
+		$(document).on('click', '#allergy-list li', function() {
+			var allergyID = $(this).data('allergy-id');
+			$.ajax({
+				url: 'add_user_allergy.php',
+				type: 'POST',
+				data: { allergyID: allergyID },
+				success: function(response) {
 						// Update the page with the new medical problem
 
 						//fade animation that displays an h2 tag if a problem
@@ -39,36 +38,17 @@
 			                	$('.added').fadeOut('fast');
 
 			                }, 1000);
-
-
-					},
-					error: function(xhr, status, error) {
-						alert('Error: ' + error);
-							console.log(xhr);
-							console.log(status);
-							console.log(error);
-					}
-				});
+				},
+				error: function(xhr, status, error) {
+					alert('Error: ' + error);
+				}
 			});
-		},
-		error: function(xhr, status, error) {
-			alert('Error: ' + error);
-		}
-	});
-});
+		});
 	</script>
-	<script src="App/js/clicked.js"></script>
-	<link rel="stylesheet" href="App/css/jquery_test.css">
 </head>
 <body>
-	<h1>Allergies</h1>
-
-	<div class="contain">
-		<div class="contain-bkg">
-		<ul id="user-a"></ul>
-
-		</div>
-	</div>
+	<h1>My Allergies</h1>
+	<ul id="allergy-list"></ul>
 	<div id="a-added"></div>
 </body>
 </html>

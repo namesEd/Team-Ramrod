@@ -96,34 +96,6 @@ ORDER BY
 userID;
 
 
-SELECT u.userID, u.first_name, u.last_name, mp.medical_problem
-FROM medical_history mh
-INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID
-INNER JOIN users u ON u.userID = mh.userID
-WHERE u.userID = ?
-ORDER BY u.userID
-
-CREATE OR REPLACE VIEW test
-AS SELECT
-medical_problems.medical_problem
-FROM 
-medical_problems;
-
-
-CREATE TABLE test_table (
-  person varchar(100),
-  PRIMARY KEY (person)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
-;
-
-
-
-CREATE OR REPLACE VIEW view_profile
-SELECT u.userID, u.first_name, u.last_name, mh.medical_problem
-FROM users u
-INNER JOIN medical_history mh ON u.userID = mh.userID
-INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID;
-
 
 
 SELECT 
@@ -138,6 +110,10 @@ SELECT userID, first_name, last_name, medical_problem
 FROM users u
 INNER JOIN medical_history ON u.userID = mh.userID
 INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID;
+
+
+
+
 
 
 PREPARED STATEMENTS: 
@@ -181,21 +157,45 @@ CREATE TABLE profile (
     ON DELETE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
+
 DROP TABLE IF EXISTS medical_history;
 CREATE TABLE medical_history (
   `medID` int(15) NOT NULL AUTO_INCREMENT,
   `userID` int(15) NOT NULL,
-  `medical_problemID` varchar(100) NOT NULL,
+  `medical_problemID` int(15) NOT NULL,
   PRIMARY KEY (`medID`),
   CONSTRAINT `fk_medical_history_users`
     FOREIGN KEY (`userID`) REFERENCES `users`(userID)
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
 ALTER TABLE medical_history CHANGE COLUMN medical_problem medical_problemID varchar(100);
+ALTER TABLE medical_history MODIFY COLUMN medical_problemID int(15) NOT NULL;
+
+COPY: 
+DROP TABLE IF EXISTS medical_history;
+CREATE TABLE medical_history (
+  `medID` int(15) NOT NULL AUTO_INCREMENT,
+  `userID` int(15) NOT NULL,
+  `medical_problemID` int(15) NOT NULL,
+  PRIMARY KEY (`medID`),
+  CONSTRAINT `fk_medical_history_users`
+    FOREIGN KEY (`userID`) REFERENCES `users`(userID)
+    ON DELETE CASCADE,
+  CONSTRAINT `fk_medical_history_medical_problems`
+    FOREIGN KEY (`medical_problemID`) REFERENCES `medical_problems`(`probID`)
+    ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO medical_history (userID, medical_problem) VALUES(1, 'Anxiety');
+
+
+INSERT INTO user_health (userID, medical_problem) VALUES(1, 'Anxiety');
+
+ALTER TABLE medical_history ADD COLUMN `allergyID` int(15) NOT NULL;
+ALTER TABLE medical_history ADD COLUMN `medicationID` int(15) NOT NULL;
+ALTER TABLE medical_history CHANGE COLUMN `medical_problemID` int(15) NOT NULL;
 
 
 DROP TABLE IF EXISTS medical_problems;
@@ -223,6 +223,15 @@ VALUES
        ('Heart Attack');
 
 
+SELECT mp.medical_problem
+FROM medical_history mh
+INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID
+INNER JOIN users u ON u.userID = mh.userID
+WHERE u.userID = ?
+ORDER BY medical_problem
+
+
+
 INSERT INTO allergies(`allergy`)
 VALUES 
        ('Penicillin'),
@@ -239,6 +248,21 @@ CREATE TABLE allergies (
   PRIMARY KEY (`allergyID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS user_allergies;
+CREATE TABLE user_allergies (
+  `userAllergyID` int(15) NOT NULL AUTO_INCREMENT,
+  `userID` int(15) NOT NULL,
+  `allergyID` int(15) NOT NULL,
+  PRIMARY KEY (`userAllergyID`),
+  CONSTRAINT `fk_user_allergies_users`
+    FOREIGN KEY (`userID`) REFERENCES `users`(userID)
+    ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+SELECT a.allergy FROM allergies a 
+JOIN user_allergies ua 
+ON a.allergyID = ua.allergyID 
+WHERE ua.userID = $userID
 
 
 DROP TABLE IF EXISTS medications;

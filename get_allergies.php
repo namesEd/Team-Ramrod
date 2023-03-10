@@ -1,7 +1,8 @@
 <?php
 session_start();
 require 'connect.php';
-
+$userID = $_SESSION['userID'];
+  
 if (isset($_SESSION["userID"])) {
     $userID = $_SESSION['userID'];
 } else {
@@ -10,8 +11,6 @@ if (isset($_SESSION["userID"])) {
 }
 
 $stmt = $conn->prepare("SELECT * from allergies");
-
-$stmt->bind_param("i", $userID);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -27,4 +26,5 @@ $conn->close();
 
 header("Content-Type: application/json");
 echo json_encode($data);
+
 ?>
