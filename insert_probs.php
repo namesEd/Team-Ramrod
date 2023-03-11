@@ -4,16 +4,16 @@ require 'connect.php';
 $userID = $_SESSION['userID'];
 
 // Check if a medical problem was submitted
-if (isset($_POST['medical_problemID'])) {
-    $medicalProblemID = $_POST['medical_problemID'];
-    var_dump($medicalProblemID);
+if (isset($_POST['probID'])) {
+    $probID = $_POST['probID'];
+    // var_dump($medicalProblemID);
     
     //$medicalProblemID = intval($_POST['medical_problem']);
 
 
     // Prepare the SQL statement
     $stmt = $conn->prepare("INSERT INTO medical_history (userID, medical_problemID) VALUES (?, ?)");
-    $stmt->bind_param("ii", $userID, $medicalProblemID);
+    $stmt->bind_param("ii", $userID, $probID);
     
     // Execute the statement
     if ($stmt->execute()) {
