@@ -5,8 +5,10 @@ $(document).ready(function() {
 		type: 'GET',
 		dataType: 'json',
 		success: function(response) {
+
+			console.log(response);
 			$.each(response, function(index, med) {
-				$('#med-probs').append('<li data-id="' + med.medical_problemID + '"><button id="myButton">' + med.medical_problem + '</button></li>');
+				$('#med-probs').append('<li data-id="' + med.probID + '"><button id="myButton">' + med.medical_problem + '</button></li>');
 			});
 			
 			// Add a click event listener to each list item
@@ -19,10 +21,10 @@ $(document).ready(function() {
 					type: 'POST',
 					dataType: 'json',
 					data: {
-						'medical_problemID': selectedID
+						'probID': selectedID
 					},
 					success: function(response) {
-						console.log('Selected ID:', selectedID);
+						// console.log('Selected ID:', selectedID);
 						// Update the page with the new medical problem
 
 						//fade animation that displays an h2 tag if a problem
@@ -40,10 +42,11 @@ $(document).ready(function() {
 
 					},
 					error: function(xhr, status, error) {
-						alert('Error: ' + error);
-							console.log(xhr);
-							console.log(status);
+							alert('Error: ' + error);
+							// console.log(xhr);
+							// console.log(status);
 							console.log(error);
+							// console.log("hello");
 					}
 				});
 			});
