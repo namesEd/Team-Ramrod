@@ -2,7 +2,7 @@ $(document).ready(function() {
 	// Get the list of medical problems using AJAX
 	$.ajax({
 		url: 'get_probs.php',
-		type: 'GET',
+		type: 'GET',	
 		dataType: 'json',
 		success: function(response) {
 

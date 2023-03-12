@@ -33,8 +33,8 @@
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            $.each(response, function(index, allergy) {
-                $('#user-allergies').append('<li>' + allergy.allergy + '</li>');
+            $.each(response, function(index, a) {
+                $('#user-allergies').append('<li>' + a.allergy + '</li>');
             });
         },
         error: function(xhr, status, error) {
@@ -49,12 +49,12 @@
         }
     });
     $.ajax({
-        url: 'get_meds.php',
+        url: 'get_user_medications.php',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
             $.each(response, function(index, meds) {
-                $('#user-meds').append('<li>' + meds.medical_problem + '</li>');
+                $('#user-meds').append('<li>' + meds.medication + '</li>');
             });
         },
         error: function(xhr, status, error) {
