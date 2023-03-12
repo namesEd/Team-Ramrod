@@ -1,3 +1,66 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Filterable Dropdown</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Filterable Dropdown</h2>
+    <p>Open the dropdown menu and type something in the input field to search for dropdown items:</p>
+    <p>Note that we have styled the input field to fit the dropdown items.</p>
+    <div class="dropdown">
+      <select class="form-control" id="mySelect">
+        <option value="">Search...</option>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="jQuery">jQuery</option>
+        <option value="Bootstrap">Bootstrap</option>
+        <option value="Angular">Angular</option>
+      </select>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Initialize Select2
+      $('#mySelect').select2();
+
+      // Add search placeholder
+      $('.select2-search__field').attr('placeholder', 'Search...');
+
+      // Filter options based on search query
+      $('#mySelect').on('select2:open', function() {
+        $('.select2-results__options').on('keyup', function() {
+          var query = $('.select2-search__field').val().toLowerCase();
+          $('.select2-results__options').find('li').each(function() {
+            var text = $(this).text().toLowerCase();
+            if (text.indexOf(query) > -1) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
+        });
+      });
+
+      // Get selected option value
+      $('#mySelect').on('change', function() {
+        var selectedItem = $('#mySelect').val();
+        $('#selectedItem').text('You selected ' + selectedItem);
+        console.log(selectedItem);
+      });
+    })
+  </script>
+</body>
+</html> -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,37 +68,38 @@
   <link rel="stylesheet" href="App\css\article.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
   <link rel="stylesheet" href="App/css/header.css">
-
   <script type = "text/javascript" src="App/js/Hompage.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <body>
   <header-component></header-component>
-  <h1>Health News</h1>
-  <div class="test">
-    <ul id="user-meds"> </ul>
-  </div>
-  <div class= "container">
+  <h1>Health News</h1> 
+  <div class="container">
+    <h2></h2>
     <div class="dropdown">
-      <button class= "btn btn-primary dropdown-toggle" type= "button" data-toggle="dropdown">Filter
-        <span class= "caret"></span>
-      </button>
-      <ul class= "dropdown-menu">
-        <input class= "form-control" id="myInput" type= "text" placeholder="Search...">
-        <li><a href="#">Anxiety</a></li>
-        <li><a href="#">Depression</a></li>
-        <li><a href="#">COPD</a></li>
-        <li><a href="#">Congestive Heart Failure</a></li>
-        <li><a href="#">Cancer</a></li>
-        <li><a href="#">High Blood Pressure</a></li>
-      </ul>
+      <select class="form-control" id="mySelect">
+        <option value="">Search...</option>
+        <option value="Anxiety">Anxiety</option>
+        <option value="Depression">Depression</option>
+        <option value="COPD">COPD</option>
+        <option value="Congestive Heart Failure">Congestive Heart Failure</option>
+        <option value="High Blood Pressure">High Blood Pressure</option>
+        <option value="Diabetes">Diabetes</option>
+        <option value="Asthma">Asthma</option>
+        <option value="Stroke">Stroke</option>
+        <option value="High Cholesterol">High Cholesterol</option>
+        <option value="Heart Attack">Heart Attack</option>
+
+      </select>
     </div>
   </div>
   <div id ="articles"></div>
   <script defer src = "App\js\article.js"></script>
 </body>
-</html>
+</html> 
