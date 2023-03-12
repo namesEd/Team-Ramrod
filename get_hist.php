@@ -2,12 +2,13 @@
 session_start();
 require 'connect.php';
 
-if (isset($_SESSION["userID"])) {
-    $userID = $_SESSION['userID'];
-} else {
-    header("Location: userLogin.php?error=notallowed");
+if (!isset($_SESSION["userID"])) {
+    header('HTTP/1.1 401 Unauthorized');
+    echo json_encode(array("error" => "notauthorized"));
     exit();
 }
+$userID = $_SESSION['userID'];
+
 
 $stmt = $conn->prepare("SELECT u.userID, u.first_name, u.last_name, mp.medical_problem
 FROM medical_history mh

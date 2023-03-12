@@ -8,8 +8,9 @@ if (!isset($_SESSION["userID"])) {
     exit();
 }
 $userID = $_SESSION['userID'];
+  
 
-$stmt = $conn->prepare("SELECT * from allergies");
+$stmt = $conn->prepare("SELECT * FROM medical_problems");
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -24,6 +25,7 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 header("Content-Type: application/json");
+
 echo json_encode($data);
 
 ?>

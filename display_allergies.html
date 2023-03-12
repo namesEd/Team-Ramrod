@@ -14,10 +14,13 @@
 						$('#allergy-list').append('<li data-allergy-id="' + a.allergyID + '">' + a.allergy + '</li>');
 					});
 				},
-				error: function(xhr, status, error) {
-					alert('Error: ' + error);
-				}
-			});
+		error: function(xhr, status, error) {
+		    if (xhr.status === 401) {
+		        window.location.replace("userLogin.php?error=notallowed");
+		    } else {
+		        alert('Error: ' + error);
+		    }
+		}			});
 		});
 
 		$(document).on('click', '#allergy-list li', function() {
@@ -26,7 +29,7 @@
 				url: 'add_user_allergy.php',
 				type: 'POST',
 				data: { allergyID: allergyID },
-				success: function(response) {
+					success: function(response) {
 						// Update the page with the new medical problem
 
 						//fade animation that displays an h2 tag if a problem

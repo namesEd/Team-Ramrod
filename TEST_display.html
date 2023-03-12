@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Medical Problems</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+	$.ajax({
+		url: 'get_probs.php',
+		type: 'GET',
+		dataType: 'json',
+		success: function(response) {
+			$.each(response, function(index, med) {
+				$('#med-probs').append('<li data-probs-id="' + med.medical_problemID + '">' + 
+					med.medical_problem + '</li>');
+			});
+		},
+		error: function(xhr, status, error) {
+			alert('Error: ' + error);
+		}
+	});
+});
+
+$(document).on('click', '#med-probs li', function() {
+	var medical_problemID = $(this).data('probs-id');
+	$.ajax({
+		url: 'insert_probs.php',
+		type: 'POST',
+		data: { medical_problemID: medical_problemID},
+		success: function(response) {
+				// Update the page with the new medical problem
+
+				//fade animation that displays an h2 tag if a problem
+				//is added to the database - G.Z
+				$('#a-added').append('<h2 class="added">  added successfully </h2>');
+
+	                setTimeout(function() {
+	 
+	                	$('.added').fadeOut('fast');
+
+	                }, 1000);
+		},
+		error: function(xhr, status, error) {
+			alert('Error: ' + error);
+		}
+	});
+});
+	</script>
+	<script src="App/js/clicked.js"></script>
+	<link rel="stylesheet" href="App/css/display_probs.css">
+</head>
+<body>
+	<h1>Medical Problems</h1>
+
+	<div class="contain">
+		<div class="contain-bkg">
+		<ul id="med-probs"></ul>
+
+		</div>
+	</div>
+	<div id="med-added"></div>
+</body>
+</html>

@@ -1,14 +1,14 @@
 <?php
 session_start();
 require 'connect.php';
-$userID = $_SESSION['userID'];
-  
-if (isset($_SESSION["userID"])) {
-    $userID = $_SESSION['userID'];
-} else {
-    header("Location: userLogin.php?error=notallowed");
+
+if (!isset($_SESSION["userID"])) {
+    header('HTTP/1.1 401 Unauthorized');
+    echo json_encode(array("error" => "notauthorized"));
     exit();
 }
+$userID = $_SESSION['userID'];
+  
 
 $stmt = $conn->prepare("SELECT * FROM medical_problems");
 $stmt->execute();
@@ -27,4 +27,5 @@ $conn->close();
 header("Content-Type: application/json");
 
 echo json_encode($data);
+
 ?>
