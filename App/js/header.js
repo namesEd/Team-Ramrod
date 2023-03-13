@@ -33,9 +33,9 @@ class Header extends HTMLElement{
         
       console.log(this.getLoginStatus());
       if (this.getLoginStatus() == true) {
-        html += `<a href="HomePage.php">Logout</a>`;
+        html += `<a href="logout.php">Logout</a>`;
       } else {
-        html +=`<a href="userLogin.php">Login</a>`;
+        html +=`<a href="user_login.php">Login</a>`;
       }
           
       html += `</div>`;
