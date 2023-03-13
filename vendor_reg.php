@@ -6,10 +6,10 @@
 	<title>Vendor Creation</title>
 
 
-	<script type = "text/javascript" src="App/js/vendReg.js"></script>
+	<script type = "text/javascript" src="App/js/vendor_reg.js"></script>
 
 
-	<link rel="stylesheet" href="App/css/vendReg.css">
+	<link rel="stylesheet" href="App/css/vendor_reg.css">
 </head>
 <body>
 
