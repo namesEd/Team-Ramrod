@@ -8,12 +8,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
     <link rel="stylesheet" href="App/css/header.css">
     <link rel="stylesheet" href="App/css/home.css">
-    <script type = "text/javascript" src="App/js/Hompage.js"></script>
+    <script type = "text/javascript" src="App/js/header.js"></script>
     <title>Login</title>
 </head>
 <body id="loginbody">
 
-    <header-component></header-component>
+<?php require_once "header.php"?>
 <main>
     <div id="form">
         <form action="login.php" method="post">
