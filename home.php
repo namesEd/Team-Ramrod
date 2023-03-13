@@ -27,10 +27,3 @@
 
             </body>
 </html>
-<!-- 
-  about.php
-  display_allergies.php
-  display_medical_problems.php
-  display_medications.php
-
- -->
