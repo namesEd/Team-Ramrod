@@ -1,6 +1,6 @@
  $(document).ready(function() {
     $.ajax({
-        url: 'get_hist.php',
+        url: 'get_user_medical_probs.php',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
