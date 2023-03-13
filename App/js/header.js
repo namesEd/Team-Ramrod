@@ -22,7 +22,7 @@ class Header extends HTMLElement{
       
       <div id="mySidenav" class="sideNav">
       <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
-      <a href="userProfile.php">userprofile</a>
+      <a href="display_allergies.php">Allergies</a>
       <a href="userlogin.php">userlogin</a>
       <a href="userReg.php">register</a>
       <a href="vendReg.php">Vendor</a>
