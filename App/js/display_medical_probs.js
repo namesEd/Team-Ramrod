@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	// Get the list of medical problems using AJAX
 	$.ajax({
-		url: 'get_probs.php',
+		url: 'get_medical_probs.php',
 		type: 'GET',	
 		dataType: 'json',
 		success: function(response) {
@@ -17,7 +17,7 @@ $(document).ready(function() {
 				
 				// Send an AJAX request to insert the selected medical problem into the database
 				$.ajax({
-					url: 'insert_probs.php',
+					url: 'add_medical_probs.php',
 					type: 'POST',
 					// dataType: 'json',
 					data: {
