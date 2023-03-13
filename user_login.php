@@ -7,7 +7,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
     <link rel="stylesheet" href="App/css/header.css">
-    <link rel="stylesheet" href="App/css/Homepage.css">
+    <link rel="stylesheet" href="App/css/home.css">
     <script type = "text/javascript" src="App/js/Hompage.js"></script>
     <title>Login</title>
 </head>
