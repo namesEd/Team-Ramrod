@@ -19,7 +19,7 @@ $(document).ready(function() {
 				$.ajax({
 					url: 'insert_probs.php',
 					type: 'POST',
-					dataType: 'json',
+					// dataType: 'json',
 					data: {
 						'probID': selectedID
 					},
