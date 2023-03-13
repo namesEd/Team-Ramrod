@@ -10,12 +10,12 @@
 		<link rel="stylesheet" href="App/css/header.css">
         <link rel="stylesheet" href="App/css/style.css">
         <script defer src = "App/js/app.js"></script>
-		<script type = "text/javascript" src="App/js/Hompage.js"></script>
+		<script type = "text/javascript" src="App/js/header.js"></script>
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     </head>
     <body>
-		<header-component></header-component>
+		<?php require_once "header.php"?>
     	<section class = "hidden">
 		<h1>RowdyHealth</h1>
 		<p>Our Goal is to  create a robust and reliable website for our users</p>
