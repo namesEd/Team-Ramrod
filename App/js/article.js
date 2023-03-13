@@ -1,4 +1,3 @@
-
 let category = '';
 $(document).ready(function() {
   // Initialize Select2
@@ -29,6 +28,7 @@ $(document).ready(function() {
     console.log(category);
     update_articles(category);
   });
+  
 })
 // update_articles('health');
 
@@ -36,16 +36,25 @@ $(document).ready(function() {
 
 // url = 'https://gnews.io/api/v4/top-headlines?category=' + 'health' + '&lang=en&country=us&max=10&apikey=' + apikey;
 function update_articles(category) {
+  console.log("entered update_articles");
   console.log("update_articles:", category);
   var apikey = 'c87b1359e7115d43ca071dba973b1931';
   category = 'health AND '+ category;
   console.log("update_articles new category: ", category);
   var url = 'https://gnews.io/api/v4/search?q=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
   console.log(url);
+  // Clear existing articles
+  document.getElementById("articles").innerHTML = "";
   get_articles(url);
 }
+function normal_articles(category) {
+  var url = 'https://gnews.io/api/v4/top-headlines?category=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
+  get_articles(url);
+}
+
 // console.log(url);
 function get_articles(url) {
+  console.log("caling url");
   // Create a new XMLHttpRequest object
   const xhr = new XMLHttpRequest();
   
@@ -112,68 +121,3 @@ function get_articles(url) {
   // Send the request to the server
   xhr.send();
 }
-
-
-
-// --------------------------------------call function----------------------------------------------
-//--------------------------------------get_articles(url);
-// function get_articles(url) {
-//   fetch(url)
-//   .then(response => {
-//     // If the response is successful, parse the JSON data
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw new Error('Network response was not ok.');
-//   })
-//   .then(data => {
-//     // Loop through the articles array
-//     data.articles.forEach(function(article) {
-//       // Extract the title, description, and image for each article
-//       var title = article.title;
-//       var description = article.description;
-//       var image = article.image;
-//       var url = article.url;
-
-//       // Create a div to hold the article
-//       var article_div = document.createElement("div");
-//       article_div.className = "article";
-
-//       // Create an img element for the image
-//       var image_element = document.createElement("img");
-//       image_element.src = image;
-
-//       // Create a div for the title and description
-//       var text_div = document.createElement("div");
-
-//       // Create an h3 element for the title
-//       var title_element = document.createElement("h3");
-//       title_element.innerHTML = title;
-
-//       // Create a p element for the description
-//       var description_element = document.createElement("p");
-//       description_element.innerHTML = description;
-
-//       // Create an element for the url
-//       var url_element = document.createElement("a");
-//       url_element.href = url;
-//       url_element.innerHTML = "Read More"
-
-//       // Append the title, description, and url to the text div
-//       text_div.appendChild(title_element);
-//       text_div.appendChild(description_element);
-//       text_div.appendChild(url_element);
-
-//       // Append the image and text div to the article div
-//       article_div.appendChild(image_element);
-//       article_div.appendChild(text_div);
-
-//       // Append the article div to the document
-//       document.getElementById("articles").appendChild(article_div);
-//     });
-//   })
-//   .catch(error => {
-//     console.error('Error:', error);
-//   });  
-// }
-
