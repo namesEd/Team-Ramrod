@@ -64,7 +64,7 @@ function userExists($conn, $username)
 	$stmt = mysqli_stmt_init($conn);
 	//check if sql query will fail or not before continuing
 	if (!mysqli_stmt_prepare($stmt, $query)) {
-		header("Location: userReg.php?error=stmtFailed");
+		header("Location: user_reg.php?error=stmtFailed");
 		exit();
 	}
 
@@ -109,20 +109,20 @@ function loginUser($conn, $username, $password)
 	$userExists = userExists($conn, $username);
 
 	if ($userExists === false) {
-		header("Location: userLogin.php?error=incorrectlogin");
+		header("Location: user_login.php?error=incorrectlogin");
 		exit();
 	}
 	$hashedPass = $userExists["password"];
   	$verifyPassword = password_verify($password, $hashedPass);
 
   	if($verifyPassword === false) {
-    	header("Location: userLogin.php?error=incorrectlogin");
+    	header("Location: user_login.php?error=incorrectlogin");
     	exit(); 
   	} else if($verifyPassword === true) {
 	    session_start();
 	    $_SESSION['userID'] = $userExists["userID"];
 	    $_SESSION['username'] = $userExists["username"];
-	    header("Location: HomePage.php");
+	    header("Location: home.php");
 	    exit();
 	}
 }

@@ -11,7 +11,6 @@ if (isset($_SESSION["userID"])) {
 
 $stmt = $conn->prepare("SELECT * from medications");
 
-$stmt->bind_param("i", $userID);
 $stmt->execute();
 $result = $stmt->get_result();
 
