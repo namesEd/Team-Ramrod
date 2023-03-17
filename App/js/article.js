@@ -1,5 +1,37 @@
 let category = '';
+var apikey = 'c87b1359e7115d43ca071dba973b1931';
+
+// functionality of filter box
 $(document).ready(function() {
+  // $.ajax({
+  //   url: 'get_user_medical_probs.php',
+  //   type: 'GET',
+  //   dataType: 'json',
+  //   success: function(response) {
+  //       // var fname = response[0].first_name;
+  //       // var lname = response[0].last_name;
+
+  //       console.log(response[0].first_name);
+
+
+  //       $('#mySelect').append('<h2 class="name">' + response[0].first_name + ' ' + response[0].last_name + '</h2>');
+
+  //       $.each(response, function(index, hist) {
+  //           $('#user-hist').append('<li>' + hist.medical_problem + '</li>');
+  //       });
+  //   },
+  //   error: function(xhr, status, error) {
+  //       if (xhr.status === 401) {
+  //           window.location.replace("userLogin.php?error=notallowed");
+  //       } else {
+  //           alert('Error: ' + error);
+  //           console.log(xhr);
+  //           console.log(status);
+  //           console.log(error);
+  //       }   
+  //   }
+  // })
+
   // Initialize Select2
   $('#mySelect').select2();
 
@@ -28,17 +60,22 @@ $(document).ready(function() {
     console.log(category);
     update_articles(category);
   });
-  
+  normal_articles('health');
 })
-// update_articles('health');
+
+//------------------------------------------------------------------------
+// Ajax call to retrieve users medical issues
+//------------------------------------------------------------------------
 
 
-
+//------------------------------------------------------------------------
+// Functions for articles
+//------------------------------------------------------------------------
 // url = 'https://gnews.io/api/v4/top-headlines?category=' + 'health' + '&lang=en&country=us&max=10&apikey=' + apikey;
 function update_articles(category) {
   console.log("entered update_articles");
   console.log("update_articles:", category);
-  var apikey = 'c87b1359e7115d43ca071dba973b1931';
+  
   category = 'health AND '+ category;
   console.log("update_articles new category: ", category);
   var url = 'https://gnews.io/api/v4/search?q=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
@@ -47,11 +84,15 @@ function update_articles(category) {
   document.getElementById("articles").innerHTML = "";
   get_articles(url);
 }
+
+//Function retrieve normal articles-----------------------
 function normal_articles(category) {
   var url = 'https://gnews.io/api/v4/top-headlines?category=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
   get_articles(url);
 }
 
+
+// function to retrieve articles------------------------------ 
 // console.log(url);
 function get_articles(url) {
   console.log("caling url");
