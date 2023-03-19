@@ -91,7 +91,6 @@ function userExists($conn, $username)
 
 function emptyLogin($username, $password)
 {
-	echo("Here2");
 	$result; 
 	if (empty($username) || empty($password)) { 
 		$result = true;

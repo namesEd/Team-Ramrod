@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Allergies</title>
+	<title>Allergy List</title>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
 	<link rel="stylesheet" href="App/css/header.css">
 	<script type = "text/javascript" src="App/js/header.js"></script>
@@ -20,7 +20,7 @@
 				},
 		error: function(xhr, status, error) {
 		    if (xhr.status === 401) {
-		        window.location.replace("userLogin.php?error=notallowed");
+		        window.location.replace("user_login.php?error=notallowed");
 		    } else {
 		        alert('Error: ' + error);
 		    }
@@ -55,7 +55,7 @@
 </head>
 <body>
 <?php require_once "header.php"?>
-	<h1>My Allergies</h1>
+	<h1>Allergy List</h1>
 	<ul id="allergy-list"></ul>
 	<div id="a-added"></div>
 </body>

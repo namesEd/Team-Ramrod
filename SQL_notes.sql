@@ -219,6 +219,19 @@ Vendors:
 
 
 
+Notes: 
+Variations of these tables may be added in the future. 
+
+specialty(locID, specialty_type)
+
+insuranceAcceptsLocation(location_name, locID, address, location_type, policy_number, insurance_name)
+
+locationHasSpecialty(location_name, locID, address, specialty_type)
+
+userVisitsLocation(userID, locID, policy_number)
+
+
+
 VIEWS: 
 
 CREATE OR REPLACE VIEW show_all
