@@ -7,9 +7,18 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,                                                                                                     
   `username` varchar(100) NOT NULL,                                                                                                  
   `password` varchar(100) NOT NULL,                                                                                                  
-  `birthday` date DEFAULT NULL,                                                                                                      
+  `birthday` date DEFAULT NULL,
+  `isVendor` ENUM('yes', 'no') DEFAULT 'no',                                                                                             
   PRIMARY KEY (`userID`)                                                                                                             
 ) DEFAULT CHARSET=utf8mb4 ;
+
+ALTER TABLE users 
+ADD COLUMN `isVendor` ENUM('yes', 'no') DEFAULT 'no'; 
+
+UPDATE users
+SET isVendor = 'yes'
+WHERE userID = 3; 
+
 
 #date = YYYY/MM/DD
 
@@ -35,17 +44,20 @@ CREATE TABLE `location` (
 INSERT INTO location
 (location_name, address, location_type, phone_number, start_hour, end_hour, multilingual)
 VALUES
-('Last Call ER', '123 24th St', 'Emergency Room', '(800) 123-4567', '00:00:00', '23:59:59', 'YES')
+('Kaiser San Joaquin Valley', '220 Chester Ave, Bakersfield CA. 93301', 'Emergency Room', '(661) 555-5555', '00:00:00', '23:59:59', 'YES'),
+('Community Hospital', '123 Main St, Anytown USA 12345', 'Hospital', '(555) 123-4567', '08:00:00', '20:00:00', 'YES'),
+('St. Marys Hospital', '456 Elm St, Anytown USA 12345', 'Hospital', '(555) 789-0123', '09:00:00', '21:00:00', 'NO'),
+('Green Valley Clinic', '789 Maple Ave, Anytown USA 12345', 'Clinic', '(555) 456-7890', '07:30:00', '18:30:00', 'YES'),
+('Redwood Medical Center', '321 Oak St, Anytown USA 12345', 'Medical Center', '(555) 012-3456', '08:30:00', '17:00:00', 'YES'),
+('City General Hospital', '567 Pine St, Anytown USA 12345', 'Hospital', '(555) 234-5678', '07:00:00', '22:00:00', 'NO'),
+('Sunrise Medical Clinic', '910 Cedar Blvd, Anytown USA 12345', 'Clinic', '(555) 678-9012', '09:30:00', '20:00:00', 'YES');
 
 INSERT INTO location
 (location_name, address, location_type, phone_number, start_hour, end_hour, multilingual)
 VALUES
-('No Mercy Southwest', '50 Calloway Dr', '"Emergency Room"', '(800) 987-6542', '00:00:00', '23:59:59', 'NO')
-
-INSERT INTO location
-(location_name, address, location_type, phone_number, start_hour, end_hour, multilingual)
-VALUES
-('Centenial Doctors', '1000 Truxtun Ave', 'Doctors Office', '(661) 123-3456', '8:0:0', '17:0:0', 'YES')
+('Centenial Doctors', '1000 Truxtun Ave', 'Doctors Office', '(661) 123-3456', '8:0:0', '17:0:0', 'YES'),
+('No Mercy Southwest', '50 Calloway Dr', '"Emergency Room"', '(800) 987-6542', '00:00:00', '23:59:59', 'NO'),
+('Last Call ER', '123 24th St', 'Emergency Room', '(800) 123-4567', '00:00:00', '23:59:59', 'YES');
 
 
 CREATE TABLE insurance (
@@ -210,12 +222,25 @@ Vendors:
   `vendor_name` varchar(100) NOT NULL,
   `userID` int(15) NOT NULL,
   `locID` int(15) NOT NULL,
-  PRIMARY KEY (`userID`, `locID`), 
+  PRIMARY KEY (`userID`, `locID`),
   CONSTRAINT `fk_users_loc_vendors`
     FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
     FOREIGN KEY (`locID`) REFERENCES `location` (`locID`)
-    ON DELETE CASCADE 
+    ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+
+Notes:
+Variations of these tables may be added in the future.
+
+specialty(locID, specialty_type)
+
+insuranceAcceptsLocation(location_name, locID, address, location_type, policy_number, insurance_name)
+
+locationHasSpecialty(location_name, locID, address, specialty_type)
+
+userVisitsLocation(userID, locID, policy_number)
 
 
 

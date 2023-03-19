@@ -28,6 +28,7 @@ class Header extends HTMLElement{
       <a href="display_medical_probs.php">Medical</a>
       <a href="display_medications.php">Medications</a>
       <a href="vendor_reg.php">Vendors</a>
+      <a href ="vendorTest.php">Vendor Test Page</a>
       `;
         
       console.log(this.getLoginStatus());
