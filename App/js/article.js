@@ -3,35 +3,20 @@ var apikey = 'c87b1359e7115d43ca071dba973b1931';
 
 // functionality of filter box
 $(document).ready(function() {
-  // $.ajax({
-  //   url: 'get_user_medical_probs.php',
-  //   type: 'GET',
-  //   dataType: 'json',
-  //   success: function(response) {
-  //       // var fname = response[0].first_name;
-  //       // var lname = response[0].last_name;
-
-  //       console.log(response[0].first_name);
-
-
-  //       $('#mySelect').append('<h2 class="name">' + response[0].first_name + ' ' + response[0].last_name + '</h2>');
-
-  //       $.each(response, function(index, hist) {
-  //           $('#user-hist').append('<li>' + hist.medical_problem + '</li>');
-  //       });
-  //   },
-  //   error: function(xhr, status, error) {
-  //       if (xhr.status === 401) {
-  //           window.location.replace("userLogin.php?error=notallowed");
-  //       } else {
-  //           alert('Error: ' + error);
-  //           console.log(xhr);
-  //           console.log(status);
-  //           console.log(error);
-  //       }   
-  //   }
-  // })
-
+  $.ajax({
+    url: "getMedicalConditions.php",
+    method: "POST",
+    dataType: "json",
+    success: function(data) {
+      // Loop through the data and add options to the select element
+      $.each(data, function(index, item) {
+        var option = $("<option>");
+        option.val(item.conditionID);
+        option.text(item.conditionName);
+        $("#mySelect").append(option);
+      });
+    }
+  })
   // Initialize Select2
   $('#mySelect').select2();
 
@@ -60,7 +45,7 @@ $(document).ready(function() {
     console.log(category);
     update_articles(category);
   });
-  normal_articles('health');
+  // normal_articles('health');
 })
 
 //------------------------------------------------------------------------
