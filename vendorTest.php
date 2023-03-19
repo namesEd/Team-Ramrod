@@ -25,10 +25,11 @@
 
     <div>
         <?php
-            // Display message if there is one
-            if (!empty($message)) {
-                echo "<p>$message</p>";
-            }
+			if (isset($_SESSION['message'])) {
+			    echo "<p>" . $_SESSION['message'] . "</p>";
+			    unset($_SESSION['message']);
+			}
+
         ?>
         <form id="vendForm" action="add_vendor.php" method="post">
           <label for="name">Name of Vendor:</label>
