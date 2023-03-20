@@ -23,7 +23,7 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5exh7JYQlhm_leOXPpi8WkfEjlhwrHe4&callback=initMap&v=weekly">
     </script>
+    <?php require_once "footer.php"?>
 
-
-            </body>
+   </body>
 </html>

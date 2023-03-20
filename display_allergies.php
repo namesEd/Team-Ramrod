@@ -58,5 +58,6 @@
 	<h1>Allergy List</h1>
 	<ul id="allergy-list"></ul>
 	<div id="a-added"></div>
+	<?php require_once "footer.php"?>
 </body>
 </html>

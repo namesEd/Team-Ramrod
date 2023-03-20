@@ -21,5 +21,6 @@
 		</div>
 	</div>
 	<div id="med-added"></div>
+	<?php require_once "footer.php"?>
 </body>
 </html>
