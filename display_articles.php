@@ -18,6 +18,7 @@
   </form>   -->
 	<div id ="articles"></div>
   <script defer src = "App\js\article.js"></script>
+  <?php require_once "footer.php"?>
 </body>
 </html>
 
