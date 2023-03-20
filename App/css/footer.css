@@ -1,0 +1,17 @@
+footer{
+    /* background-color: #003594;
+    color: #FFC72C; */
+    padding: 0 1em;
+    margin-top: 1%;
+    background-color: #003594;
+    color: #FFC72C;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a{
+    color: #FFC72C;
+  }
+
