@@ -16,6 +16,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <body>
+  <?php require_once "header.php"?>
   <header-component></header-component>
   <h1>Health News</h1> 
   <div class="container">
