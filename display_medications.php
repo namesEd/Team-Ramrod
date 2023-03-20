@@ -57,5 +57,6 @@
 	<h1>Medication Selection</h1>
 	<ul id="med-list"></ul>
 	<div id="m-added"></div>
+	<?php require_once "footer.php"?>
 </body>
 </html>
