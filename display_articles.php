@@ -16,15 +16,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <body>
-  <?php require_once "header.php"?>
   <header-component></header-component>
   <h1>Health News</h1> 
   <div class="container">
-    <h2></h2>
     <div class="dropdown">
       <select class="form-control" id="mySelect">
         <option value="">Search...</option>
-        <option value="Anxiety">Anxiety</option>
+<!--         <option value="Anxiety">Anxiety</option>
         <option value="Depression">Depression</option>
         <option value="COPD">COPD</option>
         <option value="Congestive Heart Failure">Congestive Heart Failure</option>
@@ -34,7 +32,7 @@
         <option value="Stroke">Stroke</option>
         <option value="High Cholesterol">High Cholesterol</option>
         <option value="Heart Attack">Heart Attack</option>
-
+ -->
       </select>
     </div>
   </div>

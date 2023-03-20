@@ -3,17 +3,17 @@ var apikey = 'c87b1359e7115d43ca071dba973b1931';
 
 // functionality of filter box
 $(document).ready(function() {
+  console.log("here")
   $.ajax({
-    url: "getMedicalConditions.php",
-    method: "POST",
+    url: "get_medical_probs.php",
+    method: "GET",
     dataType: "json",
-    success: function(data) {
-      // Loop through the data and add options to the select element
-      $.each(data, function(index, item) {
-        var option = $("<option>");
-        option.val(item.conditionID);
-        option.text(item.conditionName);
-        $("#mySelect").append(option);
+    success: function(response) {
+      console.log("here2")
+      console.log(response);
+      $.each(response,function (index, medprob) {
+        console.log("index:", index, ", medprob:",medprob.medical_problem );
+        $('#mySelect').appened('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
       });
     }
   })
@@ -42,29 +42,24 @@ $(document).ready(function() {
   $('#mySelect').on('change', function() {
     category = $('#mySelect').val();
     $('#category').text('You selected ' + category);
-    console.log(category);
+    //console.log(category);
     update_articles(category);
   });
-  // normal_articles('health');
+  //normal_articles('health');
 })
-
-//------------------------------------------------------------------------
-// Ajax call to retrieve users medical issues
-//------------------------------------------------------------------------
-
 
 //------------------------------------------------------------------------
 // Functions for articles
 //------------------------------------------------------------------------
 // url = 'https://gnews.io/api/v4/top-headlines?category=' + 'health' + '&lang=en&country=us&max=10&apikey=' + apikey;
 function update_articles(category) {
-  console.log("entered update_articles");
-  console.log("update_articles:", category);
+  //console.log("entered update_articles");
+  //console.log("update_articles:", category);
   
   category = 'health AND '+ category;
-  console.log("update_articles new category: ", category);
+  //console.log("update_articles new category: ", category);
   var url = 'https://gnews.io/api/v4/search?q=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
-  console.log(url);
+  //console.log(url);
   // Clear existing articles
   document.getElementById("articles").innerHTML = "";
   get_articles(url);
