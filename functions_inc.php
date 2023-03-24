@@ -1,9 +1,10 @@
 <?php
 session_start();
 require_once 'connect.php';
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+*/
 //Include functions for login and register files
 
 function emptyInputReg($first_name, $last_name, $email, $username, $password, $password_repeat)

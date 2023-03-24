@@ -41,6 +41,8 @@ CREATE TABLE `location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
 
+
+
 INSERT INTO location
 (location_name, address, location_type, phone_number, start_hour, end_hour, multilingual)
 VALUES
@@ -216,7 +218,6 @@ ON a.allergyID = ua.allergyID WHERE ua.userID = $userID
 
 
 Vendors: 
-  
 
   CREATE TABLE vendors (
   `vendor_name` varchar(100) NOT NULL,
@@ -236,7 +237,7 @@ Variations of these tables may be added in the future.
 
 specialty(locID, specialty_type)
 
-insuranceAcceptsLocation(location_name, locID, address, location_type, policy_number, insurance_name)
+insuranceAcceptsLocation(location_name, locID, address, location_type, insurance_name)
 
 locationHasSpecialty(location_name, locID, address, specialty_type)
 

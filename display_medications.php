@@ -9,8 +9,9 @@
 	<script>
 		$(document).ready(function() {
 			$.ajax({
-				url: 'get_meds.php',
+				url: 'functions_profile.php',
 				type: 'GET',
+				data: {functionName: 'getMeds'}, 
 				dataType: 'json',
 				success: function(response) {
 					$.each(response, function(index, m) {
@@ -29,9 +30,10 @@
 		$(document).on('click', '#med-list li', function() {
 			var medicationID = $(this).data('med-id');
 			$.ajax({
-				url: 'add_user_medications.php',
+				url: 'functions_profile.php',
 				type: 'POST',
-				data: { medicationID : medicationID },
+				data: {medicationID : medicationID,functionName: 'addMedications'},
+				dataType: 'json',
 					success: function(response) {
 						// Update the page with the new medical problem
 
@@ -42,6 +44,7 @@
 			                setTimeout(function() {
 			 
 			                	$('.added').fadeOut('fast');
+			                	$(this).remove();
 
 			                }, 1000);
 				},
