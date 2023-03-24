@@ -23,8 +23,7 @@ $(document).on('click', '#med-list li', function() {
 	$.ajax({
 		url: 'functions_profile.php',
 		type: 'POST',
-		data: {medicationID : medicationID,functionName: 'addMedications'},
-		dataType: 'json',
+		data: {medicationID : medicationID},
 			success: function(response) {
 				// Update the page with the new medical problem
 
