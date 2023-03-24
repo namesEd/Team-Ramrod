@@ -1,113 +1,53 @@
 let category = '';
 var apikey = 'c87b1359e7115d43ca071dba973b1931';
-//require_once "./header.php"
-// functionality of filter box
-/*$(document).ready(function() {
-  //console.log("here")
-
-  //console.log(getLoginStatus());
-  $.ajax({
-    url: "get_medical_probs.php",
-    method: "GET",
-    dataType: "json",
-    success: function(response) {
-      console.log("here2")
-      console.log(response);
-      $.each(response,function (index, medprob) {
-        console.log("index:", index, ", medprob:",medprob.medical_problem );
-        $('#mySelect').append('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
-      });
-    }
-  })
-  // Initialize Select2
-  $('#mySelect').select2();
-
-  // Add search placeholder
-  $('.select2-search__field').attr('placeholder', 'Search...');
-
-  // Filter options based on search query
-  $('#mySelect').on('select2:open', function() {
-    $('.select2-results__options').on('keyup', function() {
-      var query = $('.select2-search__field').val().toLowerCase();
-      $('.select2-results__options').find('li').each(function() {
-        var text = $(this).text().toLowerCase();
-        if (text.indexOf(query) > -1) {
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      });
-    });
-  });
-
-  // Get selected option value
-  $('#mySelect').on('change', function() {
-    category = $('#mySelect').val();
-    $('#category').text('You selected ' + category);
-    //console.log(category);
-    update_articles(category);
-  });
-  //---------------------------------------Display articles without selecting  filter
-  //normal_articles('health');
-})*/
-
+var login;
 class article extends HTMLElement{
     constructor(){
       super();
     }
   
     getLoginStatus() {
+      login = this.getAttribute('loginStatus');
       return this.getAttribute('loginStatus');
     }
-  
+    
     //Function that sets up everyting that is needed for the header
     connectedCallback(){
       $(document).ready(function() {
       //console.log("here")
-
-      //console.log(getLoginStatus());
-        // if (this.getLoginStatus() == true) {
-        //   $.ajax({
-        //   url: "get_user_medical_probs.php",
-        //   method: "GET",
-        //   dataType: "json",
-        //   success: function(response) {
-        //     console.log("user-medial-problems")
-        //     console.log(response);
-        //     $.each(response,function (index, medprob) {
-        //       console.log("index:", index, ", medprob:",medprob.medical_problem );
-        //       $('#mySelect').append('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
-        //     });
-        //   }
-        //   })
-        // } else {
-        //   $.ajax({
-        //     url: "get_medical_probs.php",
-        //     method: "GET",
-        //     dataType: "json",
-        //     success: function(response) {
-        //       console.log("medical_problem")
-        //       console.log(response);
-        //       $.each(response,function (index, medprob) {
-        //         console.log("index:", index, ", medprob:",medprob.medical_problem );
-        //         $('#mySelect').append('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
-        //       });
-        //     }
-        //   })
-        // }
-        // $.ajax({
-        //   url: "get_user_medical_probs.php",
-        //   method: "GET",
-        //   dataType: "json",
-        //   success: function(response) {
-        //     console.log("user medical problem")
-        //     console.log(response);
-        //     $.each(response,function (index, medprob) {
-        //       console.log("index:", index, ", medprob:",medprob.medical_problem );
-        //       $('#mySelect').append('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
-        //     });
-        //   }
-        // })
+        //console.log(getLoginStatus());
+        console.log("login:",login);
+        
+        if (login == 1) {
+          $.ajax({
+          url: "get_user_medical_probs.php",
+          method: "GET",
+          dataType: "json",
+          success: function(response) {
+            console.log("user-medial-problems")
+            console.log(response);
+            $.each(response,function (index, medprob) {
+              console.log("index:", index, ", medprob:",medprob.medical_problem );
+              $('#mySelect').append('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
+            });
+          }
+          })
+        } else {
+          $.ajax({
+            url: "get_medical_probs.php",
+            method: "GET",
+            dataType: "json",
+            success: function(response) {
+              console.log("medical_problem")
+              console.log(response);
+              $.each(response,function (index, medprob) {
+                console.log("index:", index, ", medprob:",medprob.medical_problem );
+                $('#mySelect').append('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
+              });
+            }
+          })
+        }
+ 
         // Initialize Select2
         $('#mySelect').select2();
 
