@@ -33,11 +33,11 @@ $stmt->bind_param("ssssisiii", $location_name, $address, $vendor_name);
 if ($stmt->execute()) {
     // Set success message
     $_SESSION['message'] = "Vendor inserted successfully.";
-    header("Location: vendorTest.php");
+    header("Location: vendor_reg.php");
 } else {
     // Set error message
     $_SESSION['message'] = "Error inserting vendor.";
-    header("Location: vendorTest.php");
+    header("Location: vendor_reg.php");
 }
 
 $conn->close();
