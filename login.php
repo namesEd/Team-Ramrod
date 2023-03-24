@@ -8,12 +8,9 @@ if(isset($_POST["submit"])) {
   $password = sanitize($_POST["pword"]);
 
   if(emptyLogin($username, $password) === true) {
-    header("Location: userLogin.php?error=emptyinput");
+    header("Location: user_login.php?error=emptyinput");
     exit();
   }
   loginUser($conn, $username, $password);
-
-} else {
-    header("location: userLogin.php");
-    exit();
+  exit();
 }

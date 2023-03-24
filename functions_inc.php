@@ -1,5 +1,10 @@
 <?php
 session_start();
+require_once 'connect.php';
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 //Include functions for login and register files
 
 function emptyInputReg($first_name, $last_name, $email, $username, $password, $password_repeat)
@@ -64,7 +69,7 @@ function userExists($conn, $username)
 	$stmt = mysqli_stmt_init($conn);
 	//check if sql query will fail or not before continuing
 	if (!mysqli_stmt_prepare($stmt, $query)) {
-		header("Location: userReg.php?error=stmtFailed");
+		header("Location: user_reg.php?error=stmtFailed");
 		exit();
 	}
 
@@ -91,7 +96,6 @@ function userExists($conn, $username)
 
 function emptyLogin($username, $password)
 {
-	echo("Here2");
 	$result; 
 	if (empty($username) || empty($password)) { 
 		$result = true;
@@ -103,26 +107,52 @@ function emptyLogin($username, $password)
 	return $result;
 }
 
+function isVendor($userID, $conn) {
+	$query = "SELECT userID FROM users WHERE isVendor = 'yes' AND userID = ?;";
+	$stmt = mysqli_prepare($conn, $query);
+	mysqli_stmt_bind_param($stmt, 'i', $userID);
+	mysqli_stmt_execute($stmt);
+	$getResult = mysqli_stmt_get_result($stmt);
+	$result = mysqli_fetch_assoc($getResult);
+	mysqli_stmt_close($stmt);
+	mysqli_close($conn);
+	if($result) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 function loginUser($conn, $username, $password) 
 {	
 	//check for username or email to login the user 
 	$userExists = userExists($conn, $username);
 
 	if ($userExists === false) {
-		header("Location: userLogin.php?error=incorrectlogin");
+		header("Location: user_login.php?error=incorrectlogin");
 		exit();
 	}
 	$hashedPass = $userExists["password"];
   	$verifyPassword = password_verify($password, $hashedPass);
 
   	if($verifyPassword === false) {
-    	header("Location: userLogin.php?error=incorrectlogin");
+    	header("Location: user_login.php?error=incorrectlogin");
     	exit(); 
   	} else if($verifyPassword === true) {
-	    session_start();
 	    $_SESSION['userID'] = $userExists["userID"];
 	    $_SESSION['username'] = $userExists["username"];
-	    header("Location: HomePage.php");
-	    exit();
+
+	    $userID = $_SESSION['userID'];
+	    $isVendor = isVendor($userID, $conn);
+	    if ($isVendor === false) {
+	    	$_SESSION['isVendor'] = true;
+	    	header("Location: home.php");
+	    	exit();
+	    } else {
+	    	$_SESSION['isVendor'] = false;
+	    	header("Location: home.php");
+	    	exit();
+	    }
 	}
 }

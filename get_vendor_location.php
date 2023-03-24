@@ -9,7 +9,10 @@ if (!isset($_SESSION["userID"])) {
 }
 $userID = $_SESSION['userID'];
 
-$stmt = $conn->prepare("SELECT * from allergies");
+$stmt = $conn->prepare("SELECT address from location l INNER JOIN vendors v 
+ON v.locID = l.locID INNER JOIN users u ON v.userID = u.userID WHERE u.userID = ?");
+$stmt -> bind_param("i", $userID); 
+
 $stmt->execute();
 $result = $stmt->get_result();
 

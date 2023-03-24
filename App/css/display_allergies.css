@@ -1,0 +1,141 @@
+#allergy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#allergy-list li {
+  margin-bottom: 10px;
+}
+
+#allergy-list li button {
+  display: block;
+  padding: 5px;
+  background-color: transparent;
+  border-radius: 5px;
+  border-color: black;
+  color: #333;
+  text-decoration: none;
+  width: 200px;
+}
+
+#allergy-list li button:hover {
+  background-color: lightskyblue;
+  color: black;
+}
+
+#hisBtn {
+  background-color: transparent;
+  border-color: red;
+  border-radius: 50px;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  float: left;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#hisBtn:hover {
+  background-color: red;
+  color: white;
+}
+
+
+#medBtn {
+  background-color: transparent;
+  border-color: #FDB913;
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  float: left;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#medBtn:hover {
+  background-color: #FDB913;
+  color: white;
+}
+
+#profBtn {
+  background-color: transparent;
+  border-color: black;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  float: left;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#profBtn:hover {
+  background-color: black;
+  color: white;
+}
+
+
+.btn-group button{
+  float: left;
+}
+
+#myButton.clicked {
+  background-color: lightskyblue;
+  color: black;
+  border-color: #e1e3e2;
+
+}
+
+h1 {
+  color: black;
+  text-align: center;
+}
+
+
+.contain{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+h2 {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: darkblue;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .contain {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+.contain-bkg {
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  border: solid;
+  background-color: #e1e3e2;
+  padding: 20px;
+  border-color: darkblue;
+}

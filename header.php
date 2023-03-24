@@ -4,7 +4,7 @@ session_start();
 require 'utility.php';
 require 'connect.php';
 require_once 'functions_inc.php';
-$userID = $_SESSION['userID'];
+// $userID = $_SESSION['userID'];
   
 if (isset($_SESSION["userID"])) {
     $userID = $_SESSION['userID'];
@@ -15,3 +15,4 @@ if (isset($_SESSION["userID"])) {
 ?>
 
    <header-component loginStatus='<?= $_SESSION['isLoggedIn'] ?>'></header-component>
+   <article-component loginStatus='<?= $_SESSION['isLoggedIn'] ?>'></article-component>
