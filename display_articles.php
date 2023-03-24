@@ -16,8 +16,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <body>
-  <header-component></header-component>
-  <h1>Health News</h1> 
+  <?php require_once "header.php"?>
+<!--      <article-component loginStatus='<?= $_SESSION['isLoggedIn'] ?>'></article-component>
+ -->  <h1>Health News</h1> 
   <div class="container">
     <div class="dropdown">
       <select class="form-control" id="mySelect">
