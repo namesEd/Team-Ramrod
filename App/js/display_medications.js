@@ -1,14 +1,15 @@
 $(document).ready(function() {
 	$.ajax({
-		url: 'get_allergies.php',
+		url: 'functions_profile.php',
 		type: 'GET',
+		data: {functionName: 'getMeds'}, 
 		dataType: 'json',
 		success: function(response) {
-			$.each(response, function(index, a) {
-				$('#allergy-list').append('<li data-allergy-id="' + a.allergyID + '"><button id="myButton">' + a.allergy + '</button></li>');
+			$.each(response, function(index, m) {
+				$('#med-list').append('<li data-med-id="' + m.medicationID + '">' + m.medication + '</li>');
 			});
 		},
-	error: function(xhr, status, error) {
+error: function(xhr, status, error) {
     if (xhr.status === 401) {
         window.location.replace("user_login.php?error=notallowed");
     } else {
@@ -17,22 +18,24 @@ $(document).ready(function() {
 }			});
 });
 
-$(document).on('click', '#allergy-list li', function() {
-	var allergyID = $(this).data('allergy-id');
+$(document).on('click', '#med-list li', function() {
+	var medicationID = $(this).data('med-id');
 	$.ajax({
-		url: 'add_user_allergy.php',
+		url: 'functions_profile.php',
 		type: 'POST',
-		data: { allergyID: allergyID },
+		data: {medicationID : medicationID,functionName: 'addMedications'},
+		dataType: 'json',
 			success: function(response) {
 				// Update the page with the new medical problem
 
 				//fade animation that displays an h2 tag if a problem
 				//is added to the database - G.Z
-				$('#a-added').append('<h2 class="added">  added successfully </h2>');
+				$('#m-added').append('<h2 class="added">  added successfully </h2>');
 
 	                setTimeout(function() {
 	 
 	                	$('.added').fadeOut('fast');
+	                	$(this).remove();
 
 	                }, 1000);
 		},
