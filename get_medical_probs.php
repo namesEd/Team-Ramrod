@@ -2,12 +2,12 @@
 session_start();
 require 'connect.php';
 
-if (!isset($_SESSION["userID"])) {
-    header('HTTP/1.1 401 Unauthorized');
-    echo json_encode(array("error" => "notauthorized"));
-    exit();
-}
-$userID = $_SESSION['userID'];
+// if (!isset($_SESSION["userID"])) {
+//     header('HTTP/1.1 401 Unauthorized');
+//     echo json_encode(array("error" => "notauthorized"));
+//     exit();
+// }
+// $userID = $_SESSION['userID'];
   
 
 $stmt = $conn->prepare("SELECT * FROM medical_problems");

@@ -15,3 +15,4 @@ if (isset($_SESSION["userID"])) {
 ?>
 
    <header-component loginStatus='<?= $_SESSION['isLoggedIn'] ?>'></header-component>
+   <article-component loginStatus='<?= $_SESSION['isLoggedIn'] ?>'></article-component>
