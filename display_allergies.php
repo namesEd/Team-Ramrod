@@ -11,8 +11,10 @@
 
 	<script type = "text/javascript" src="App/js/header.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="App/js/display_medical_probs.js"></script>
 	<script src="App/js/clicked.js"></script>
 	<script src="App/js/display_allergies.js"></script>
+	<script type = "text/javascript" src="App/js/display_medications.js"></script>
 
 
 </head>
@@ -25,18 +27,31 @@
 
 
 	<div class="contain">
-		<button  onClick="window.location.href='user_profile.php'" id="profBtn"> View Profile </button>
+
 		<div class="contain-bkg">
 			<ul id="allergy-list"></ul>
 
 		</div>
-		<div class="btn-group">
-			<button  onClick="window.location.href='display_medical_probs.php'" id="hisBtn"> Add History </button>
-			<button  onClick="window.location.href='display_medications.php'" id="medBtn"> Add Medications </button>
+		<div class="btn-contain">
+			<div class="btn-group">
+			
+			<ul id="med-probs"></ul>
+
+			</div>
+		</div>
+				<div class="btn-contain">
+			<div class="btn-group">
+			
+				<ul id="med-list"></ul>
+
+
+			</div>
 		</div>
 	</div>
 
 	<div id="a-added"></div>
+	<div id="med-added"></div>
+	<div id="m-added"></div>
 
 
 
