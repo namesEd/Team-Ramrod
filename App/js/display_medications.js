@@ -1,8 +1,7 @@
 $(document).ready(function() {
 	$.ajax({
-		url: 'functions_profile.php',
+		url: 'get_meds.php',
 		type: 'GET',
-		data: {functionName: 'getMeds'}, 
 		dataType: 'json',
 		success: function(response) {
 			$.each(response, function(index, m) {
@@ -21,7 +20,7 @@ error: function(xhr, status, error) {
 $(document).on('click', '#med-list li', function() {
 	var medicationID = $(this).data('med-id');
 	$.ajax({
-		url: 'functions_profile.php',
+		url: 'add_user_medications.php',
 		type: 'POST',
 		data: {medicationID : medicationID},
 			success: function(response) {

@@ -44,22 +44,15 @@ CREATE TABLE `location` (
 
 
 INSERT INTO location
-(location_name, address, location_type, phone_number, start_hour, end_hour, multilingual)
+(location_name, address, city, state, zip, location_type, phone_number, start_hour, end_hour)
 VALUES
-('Kaiser San Joaquin Valley', '220 Chester Ave, Bakersfield CA. 93301', 'Emergency Room', '(661) 555-5555', '00:00:00', '23:59:59', 'YES'),
-('Community Hospital', '123 Main St, Anytown USA 12345', 'Hospital', '(555) 123-4567', '08:00:00', '20:00:00', 'YES'),
-('St. Marys Hospital', '456 Elm St, Anytown USA 12345', 'Hospital', '(555) 789-0123', '09:00:00', '21:00:00', 'NO'),
-('Green Valley Clinic', '789 Maple Ave, Anytown USA 12345', 'Clinic', '(555) 456-7890', '07:30:00', '18:30:00', 'YES'),
-('Redwood Medical Center', '321 Oak St, Anytown USA 12345', 'Medical Center', '(555) 012-3456', '08:30:00', '17:00:00', 'YES'),
-('City General Hospital', '567 Pine St, Anytown USA 12345', 'Hospital', '(555) 234-5678', '07:00:00', '22:00:00', 'NO'),
-('Sunrise Medical Clinic', '910 Cedar Blvd, Anytown USA 12345', 'Clinic', '(555) 678-9012', '09:30:00', '20:00:00', 'YES');
+INSERT INTO `location` VALUES (1,'Kaiser San Joaquin Valley','220 Chester Ave','Bakersfield','Ca',93301,'Emergency Room','(661) 555-5555','00:00:00','23:59:59'),(2,'Heart Hospital','100 Sillect Ave','Bakersfield','CA',93308,'Hospital','(661) 300-2011','00:00:00','23:59:59'),(3,'Mercy Hospital','2215 Truxtun Ave','Bakersfield','CA',93301,'Hospital','(661) 632-5000','09:00:00','21:00:00'),(4,'Kern County Department of Public Health','1800 Mt. Vernon Ave','Bakersfield','CA',93306,'Public Health','(661) 321-3000','08:30:00','17:00:00'),(5,'Bakersfield Memorial Hospital','420 34th St','Bakersfield','CA',93301,'Hospital','(661) 327-4647','07:00:00','23:00:00'),(6,'Adventist Health Bakersfield','2615 Chester Ave','Bakersfield','CA',93301,'Hospital','(661) 323-2000','08:00:00','20:00:00'),(7,'Ridgecrest Regional Hospital','1081 N China Lake Blvd','Ridgecrest','CA',93555,'Hospital','(760) 446-3551','08:00:00','17:00:00'),(8,'Kern Valley Healthcare District','6412 Laurel Ave','Lake Isabella','CA',93240,'Hospital','(760) 379-2681','24:00:00','24:00:00'),(9,'Tehachapi Valley Healthcare District','115 West E St','Tehachapi','CA',93561,'Hospital','(661) 823-3000','08:00:00','20:00:00'),(10,'Clinica Sierra Vista','301 Brundage Ln','Bakersfield','CA',93304,'Community Health','(661) 635-3050','08:00:00','20:00:00');
 
 INSERT INTO location
-(location_name, address, location_type, phone_number, start_hour, end_hour, multilingual)
+(location_name, address, city, state, zip, location_type, phone_number, start_hour, end_hour)
 VALUES
-('Centenial Doctors', '1000 Truxtun Ave', 'Doctors Office', '(661) 123-3456', '8:0:0', '17:0:0', 'YES'),
-('No Mercy Southwest', '50 Calloway Dr', '"Emergency Room"', '(800) 987-6542', '00:00:00', '23:59:59', 'NO'),
-('Last Call ER', '123 24th St', 'Emergency Room', '(800) 123-4567', '00:00:00', '23:59:59', 'YES');
+('Bills Place','220 Chester Ave','Bakersfield','Ca',93301,'Emergency Room','(661) 555-1234','00:00:00','23:59:59')
+
 
 
 CREATE TABLE insurance (
