@@ -12,14 +12,6 @@ if (!isset($_SESSION["userID"])) {
     exit();
 }
 
-/*
-// Check if button has been clicked
-if (!isset($_POST['submit'])) {
-    header("Location: location_insert.php");
-    exit();
-} else { 
-    */
-
 if (isset($_POST['submit'])) {
 
     $location_name = sanitize($_POST['loc_name']);
@@ -39,8 +31,9 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    $_SESSION['message'] = "Here";
-
+    $start_time = date('h:i:s', strtotime($start_hour));
+    $end_time = date('h:i:s', strtotime($end_hour));
+    
     // Prepare the SQL statement
     $stmt = $conn->prepare("INSERT INTO location(location_name, address, city, state, zip, phone_number, start_hour, end_hour) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
@@ -50,7 +43,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Bind parameters
-    if (!$stmt->bind_param("ssssisii", $location_name, $address, $city, $state, $zip, $phone_number, $start_hour, $end_hour)) {
+    if (!$stmt->bind_param("ssssisss", $location_name, $address, $city, $state, $zip, $phone_number, $start_time, $end_time)) {
         $_SESSION['error'] = "Error binding parameters: " . $stmt->error;
         header("Location: location_insert.php");
         exit();

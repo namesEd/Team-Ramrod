@@ -52,6 +52,10 @@
               mysqli_close($conn);
             ?>
             <br> </br>
+            <p>
+            Don't see your location? Click <a href="location_insert.php">HERE</a> to insert
+            your location.
+            </p>
           <input type="submit" name="submit" value="Add">
         </form>
     </div>
