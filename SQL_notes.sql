@@ -311,4 +311,3 @@ END;
 DELIMITER ;
 
 # call RegisterUser ('bigbill@AOL.net', 'Bill', 'Bobson', 'billyBobbin', 'qwerty123');
-
