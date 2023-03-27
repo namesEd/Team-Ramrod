@@ -44,7 +44,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }*/
 
-.hist {
+/*.hist {
     float: left;
     width: 100%;
     max-width: 25%;
@@ -57,7 +57,7 @@ body {
     
 }
 .hist h2{
-text-align: center;
+    text-align: center;
 }
 .alleg {
     float: left;
@@ -79,7 +79,6 @@ text-align: center;
     float: left;
     width: 100%;
     max-width: 25%;
-
     background-color: transparent;
     border: solid;
     border-color: black;
@@ -100,7 +99,6 @@ text-align: center;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
-
   align-content: center;
 }
 
@@ -125,7 +123,7 @@ text-align: center;
 #user-meds li:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
+}*/
 
 .name {
     color: #333;
@@ -134,7 +132,7 @@ text-align: center;
     margin-bottom: 20px;
 }
 
-#user-hist {
+/*#user-hist {
     max-height: 50vh;
     overflow-y: scroll;
     scrollbar-width: thin;
@@ -151,8 +149,8 @@ text-align: center;
     overflow-y: scroll;
     scrollbar-color: red;
 }
-
-
+*/
+/*
 @media (max-width: 768px) {
     .hist {
         max-width: 100%;
@@ -179,5 +177,46 @@ text-align: center;
         font-size: 24px;
         margin-bottom: 40px;
     }
+}*/
+
+.overflow-scroll{
+  max-height: 15%;
+  margin-top: 20%;
+
 }
 
+#style-7::-webkit-scrollbar-track
+{
+  visibility: hidden;
+
+}
+
+#style-7::-webkit-scrollbar
+{
+  visibility: hidden;
+
+}
+#style-7::-webkit-scrollbar-thumb
+{
+  border-radius: 100vh;
+  background-color: hsl(194, 96%, 53%);
+
+}
+
+
+@media(max-width: 600px){
+
+    .dycard{
+
+        width: 85%;
+    }
+}
+
+
+@media(max-width: 542px){
+
+    .oflow{
+
+        overflow-y: scroll;
+    }
+}
