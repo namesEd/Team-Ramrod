@@ -5,7 +5,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(response) {
 			$.each(response, function(index, m) {
-				$('#med-list').append('<li data-med-id="' + m.medicationID + '">' + m.medication + '</li>');
+				$('#med-list').append('<li data-med-id="' + m.medicationID + '"><button id="myButton">' + m.medication + '</button></li>');
 			});
 		},
 error: function(xhr, status, error) {
