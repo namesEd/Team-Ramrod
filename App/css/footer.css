@@ -8,6 +8,7 @@ footer{
     height: 2em;
     display: flex;
     align-items: center;
+    bottom: 0;
     justify-content: space-between;
 }
 

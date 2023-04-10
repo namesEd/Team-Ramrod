@@ -28,7 +28,7 @@
         <input type="text" id="policy_number" name="policy_number"><br><br>
         <label for="insurance_name">Insurance Name:</label>
         <input type="text" id="insurance_name" name="insurance_name"><br><br>
-        <input type="submit" value="Submit" name="submit">
+        <input type="submit" value="Submit" name="submxit">
     </form>
     <div id = "insurance_added"></div>
 	<?php require_once "footer.php"?>

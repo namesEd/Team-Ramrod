@@ -10,10 +10,10 @@
             console.log(response[0].first_name);
 
 
-            $('#profile-header').append('<h2 class="name">' + response[0].first_name + ' ' + response[0].last_name + '</h2>');
+            $('#profHead').append('<h2 class="name">' + response[0].first_name + ' ' + response[0].last_name + '</h2>');
 
             $.each(response, function(index, hist) {
-                $('#user-hist').append('<li>' + hist.medical_problem + '</li>');
+                $('#user-hist').append('<li class="list-group-item">' + hist.medical_problem + '</li>');
             });
         },
         error: function(xhr, status, error) {
@@ -34,7 +34,7 @@
         dataType: 'json',
         success: function(response) {
             $.each(response, function(index, a) {
-                $('#user-allergies').append('<li>' + a.allergy + '</li>');
+                $('#user-allergies').append('<li class="list-group-item">' + a.allergy + '</li>');
             });
         },
         error: function(xhr, status, error) {
@@ -54,7 +54,7 @@
         dataType: 'json',
         success: function(response) {
             $.each(response, function(index, meds) {
-                $('#user-meds').append('<li>' + meds.medication + '</li>');
+                $('#user-meds').append('<li class="list-group-item">' + meds.medication + '</li>');
             });
         },
         error: function(xhr, status, error) {
