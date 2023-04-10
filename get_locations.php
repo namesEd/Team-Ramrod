@@ -3,7 +3,7 @@ session_start();
 require 'connect.php';
 
 
-$stmt = $conn->prepare("SELECT * from location); 
+$stmt = $conn->prepare("SELECT * from location");
 
 $stmt->execute();
 $result = $stmt->get_result();
