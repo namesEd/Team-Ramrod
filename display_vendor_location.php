@@ -6,31 +6,17 @@
 	<link rel="stylesheet" href="App/css/header.css">
 	<script type = "text/javascript" src="App/js/header.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$.ajax({
-				url: 'get_vendor_location.php',
-				type: 'GET',
-				dataType: 'json',
-				success: function(response) {
-					$.each(response, function(index, l) {
-						$('#list-addr').append('<li data-loc-id="' + l.locID + '">' + l.address + '</li>');
-					});
-				},
-		error: function(xhr, status, error) {
-		    if (xhr.status === 401) {
-		        window.location.replace("user_login.php?error=notallowed");
-		    } else {
-		        alert('Error: ' + error);
-		    }
-		}			});
-		});
-	</script>
+	<script type = "text/javascript" src="App/js/map.js"></script>
+	
+	
 </head>
 <body>
 	<?php require_once "header.php"?>
 	<h1>Displays the address from Location as JSON</h1>
 	<ul id="list-addr"></ul>
+	<script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5exh7JYQlhm_leOXPpi8WkfEjlhwrHe4&callback=initMap&v=weekly">
+   </script>
 	<?php require_once "footer.php"?>
 </body>
 </html>
