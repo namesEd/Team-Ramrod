@@ -2,7 +2,7 @@
 
 /********** BEGINNING OF GOOGLE MAPS API */
 
-function createGeocoder(address, map, markers) {
+function createGeocoder(locationName, address, map, markers) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
@@ -16,7 +16,7 @@ function createGeocoder(address, map, markers) {
             var marker = new google.maps.Marker({
                 position: markerPosition,
                 map: map,
-                title: address
+                title: locationName + ': ' + address
             });
 
             // Add the marker to the markers array
@@ -24,7 +24,7 @@ function createGeocoder(address, map, markers) {
 
             // Define an info window object
             var infowindow = new google.maps.InfoWindow({
-                content: address
+                content: '<strong>'+locationName+'<strong><br>'+ address
             });
 
             // Add a click listener to the marker to show the info window
@@ -53,14 +53,15 @@ function initMap() {
 
     $(document).ready(function() {
         $.ajax({
-            url: 'get_vendor_location.php',
+            url: 'get_locations.php',
             type: 'GET',
             dataType: 'json',
             success: function(response) {
                 $.each(response, function(index, l) {
+                    var locationName = l.location_name;
                     var address = l.address;
-                    $('#list-addr').append('<li data-loc-id="' + l.locID + '">' + address + '</li>');
-                    createGeocoder(address, map, markers); // Call the createGeocoder function to geocode each address
+                    $('#list-addr').append('<li data-loc-id="' + l.locID + '">' + locationName +': '+ address + '</li>');
+                    createGeocoder(locationName, address, map, markers); // Call the createGeocoder function to geocode each address
                 });
             },
             error: function(xhr, status, error) {
