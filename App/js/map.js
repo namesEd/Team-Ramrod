@@ -24,7 +24,9 @@ function createGeocoder(locationName, address, map, markers) {
 
             // Define an info window object
             var infowindow = new google.maps.InfoWindow({
-                content: '<strong>'+locationName+'<strong><br>'+ address
+                content: '<strong>'+locationName+'<strong><br>'+ address + 
+                '<br><br><a href="https://www.google.com/maps/dir/?api=1&destination='  + 
+                encodeURIComponent(address) + '" target="_blank">Get Directions</a>'
             });
 
             // Add a click listener to the marker to show the info window
