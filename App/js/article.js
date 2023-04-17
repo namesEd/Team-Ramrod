@@ -77,7 +77,7 @@ class article extends HTMLElement{
           update_articles(category);
         });
         //---------------------------------------Display articles without selecting  filter
-        //normal_articles('health');
+        normal_articles('health');
       })
         
       console.log(this.getLoginStatus());
