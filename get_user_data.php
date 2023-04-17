@@ -2,7 +2,14 @@
 session_start();
 require 'connect.php';
 
-$stmt = $conn->prepare("SELECT * from location");
+if (!isset($_SESSION["userID"])) {
+    header("Location: user_login.php?error=notallowed");
+    exit();
+}
+$userID = $_SESSION['userID'];
+
+$stmt = $conn->prepare("SELECT email, username, isVendor FROM users WHERE userID = ?");
+$stmt ->bind_param("i", $userID); 
 
 $stmt->execute();
 $result = $stmt->get_result();
@@ -14,7 +21,7 @@ if ($result->num_rows > 0) {
         $data[] = $row;
     }
 }
-
+$stmt ->close();
 $conn->close();
 
 header("Content-Type: application/json");
