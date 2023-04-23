@@ -28,15 +28,22 @@ VALUES
 ('John', 'Doe', 'NODOEJOE@gmail.com', 'jdoe', 'qwerty123', '1980-10-02');
 
 
+get_user_data: 
+SELECT email, username, isVendor, policy_number, insurance_name FROM users
+INNER JOIN insurance WHERE insurance.userID = users.userID AND users.userID = 3;
+
+
 CREATE TABLE `location` (                                                                       
   `locID` int(15) NOT NULL AUTO_INCREMENT,                                                                   
-  `location_name` varchar(100) NOT NULL,                                                                      
-  `address` varchar(100) NOT NULL,                                                                           
-  `location_type` varchar(100) NOT NULL,                                                                      
+  `location_name` varchar(100) NOT NULL,                                                                                                                                              
+  `address` varchar(100) NOT NULL,
+  `city` varchar(100) NOT NULL,                                                                           
+  `state` varchar(100) NOT NULL,                                                                           
+  `zip` int(11) NOT NULL,                                                                           
   `phone_number` varchar(100) NOT NULL,                                                                       
   `start_hour` time NOT NULL,
-  `end_hour` time NOT NULL,                                                               
-  `multilingual` varchar(100) NOT NULL,                                                                      
+  `end_hour` time NOT NULL,
+  `type` varchar(100) NOT NULL,                                                              
   PRIMARY KEY (`locID`)                                                                                      
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
@@ -53,6 +60,16 @@ INSERT INTO location
 VALUES
 ('Bills Place','220 Chester Ave','Bakersfield','Ca',93301,'Emergency Room','(661) 555-1234','00:00:00','23:59:59')
 
+
+CREATE TABLE specialty(
+  `specialtyID` int(15) AUTO_INCREMENT,
+  `locID` int(15) NOT NULL,
+  `specialty_type` varchar(100) NOT NULL,
+    PRIMARY KEY (`specialtyID`),
+      CONSTRAINT `fk_locID_location`
+    FOREIGN KEY (`locID`) REFERENCES `location`(locID)
+      ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE insurance (
@@ -228,13 +245,14 @@ Vendors:
 Notes:
 Variations of these tables may be added in the future.
 
-specialty(locID, specialty_type)
-
 insuranceAcceptsLocation(location_name, locID, address, location_type, insurance_name)
 
 locationHasSpecialty(location_name, locID, address, specialty_type)
 
 userVisitsLocation(userID, locID, policy_number)
+
+
+
 
 
 

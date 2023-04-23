@@ -15,6 +15,7 @@ if (!isset($_SESSION["userID"])) {
 if (isset($_POST['submit'])) {
 
     $location_name = sanitize($_POST['loc_name']);
+    $type = sanitize($_POST['loc_type']);
     $address = sanitize($_POST['address']);
     $city = sanitize($_POST['city']);
     $state = sanitize($_POST['state']);
@@ -22,10 +23,11 @@ if (isset($_POST['submit'])) {
     $phone_number = sanitize($_POST['phone']);
     $start_hour = sanitize($_POST['startTime']);
     $end_hour = sanitize($_POST['endTime']);
+    $specialty_type = sanitize($_POST['specialty']);
 
 
     // Validate input fields
-    if (empty($location_name) || empty($address) || empty($city) || empty($state) || empty($zip) || empty($phone_number) || empty($start_hour) || empty($end_hour)) {
+    if (empty($location_name) || empty($type)|| empty($address) || empty($city) || empty($state) || empty($zip) || empty($phone_number) || empty($start_hour) || empty($end_hour)) {
         $_SESSION['error'] = "Please fill out all fields.";
         header("Location: location_insert.php");
         exit();
@@ -35,7 +37,8 @@ if (isset($_POST['submit'])) {
     $end_time = date('h:i:s', strtotime($end_hour));
     
     // Prepare the SQL statement
-    $stmt = $conn->prepare("INSERT INTO location(location_name, address, city, state, zip, phone_number, start_hour, end_hour) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO location(location_name, address, city, state, zip, phone_number, start_hour, end_hour, 
+        type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         $_SESSION['error'] = "Error preparing statement: " . $conn->error;
         header("Location: location_insert.php");
@@ -43,7 +46,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Bind parameters
-    if (!$stmt->bind_param("ssssisss", $location_name, $address, $city, $state, $zip, $phone_number, $start_time, $end_time)) {
+    if (!$stmt->bind_param("ssssissss", $location_name, $address, $city, $state, $zip, $phone_number, $start_time, $end_time, $type)) {
         $_SESSION['error'] = "Error binding parameters: " . $stmt->error;
         header("Location: location_insert.php");
         exit();
@@ -62,6 +65,44 @@ if (isset($_POST['submit'])) {
 
     // Close statement and connection
     $stmt->close();
+
+    //prepare and execute the the specialty statment 
+
+    //get the value of the recently added location ID
+    $locID = $conn->insert_id;
+
+    // Prepare the SQL statement
+
+    $stmt = $conn->prepare("INSERT INTO specialty(locID, specialty_type) VALUES (?,?)");
+    if (!$stmt) {
+        $_SESSION['error'] = "Error preparing statement: " . $conn->error;
+        header("Location: location_insert.php");
+        exit();
+    }
+
+    // Bind parameters
+    if (!$stmt->bind_param("is", $locID, $specialty_type)) {
+        $_SESSION['error'] = "Error binding parameters: " . $stmt->error;
+        header("Location: location_insert.php");
+        exit();
+    }
+
+    // Execute statement
+    if (!$stmt->execute()) {
+        $_SESSION['error'] = "Error executing statement: " . $stmt->error;
+        header("Location: location_insert.php");
+        exit();
+    }
+
+    // Set success message
+    $_SESSION['message'] = "Location inserted successfully.";
+    header("Location: vendor_reg.php");
+
+    // Close statement and connection
+    $stmt->close();
+
+
+
     $conn->close();
 } else {
     header("Location: location_insert.php");
