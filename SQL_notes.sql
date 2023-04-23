@@ -32,6 +32,19 @@ get_user_data:
 SELECT email, username, isVendor, policy_number, insurance_name FROM users
 INNER JOIN insurance WHERE insurance.userID = users.userID AND users.userID = 3;
 
+DELIMITER //
+
+CREATE PROCEDURE LocationInfo
+BEGIN
+    SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour, s.specialty_type
+    FROM location l
+    INNER JOIN 
+    specialty s
+    ON l.locID = s.locID; 
+END;
+//
+DELIMITER ;
+
 
 CREATE TABLE `location` (                                                                       
   `locID` int(15) NOT NULL AUTO_INCREMENT,                                                                   
@@ -48,17 +61,6 @@ CREATE TABLE `location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
 
-
-
-INSERT INTO location
-(location_name, address, city, state, zip, location_type, phone_number, start_hour, end_hour)
-VALUES
-INSERT INTO `location` VALUES (1,'Kaiser San Joaquin Valley','220 Chester Ave','Bakersfield','Ca',93301,'Emergency Room','(661) 555-5555','00:00:00','23:59:59'),(2,'Heart Hospital','100 Sillect Ave','Bakersfield','CA',93308,'Hospital','(661) 300-2011','00:00:00','23:59:59'),(3,'Mercy Hospital','2215 Truxtun Ave','Bakersfield','CA',93301,'Hospital','(661) 632-5000','09:00:00','21:00:00'),(4,'Kern County Department of Public Health','1800 Mt. Vernon Ave','Bakersfield','CA',93306,'Public Health','(661) 321-3000','08:30:00','17:00:00'),(5,'Bakersfield Memorial Hospital','420 34th St','Bakersfield','CA',93301,'Hospital','(661) 327-4647','07:00:00','23:00:00'),(6,'Adventist Health Bakersfield','2615 Chester Ave','Bakersfield','CA',93301,'Hospital','(661) 323-2000','08:00:00','20:00:00'),(7,'Ridgecrest Regional Hospital','1081 N China Lake Blvd','Ridgecrest','CA',93555,'Hospital','(760) 446-3551','08:00:00','17:00:00'),(8,'Kern Valley Healthcare District','6412 Laurel Ave','Lake Isabella','CA',93240,'Hospital','(760) 379-2681','24:00:00','24:00:00'),(9,'Tehachapi Valley Healthcare District','115 West E St','Tehachapi','CA',93561,'Hospital','(661) 823-3000','08:00:00','20:00:00'),(10,'Clinica Sierra Vista','301 Brundage Ln','Bakersfield','CA',93304,'Community Health','(661) 635-3050','08:00:00','20:00:00');
-
-INSERT INTO location
-(location_name, address, city, state, zip, location_type, phone_number, start_hour, end_hour)
-VALUES
-('Bills Place','220 Chester Ave','Bakersfield','Ca',93301,'Emergency Room','(661) 555-1234','00:00:00','23:59:59')
 
 
 CREATE TABLE specialty(
@@ -82,16 +84,6 @@ CREATE TABLE insurance (
     ON DELETE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 ;
-
-INSERT INTO insurance
-(userID, policy_number, insurance_name)
-VALUES
-('1', 'M1234567', 'Medicare')
-;
-INSERT INTO insurance
-(userID, policy_number, insurance_name)
-VALUES
-('2', 'XE451234', 'Blue Cross')
 
 
 User Profile Tables:
@@ -136,6 +128,7 @@ VALUES
        ('Heart Attack');
 
 
+
 SELECT u.userID, u.first_name, u.last_name, mp.medical_problem
 FROM medical_history mh
 INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID
@@ -145,13 +138,7 @@ ORDER BY u.userID
 
 
 
-INSERT INTO allergies(`allergy`)
-VALUES 
-       ('Penicillin'),
-       ('Sulfa'),
-       ('Iodine'),
-       ('Fentanyl'),
-       ('NSAIDS');
+
 
 
 DROP TABLE IF EXISTS allergies;
@@ -247,11 +234,7 @@ Variations of these tables may be added in the future.
 
 insuranceAcceptsLocation(location_name, locID, address, location_type, insurance_name)
 
-locationHasSpecialty(location_name, locID, address, specialty_type)
-
 userVisitsLocation(userID, locID, policy_number)
-
-
 
 
 
@@ -295,37 +278,3 @@ SELECT userID, first_name, last_name, medical_problem
 FROM users u
 INNER JOIN medical_history ON u.userID = mh.userID
 INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID;
-
-
-
-
-
-
-PREPARED STATEMENTS: 
-
-
-DROP PROCEDURE IF EXISTS RegisterUser;
-
-DELIMITER //
-
-CREATE PROCEDURE `RegisterUser`(param_email varchar(100), param_fname varchar(100), param_lname varchar(100), passhash varchar(100),
-param_date date, param_uname varchar(100))
-BEGIN
-
-    SELECT COUNT(*) INTO @usernameCount
-    FROM user
-    WHERE username = param_uname;
-
-    IF @usernameCount > 0 THEN
-        SELECT NULL as userid, "Username already exists" AS 'Error';
-    ELSE
-        INSERT INTO user (email, first_name, last_name, password, birthday, username) VALUES (param_email, param_fname, param_lname, passhash, param_date, param_uname);
-        SELECT last_insert_id() AS id, NULL as 'Error';
-    END IF;
-
-    COMMIT;
-END;
-//
-DELIMITER ;
-
-# call RegisterUser ('bigbill@AOL.net', 'Bill', 'Bobson', 'billyBobbin', 'qwerty123');
