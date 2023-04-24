@@ -16,6 +16,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type = "text/javascript" src="App/js/user_profile.js"></script>
+    <script type = "text/javascript" src="App/js/user_data.js"></script>
 
 
 
@@ -90,7 +91,11 @@
     </div>
 
 
-    <div class="tab-pane fade" id="pills-general" role="tabpanel" aria-labelledby="pills-general-tab"> Hello!! </div>
+    <div class="tab-pane fade" id="pills-general" role="tabpanel" aria-labelledby="pills-general-tab"> 
+      <div class="container">
+          <div class="userData"></div>
+      </div>
+    </div>
 
 </div>
 

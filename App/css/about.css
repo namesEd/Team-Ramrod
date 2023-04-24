@@ -1,29 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200:400:700&display=swap');
-body {
-	background-color: rgb(00, 53, 148);
-	color: #ffffff;
-	font-family: 'Poppins', sans-serif;
-	padding: 0;
-	margin: 0;
+.card-img-top{
+	width: 15vh;
+	height: 15vh;
+}
+.card-footer{
+	background-color: transparent;
 }
 
-section {
-	display: grid;
-	place-items: center;
-	align-content: center;
-	min-height: 30vh;
-} 
+.cards{
 
-.hidden {
-	opacity: 1;
-	filter: blur(0px);
-	/* transform: translateX(1%); */
-	transition: all 0.5s;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    
+
+ }
+    
+
+
+.cards:hover{
+
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    transform: scale(1.1);
 }
 
-
-.show {
-	opacity: 0;
-	filter: blur(5px);
-	transform: translateX(0%);
+body{
+	background-image: url("../images/bgrnd.jpg");
 }
