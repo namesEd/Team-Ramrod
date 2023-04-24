@@ -21,3 +21,12 @@
     border-radius: 0;
     background: #ffffff;
 }
+/* For smaller screens, such as phones */
+@media (max-width: 768px) {
+  .article img {
+    max-width: 50%;
+    max-height: 50%;
+    margin-right: 0.5em;
+    align-items: top;
+  }
+}

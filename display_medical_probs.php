@@ -9,6 +9,8 @@
 	<script src="App/js/display_medical_probs.js"></script>
 	<script src="App/js/clicked.js"></script>
 	<link rel="stylesheet" href="App/css/display_medical_probs.css">
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 	<?php require_once "header.php"?>

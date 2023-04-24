@@ -7,6 +7,8 @@
 	<script type = "text/javascript" src="App/js/header.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type = "text/javascript" src="App/js/display_medications.js"></script>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 	<?php require_once "header.php"?>
