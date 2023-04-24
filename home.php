@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type = "text/javascript" src="App/js/header.js"></script>
     <script type = "text/javascript" src="App/js/map.js"></script>
-    <script type = "text/javascript" src="get_addresses.js"></script>
+    <!-- <script type = "text/javascript" src="App/js/providers.js"></script> -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   
   </head>
@@ -24,7 +24,12 @@
     <div id="map"></div>
     <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5exh7JYQlhm_leOXPpi8WkfEjlhwrHe4&callback=initMap&v=weekly">
-   </script>
+    </script>
+    <!-- <script type = "text/javascript" src="App/js/providers.js"></script> -->
+    <div id="info-container"></div>
+    <div id = list>
+    <ul id="list-addr"></ul>
+    </div>
     <?php require_once "footer.php"?>
  
   </body>

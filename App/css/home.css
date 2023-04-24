@@ -38,6 +38,18 @@ body{
 .control-button:hover {
   background: rgb(235, 235, 235);
 }
+#list-addr li:hover{
+  cursor: pointer;
+}
+#list-addr{
+  height: calc(100vh - 600px); /* adjust the height as needed */
+  overflow-y: auto;
+  padding-bottom: 50px; /* adjust the padding as needed */
+
+}
+#list{
+  padding-bottom: 5%;
+}
 
 /*************** END OF MAP STYLING*******************/
 

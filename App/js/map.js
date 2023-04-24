@@ -1,8 +1,8 @@
-
-
 /********** BEGINNING OF GOOGLE MAPS API */
+var currentInfoWindow = null;
+var markers = [];
 
-function createGeocoder(locationName, address, map, markers) {
+function createGeocoder(locationName, address,city, map, markers) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
@@ -16,22 +16,29 @@ function createGeocoder(locationName, address, map, markers) {
             var marker = new google.maps.Marker({
                 position: markerPosition,
                 map: map,
-                title: locationName + ': ' + address
+                title: locationName + ': ' + address + city ,
+                locationName: locationName,
+                address:    address
             });
 
             // Add the marker to the markers array
+            marker.locId = markers.length;
             markers.push(marker);
 
             // Define an info window object
             var infowindow = new google.maps.InfoWindow({
-                content: '<strong>'+locationName+'<strong><br>'+ address + 
+                content: '<strong>'+locationName+'<strong><br>'+ address + " " + city +
                 '<br><br><a href="https://www.google.com/maps/dir/?api=1&destination='  + 
                 encodeURIComponent(address) + '" target="_blank">Get Directions</a>'
             });
 
             // Add a click listener to the marker to show the info window
             marker.addListener('click', function() {
+                if (currentInfoWindow){
+                    currentInfoWindow.close();
+                }
                 infowindow.open(map, marker);
+                currentInfoWindow = infowindow;
             });
 
         } else {
@@ -51,21 +58,26 @@ function initMap() {
         zoom: mapZoom
     });
 
-    var markers = [];
-
+    
+    //var infoContainer = document.getElementById('info-container');
     $(document).ready(function() {
         $.ajax({
             url: 'get_locations.php',
             type: 'GET',
             dataType: 'json',
             success: function(response) {
+                var $list = $('#list-addr');
                 $.each(response, function(index, l) {
                     var locationName = l.location_name;
                     var address = l.address;
-                    $('#list-addr').append('<li data-loc-id="' + l.locID + '">' + locationName +': '+ address + '</li>');
-                    createGeocoder(locationName, address, map, markers); // Call the createGeocoder function to geocode each address
-                });
-            },
+                    var city = l.city;
+                    var $item = $('<li data-loc-id="' + markers.length + '">' + locationName +': '+ address + " " + city + '</li>');
+                $item.click(createListItemClosure(locationName, address, city));
+                $list.append($item);
+                // Call the createGeocoder function to geocode each address
+                createGeocoder(locationName, address, city, map, markers); 
+            });
+        },
             error: function(xhr, status, error) {
                 if (xhr.status === 401) {
                     window.location.replace("user_login.php?error=notallowed");
@@ -76,19 +88,36 @@ function initMap() {
         });
     });
 
-    // Add a click listener to the map to close any open info windows
-    google.maps.event.addListener(map, 'click', function() {
-        infowindow.close();
-    });
+ // Add a click listener to the map to close any open info windows
+ google.maps.event.addListener(map, 'click', function() {
+    infoContainer.innerHTML = '';
+});
+    
+}
 
-    // Add a click listener to each marker to display an info window
-    for (var i = 0; i < markers.length; i++) {
-        var infowindow = new google.maps.InfoWindow();
-        google.maps.event.addListener(markers[i], 'click', (function(marker, i) {
-            return function() {
-                infowindow.setContent(marker.title);
-                infowindow.open(map, marker);
+// Create a closure to hold location data for each list item
+function createListItemClosure(locationName, address, city) {
+    return function() {
+        var locationMarker = null;
+        for (var i = 0; i < markers.length; i++) {
+            if (markers[i].title.indexOf(locationName) >= 0 && markers[i].title.indexOf(address) >= 0 && markers[i].title.indexOf(city) >= 0) {
+                locationMarker = markers[i];
+                break;
             }
-        })(markers[i], i));
-    }
+        }
+        // close current info window if one is opened
+        if (locationMarker) {
+            if (currentInfoWindow){
+                currentInfoWindow.close()
+            }
+            var infowindow = new google.maps.InfoWindow({
+                content: '<strong>'+locationName+'<strong><br>'+ address + city +
+                '<br><br><a href="https://www.google.com/maps/dir/?api=1&destination='  + 
+                encodeURIComponent(address) + '" target="_blank">Get Directions</a>'
+            });
+            infowindow.open(map, locationMarker);
+            //Set the current info window to the new one
+            currentInfoWindow = infowindow;
+        }
+    };
 }
