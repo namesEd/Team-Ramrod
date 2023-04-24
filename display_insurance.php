@@ -25,10 +25,11 @@
     <h1>Enter your insurance information:</h1>
     <form id = "insurance_form" action = "add_insurance.php" method = "post">
         <label for="policy_number">Policy Number:</label>
+
         <input type="text" id="policy_number" name="policy_number"><br><br>
         <label for="insurance_name">Insurance Name:</label>
         <input type="text" id="insurance_name" name="insurance_name"><br><br>
-        <input type="submit" value="Submit" name="submxit">
+        <input type="submit" value="Submit" name="submit">
     </form>
     <div id = "insurance_added"></div>
 	<?php require_once "footer.php"?>
