@@ -45,7 +45,6 @@
   color: white;
 }
 
-
 #medBtn {
   background-color: transparent;
   border-color: #FDB913;
@@ -68,64 +67,22 @@
   color: white;
 }
 
-/*#profBtn {
-  background-color: transparent;
-  border-color: black;
-  border-radius: 50px;
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: block;
-}
-
-.btn-contain{
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-
-}
-
-#profBtn:hover {
-  background-color: black;
-  color: white;
-}*/
-
-
 .btn-group{
   display: flex;
   flex-direction: column;
   align-items: center; 
-
-
 }
 
 #myButton.clicked {
   background-color: lightskyblue;
   color: black;
   border-color: #e1e3e2;
-
 }
 
 h1 {
   color: black;
   text-align: center;
 }
-
-/*.contain{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-
-}*/
 
 h2 {
   font-size: 12px;
@@ -137,18 +94,6 @@ h2 {
   margin-bottom: 20px;
   text-align: center;
 }
-
-
-/*.contain-bkg {
-  box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
-  border-radius: 10px;
-  border: solid;
-  background-color: white;
-  padding: 10px;
-  border-color: darkblue;
-  height: 60%;
-
-}*/
 
 /*Med probs gets used to add medical problems*/
 #med-probs {
@@ -229,16 +174,34 @@ h2 {
 }
 
 @media(max-width: 980px) {
-/* add medical history */
-  #med-probs li button {
-    width: 95%;
-  }
-/*add current medications*/
+  #allergy-list li button,
+  #med-probs li button,
   #med-list li button {
-    width: 95%;
-  }
-/*add allergies*/
-  #allergy-list li button {
-    width: 95%;
+    width: 100%;
   }
 }
+@media(max-width: 980px) {
+  #hisBtn,
+  #medBtn {
+    float: none;
+    margin-top: 5px;
+    margin-left: 0;
+  }
+}
+@media(max-width: 980px) {
+  h2 {
+    margin-bottom: 10px;
+  }
+}
+@media(max-width: 980px) {
+  .overflow-scroll {
+    max-height: 50%;
+    margin-top: 5px;
+  }
+}
+@media(max-width: 980px) {
+  #allergy-list li button {
+   padding-top: 10px; 
+  }
+}
+
