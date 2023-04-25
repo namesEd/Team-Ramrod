@@ -2,7 +2,7 @@
 var currentInfoWindow = null;
 var markers = [];
 
-function createGeocoder(locationName, address,city, map, markers) {
+function createGeocoder(locationName, address,city,insur, map, markers) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
@@ -16,7 +16,7 @@ function createGeocoder(locationName, address,city, map, markers) {
             var marker = new google.maps.Marker({
                 position: markerPosition,
                 map: map,
-                title: locationName + ': ' + address + city ,
+                title: locationName + ': ' + address + city + insur ,
                 locationName: locationName,
                 address:    address
             });
@@ -27,7 +27,7 @@ function createGeocoder(locationName, address,city, map, markers) {
 
             // Define an info window object
             var infowindow = new google.maps.InfoWindow({
-                content: '<strong>'+locationName+'<strong><br>'+ address + " " + city +
+                content: '<strong>'+locationName+'<strong><br>'+ address + " " + city + insur +
                 '<br><br><a href="https://www.google.com/maps/dir/?api=1&destination='  + 
                 encodeURIComponent(address) + '" target="_blank">Get Directions</a>'
             });
@@ -71,7 +71,8 @@ function initMap() {
                     var locationName = l.location_name;
                     var address = l.address;
                     var city = l.city;
-                    var $item = $('<li data-loc-id="' + markers.length + '">' + locationName +': '+ address + " " + city + '</li>');
+                    var insur = l.insurance_name
+                    var $item = $('<li data-loc-id="' + markers.length + '">' + locationName +': '+ address + " " + insur + '</li>');
                 $item.click(createListItemClosure(locationName, address, city));
                 $list.append($item);
                 // Call the createGeocoder function to geocode each address
@@ -96,7 +97,7 @@ function initMap() {
 }
 
 // Create a closure to hold location data for each list item
-function createListItemClosure(locationName, address, city) {
+function createListItemClosure(locationName, address, city, insur) {
     return function() {
         var locationMarker = null;
         for (var i = 0; i < markers.length; i++) {
@@ -111,7 +112,7 @@ function createListItemClosure(locationName, address, city) {
                 currentInfoWindow.close()
             }
             var infowindow = new google.maps.InfoWindow({
-                content: '<strong>'+locationName+'<strong><br>'+ address + city +
+                content: '<strong>'+locationName+'<strong><br>'+ address + city + insur +
                 '<br><br><a href="https://www.google.com/maps/dir/?api=1&destination='  + 
                 encodeURIComponent(address) + '" target="_blank">Get Directions</a>'
             });
