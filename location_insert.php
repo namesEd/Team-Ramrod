@@ -120,14 +120,26 @@
 
 			<br></br>
 
-			<label for="specialty">OPTIONAL: Select a specialty:</label>
-			<select id="specialty" name="specialty" multiple>
+			<label for="specialty">Select a specialty:</label>
+			<select id="specialty" name="specialty[]" multiple>
+				<option value="none">None</option>
 				<option value="Cardiac">Cardiac Center</option>
 				<option value="Stroke">Stroke Center</option>
 				<option value="Pediatric">Pediatric Center</option>
 				<option value="Orthopedic">Orthopedic</option>
 				<option value="Psycho">Mental Health</option>
 			</select>
+
+			<label for="insurance">Select what Insurance the location accepts:</label>
+			<select id="insurance" name="insurance[]" multiple>
+				<option value="Kaiser">Kasier</option>
+				<option value="Medi-Cal">Medi-Cal</option>
+				<option value="Medicare">Medicare</option>
+				<option value="Blue">BlueCross/BlueShied</option>
+				<option value="Cash">Cash Only</option>
+			</select>
+
+			<br></br>
 
 			<input type="submit" value="Create" name="submit">
 		</form>

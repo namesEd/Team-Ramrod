@@ -28,7 +28,15 @@
 
         <input type="text" id="policy_number" name="policy_number"><br><br>
         <label for="insurance_name">Insurance Name:</label>
-        <input type="text" id="insurance_name" name="insurance_name"><br><br>
+        <select id="insurance_name" name="insurance_name">
+        		<option value="" disabled selected>select an insurance</option>
+				<option value="Kaiser">Kasier</option>
+				<option value="Medi-Cal">Medi-Cal</option>
+				<option value="Medicare">Medicare</option>
+				<option value="Blue">BlueCross/BlueShied</option>
+				<option value="Cash">Cash Only</option>
+		</select>
+		<br><br>
         <input type="submit" value="Submit" name="submit">
     </form>
     <div id = "insurance_added"></div>

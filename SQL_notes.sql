@@ -34,20 +34,31 @@ INNER JOIN insurance WHERE insurance.userID = users.userID AND users.userID = 3;
 
 DELIMITER //
 
-CREATE OR REPLACE PROCEDURE LocationInfo
+CREATE OR REPLACE PROCEDURE LocationInfo()
 BEGIN
-    SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour,
-     s.specialty_type, i.insurance_name
-    FROM location l
-    INNER JOIN 
-    specialty s
-    ON l.locID = s.locID
-    INNER JOIN 
-    location_insurance i
-    ON l.locID = i.locID; 
+  SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour,
+         s.specialty_type, GROUP_CONCAT(i.insurance_name SEPARATOR ', ') AS accepted_insurances
+  FROM location l
+  INNER JOIN specialty s
+  ON l.locID = s.locID
+  INNER JOIN location_insurance i
+  ON l.locID = i.locID
+  GROUP BY l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour, s.specialty_type;
+
 END;
 //
 DELIMITER ;
+
+
+SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour,
+       s.specialty_type, GROUP_CONCAT(i.insurance_name SEPARATOR ', ') AS accepted_insurances
+FROM location l
+INNER JOIN specialty s
+ON l.locID = s.locID
+INNER JOIN location_insurance i
+ON l.locID = i.locID
+GROUP BY l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour, s.specialty_type;
+
 
 
 
