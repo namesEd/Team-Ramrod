@@ -86,6 +86,19 @@ CREATE TABLE insurance (
 ;
 
 
+CREATE TABLE `insurance_accepts_location` (
+  'ialID' int(15) NOT NULL AUTO_INCREMENT,
+  `locID` int(15) NOT NULL,
+  `insurance_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`locID`, `insurance_name`),
+  CONSTRAINT `fk_location_insurance_location`
+    FOREIGN KEY (`locID`) REFERENCES `location` (`locID`)
+    ON DELETE CASCADE,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
 User Profile Tables:
 
 DROP TABLE IF EXISTS medical_history;
@@ -226,6 +239,10 @@ Vendors:
     FOREIGN KEY (`locID`) REFERENCES `location` (`locID`)
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+
+
+CREATE TABLE locationAcceptsInsurance(
 
 
 
