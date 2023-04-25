@@ -34,18 +34,20 @@ INNER JOIN insurance WHERE insurance.userID = users.userID AND users.userID = 3;
 
 DELIMITER //
 
-CREATE PROCEDURE LocationInfo
+CREATE OR REPLACE PROCEDURE LocationInfo
 BEGIN
-    SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour, s.specialty_type
+    SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour,
+     s.specialty_type, i.insurance_name
     FROM location l
     INNER JOIN 
     specialty s
-    ON l.locID = s.locID; 
+    ON l.locID = s.locID
+    INNER JOIN 
+    location_insurance i
+    ON l.locID = i.locID; 
 END;
 //
 DELIMITER ;
-
-
 
 
 
@@ -101,6 +103,8 @@ CREATE TABLE `location_insurance` (
     FOREIGN KEY (`insurance_name`) REFERENCES `insurance` (`insurance_name`)
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 
 
 
