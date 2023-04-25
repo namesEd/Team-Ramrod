@@ -46,6 +46,9 @@ END;
 DELIMITER ;
 
 
+
+
+
 CREATE TABLE `location` (                                                                       
   `locID` int(15) NOT NULL AUTO_INCREMENT,                                                                   
   `location_name` varchar(100) NOT NULL,                                                                                                                                              
@@ -85,17 +88,19 @@ CREATE TABLE insurance (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 ;
 
+ALTER TABLE `insurance` ADD INDEX `idx_insurance_name` (`insurance_name`);
 
-CREATE TABLE `insurance_accepts_location` (
-  'ialID' int(15) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `location_insurance` (
   `locID` int(15) NOT NULL,
   `insurance_name` varchar(100) NOT NULL,
   PRIMARY KEY (`locID`, `insurance_name`),
   CONSTRAINT `fk_location_insurance_location`
     FOREIGN KEY (`locID`) REFERENCES `location` (`locID`)
     ON DELETE CASCADE,
+  CONSTRAINT `fk_location_insurance_insurance`
+    FOREIGN KEY (`insurance_name`) REFERENCES `insurance` (`insurance_name`)
+    ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 
 
