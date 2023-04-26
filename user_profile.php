@@ -31,7 +31,8 @@
     <div id="profile-header"></div>
 
 
-   <div class="card border-secondary overflow-hidden text-center w-90 h-70">
+
+   <div class="card border-secondary overflow-hidden text-center w-90 h-70 mt-5">
   <div id="profHead" class="card-header text-center">
       
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -93,17 +94,57 @@
 
     <div class="tab-pane fade" id="pills-general" role="tabpanel" aria-labelledby="pills-general-tab"> 
       <div class="container">
-          <div class="userData"></div>
+          <div class="card text-dark border-dark mb-4 w-75 h-100 mt-5 mx-auto">
+            <div class="card-header">
+              <h3 class="display-6">Profile Details</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                  
+                </div>
+                <div class="col-sm-9 email">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Username</p>
+                  
+                </div>
+                <div class="col-sm-9 username">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Insurance</p>
+                  
+                </div>
+                <div class="col-sm-9 insurance">
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer ">
+              <ul class="nav justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="display_allergies.php" target="_blank"><button class="btn btn-sm btn-outline-info text-dark">Add/Edit Med Prob</button></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="display_insurance.php" target="_blank"><button class="btn btn-sm btn-outline-info text-dark">Add/Edit Insurance</button></a>
+                </li>
+                <li class="nav-item">
+                 <a class="nav-link active" aria-current="page" href="#" target="_blank"><button class="btn btn-sm btn-outline-info text-dark">Become a Vendor!</button></a>
+                </li>
+              </ul>
+            </div>
+          </div>
       </div>
     </div>
 
 </div>
+</div> 
 
- 
-
-
-    
-    <!-- </div> -->
 
     <?php require_once "footer.php"?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

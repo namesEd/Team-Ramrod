@@ -7,6 +7,10 @@
 	background-color: transparent;
 }
 
+.card{
+	height: 50vh;
+}
+
 .cards{
 
     transition: all 0.2s ease;
@@ -25,4 +29,37 @@
 
 body{
 	background-image: url("../../images/bgrnd.jpg");
+}
+@media screen and (max-width: 997px) {
+
+	.lead{
+		font-size: 17px;
+	}
+
+  .card-img-top{
+	width: 10vh;
+	height: 10vh;
+  }
+}
+@media screen and (max-width: 765px) {
+
+	.lead{
+		font-size: 14px;
+	}
+
+  .card-img-top{
+	width: 10vh;
+	height: 10vh;
+  }
+}
+@media screen and (max-width: 1400px) {
+
+	.lead{
+		font-size: 14px;
+	}
+
+  .card-img-top{
+	width: 10vh;
+	height: 10vh;
+  }
 }

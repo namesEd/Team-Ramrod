@@ -5,17 +5,18 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(response) {
 
-			// $('.userData').append('<h2>' + 'Email: ' + response[0].email + '</h2>');
-			// $('.userData').append('<h2>' + 'Username: ' + response[0].username + '</h2>');
+			$('.email').append('<p class="text-muted mb-0">' + response[0].email + '</p>');
+			$('.username').append('<p class="text-muted mb-0">' + response[0].username + '</p>');
+			$('.insurance').append('<p class="text-muted mb-0">' + response[0].insurance_name + '</p>');
 
-			// var vend = response[0].isVendor;
+			var vend = response[0].isVendor;
 
-			// if(vend == 'yes'){
-			// 	$('.userData').append('<h2>' + 'You are a Vendor ' + '</h2>');
-			// }
-			// else {
-			// 	$('.userData').append('<h2>' + 'You are not a Vendor ' + '</h2>');
-			// }
+			if(vend == 'yes'){
+				$('.userData').append('<h2>' + 'You are a Vendor ' + '</h2>');
+			}
+			else {
+				$('.userData').append('<h2>' + 'You are not a Vendor ' + '</h2>');
+			}
 
 
 

@@ -10,6 +10,7 @@
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 		<link rel="stylesheet" href="App/css/header.css">
+        <link rel="stylesheet" href="App/css/style.css">
         <link rel="stylesheet" href="App/css/about.css">
         <script defer src = "App/js/app.js"></script>
 		<script type = "text/javascript" src="App/js/header.js"></script>
@@ -24,7 +25,7 @@
             <div class="row">
                 <div class="col-md-3">
 
-                    <div class="card shadow cards">
+                    <div class="card shadow cards h-70">
                         <img class="card-img-top rounded-circle mx-auto mt-4" src="https://via.placeholder.com/150x150" alt="Card image cap">
                         <div class="card-body text-center">
                             <h4 class="card-title">Edward Kyles</h4>
@@ -34,7 +35,7 @@
 
                                 </p>
                                     <p class="lead">
-                                        Responsible for the User Interface and layout of our website.
+                                        Created the entire database and was responsible of the security of all the websites sensitive data.
                                     </p>
                         </div>
 
@@ -42,6 +43,8 @@
                             <a href="https://www.linkedin.com/in/geno-zepeda-6b6b6a212/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
 
                             <a href="https://github.com/gzepeda09" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
+
+                            <a href="https://github.com/Atorres523" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-envelope-fill"></i></button></a>
                         </div>
                     </div>
                 </div>
@@ -56,7 +59,7 @@
 
                                 </p>
                                     <p class="lead">
-                                        Responsible for the User Interface and layout of our website.
+                                        Responsible for the User Interface and sturcture of our website and how the user navigates it.
                                     </p>
                         </div>
 
@@ -64,12 +67,14 @@
                             <a href="https://www.linkedin.com/in/geno-zepeda-6b6b6a212/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
 
                             <a href="https://github.com/gzepeda09" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
+
+                            <a href="mailto: gzepeda09@gmail.com" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-envelope-fill"></i></button></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card shadow cards">
-                        <img class="card-img-top rounded-circle mx-auto mt-4" src="https://via.placeholder.com/150x150" alt="Card image cap">
+                    <div class="card shadow cards h-70">
+                        <img class="card-img-top rounded-circle mx-auto mt-4" src="images/dm.jpg" alt="Card image cap">
                         <div class="card-body text-center">
                             <h4 class="card-title">David Mesa</h4>
                                 <p class="card-text">
@@ -78,7 +83,8 @@
 
                                 </p>
                                     <p class="lead">
-                                        Responsible for the User Interface and layout of our website.
+                                        Designed Navbar and Home/Map page
+                                        also responsible for the User Interface
                                     </p>
                         </div>
 
@@ -86,12 +92,14 @@
                             <a href="https://www.linkedin.com/in/geno-zepeda-6b6b6a212/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
 
                             <a href="https://github.com/gzepeda09" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
+
+                            <a href="mailto: dmeza661@gmail.com" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-envelope-fill"></i></button></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card shadow cards">
-                        <img class="card-img-top rounded-circle mx-auto mt-4" src="https://via.placeholder.com/150x150" alt="Card image cap">
+                        <img class="card-img-top rounded-circle mx-auto mt-4" src="images/at.jpg" alt="Card image cap">
                         <div class="card-body text-center">
                             <h4 class="card-title">Alexis Torres</h4>
                                 <p class="card-text">
@@ -100,7 +108,7 @@
 
                                 </p>
                                     <p class="lead">
-                                        Responsible for the User Interface and layout of our website.
+                                        Developed the articles page/design of website for mobile devices
                                     </p>
                         </div>
 
@@ -108,6 +116,8 @@
                             <a href="https://www.linkedin.com/in/geno-zepeda-6b6b6a212/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
 
                             <a href="https://github.com/Atorres523" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
+
+                            <a href="mailto: alexistor583@gmail.com" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-envelope-fill"></i></button></a>
                         </div>
                     </div>
                 </div>
