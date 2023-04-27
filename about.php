@@ -25,7 +25,7 @@
                 <div class="col-md-3">
 
                     <div class="card shadow cards h-70">
-                        <img class="card-img-top rounded-circle mx-auto mt-4" src="https://via.placeholder.com/150x150" alt="Card image cap">
+                        <img class="card-img-top rounded-circle mx-auto mt-4" src="images/ek.jpg" alt="Card image cap">
                         <div class="card-body text-center">
                             <h4 class="card-title">Edward Kyles</h4>
                                 <p class="card-text">
@@ -39,11 +39,11 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-center">
-                            <a href="https://www.linkedin.com/in/geno-zepeda-6b6b6a212/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
+                            <a href="https://www.linkedin.com/in/edward-kyles-6ba4b9193" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
 
-                            <a href="https://github.com/gzepeda09" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
+                            <a href="https://github.com/namesEd" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
 
-                            <a href="https://github.com/Atorres523" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-envelope-fill"></i></button></a>
+                            <a href="mailto: gloobadafet@gmail.com" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-envelope-fill"></i></button></a>
                         </div>
                     </div>
                 </div>
@@ -88,9 +88,9 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-center">
-                            <a href="https://www.linkedin.com/in/geno-zepeda-6b6b6a212/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
+                            <a href="https://www.linkedin.com/in/david-mesa-535685271/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
 
-                            <a href="https://github.com/gzepeda09" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
+                            <a href="https://github.com/dmeza38" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
 
                             <a href="mailto: dmeza661@gmail.com" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-envelope-fill"></i></button></a>
                         </div>
@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-center">
-                            <a href="https://www.linkedin.com/in/geno-zepeda-6b6b6a212/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
+                            <a href="https://www.linkedin.com/in/alexis-torres-99bb52273/" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-linkedin"></i></button></a>
 
                             <a href="https://github.com/Atorres523" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-link"><i class="bi bi-github"></i></button></a>
 
