@@ -24,8 +24,8 @@ class Header extends HTMLElement{
       <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
       <a href="home.php">Home</a>
       <a href="display_articles.php">Articles</a>
-      <a href="vendor_reg.php">Vendors</a>
       <a href="about.php">About Us</a>
+
       `;
         
       console.log(this.getLoginStatus());
@@ -33,6 +33,7 @@ class Header extends HTMLElement{
         html += `<a href="user_profile.php">Profile</a>`
         html += `<a href="logout.php">Logout</a>`;
       } else {
+        html += `<a href="user_reg.php">Register</a>`;
         html +=`<a href="user_login.php">Login</a>`;
       }
           
