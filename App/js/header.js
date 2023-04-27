@@ -24,6 +24,7 @@ class Header extends HTMLElement{
       <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
       <a href="home.php">Home</a>
       <a href="display_articles.php">Articles</a>
+      <a href="vendor_reg.php">Vendors</a>
       <a href="about.php">About Us</a>
       `;
         
