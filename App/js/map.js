@@ -78,7 +78,7 @@ function initMap() {
                     var phone = l.phone_number;
                     var openHours = l.start_hour;
                     var closeHours = l.end_hour;
-                    var specialty= l.specialty_type;
+                    var specialty= l.specialties;
                     var insur = l.accepted_insurances;
                     var $item = $('<li data-loc-id="' + markers.length + '">' +  locationName +': '+ address + 
                     " Accepted Insurance: " +  insur + '</li>');
