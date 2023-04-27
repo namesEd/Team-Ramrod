@@ -63,3 +63,15 @@ body{
 	height: 10vh;
   }
 }
+@media only screen and (max-width:480px){
+  header {font-size: 10px;}
+  header {height: 8em;}
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/* styles for tablet portrait and mobile landscape screens */
+@media only screen and (min-width: 481px) and (max-width: 768px){
+  header {font-size: 10px;}
+  header {height: 9em;}
+}
