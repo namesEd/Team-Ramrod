@@ -16,7 +16,14 @@
 </head>
 <body>
 <?php require_once "header.php"?>
-	<div class="container">
+	<div class="mx-auto">
+		<a href="user_profile.php"><button class="btn btn-outline-info btn-lg text-dark"> < Profile </button></a>
+		<a href="home.php"><button class="btn btn-outline-info btn-lg text-dark"> Home </button></a>
+	</div>
+		<div id="a-added"></div>
+	<div id="med-added"></div>
+	<div id="m-added"></div>
+	<div class="container mt-5">
 		<div class="row gx-5 justify-content-center">
 			<!-- <div class="contain"> -->
 				<div class="col-sm-4">
@@ -41,9 +48,7 @@
 			<!-- </div> -->
 		</div>
 	</div>
-	<div id="a-added"></div>
-	<div id="med-added"></div>
-	<div id="m-added"></div>
+
 	<?php require_once "footer.php"?>
 </body>
 </html>
