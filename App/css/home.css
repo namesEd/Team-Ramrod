@@ -40,11 +40,12 @@ body{
 }
 #list-addr li:hover{
   cursor: pointer;
+  font-size: 25px;
 }
 #list-addr{
-  height: calc(100vh - 600px); /* adjust the height as needed */
+  height: calc(100vh - 200px);/* adjust the height as needed */
   overflow-y: auto;
-  padding-bottom: 50px; /* adjust the padding as needed */
+  padding-bottom: 10px; /* adjust the padding as needed */
 
 }
 #list{

@@ -27,7 +27,7 @@
     </script>
     <!-- <script type = "text/javascript" src="App/js/providers.js"></script> -->
     <div id="info-container"></div>
-    <div id = list>
+    <div id = "list">
     <ul id="list-addr"></ul>
     </div>
     <?php require_once "footer.php"?>
