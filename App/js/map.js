@@ -2,7 +2,7 @@
 var currentInfoWindow = null;
 var markers = [];
 
-function createGeocoder(locationName, address,city,insur, map, markers) {
+function createGeocoder(locationName, address,phone,openHours,closeHours,specialty, insur, map, markers) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
@@ -16,7 +16,7 @@ function createGeocoder(locationName, address,city,insur, map, markers) {
             var marker = new google.maps.Marker({
                 position: markerPosition,
                 map: map,
-                title: locationName + ': ' + address + city + insur ,
+                title: locationName + ': ' + address + phone + openHours + closeHours + specialty + insur ,
                 locationName: locationName,
                 address:    address
             });
@@ -25,9 +25,14 @@ function createGeocoder(locationName, address,city,insur, map, markers) {
             marker.locId = markers.length;
             markers.push(marker);
 
-            // Define an info window object
+            // Define an info window object for the markers
             var infowindow = new google.maps.InfoWindow({
-                content: '<strong>'+locationName+'<strong><br>'+ address + " " + city + insur +
+                content: '<strong>'+locationName+'<strong>'+ 
+                "<br> " + "Address: "+address + 
+                "<br> " + "Phone: "+ phone + 
+                "<br> " + "Hours: " + openHours + " - " + closeHours +
+                "<br> " + "Specialty: " + specialty +
+                "<br> " + "Accepted Insurance: " + insur +
                 '<br><br><a href="https://www.google.com/maps/dir/?api=1&destination='  + 
                 encodeURIComponent(address) + '" target="_blank">Get Directions</a>'
             });
@@ -70,13 +75,17 @@ function initMap() {
                 $.each(response, function(index, l) {
                     var locationName = l.location_name;
                     var address = l.address;
-                    var city = l.city;
-                    var insur = l.insurance_name
-                    var $item = $('<li data-loc-id="' + markers.length + '">' + locationName +': '+ address + " " + insur + '</li>');
-                $item.click(createListItemClosure(locationName, address, city));
+                    var phone = l.phone_number;
+                    var openHours = l.start_hour;
+                    var closeHours = l.end_hour;
+                    var specialty= l.specialty_type;
+                    var insur = l.accepted_insurances;
+                    var $item = $('<li data-loc-id="' + markers.length + '">' +  locationName +': '+ address + 
+                    " Accepted Insurance: " +  insur + '</li>');
+                $item.click(createListItemClosure(locationName, address, phone, openHours, closeHours, specialty, insur));
                 $list.append($item);
                 // Call the createGeocoder function to geocode each address
-                createGeocoder(locationName, address, city, map, markers); 
+                createGeocoder(locationName, address, phone, openHours, closeHours, specialty, insur, map, markers); 
             });
         },
             error: function(xhr, status, error) {
@@ -97,13 +106,17 @@ function initMap() {
 }
 
 // Create a closure to hold location data for each list item
-function createListItemClosure(locationName, address, city, insur) {
+function createListItemClosure(locationName, address, phone, openHours, closeHours, specialty, insur) {
     return function() {
         var locationMarker = null;
         for (var i = 0; i < markers.length; i++) {
-            if (markers[i].title.indexOf(locationName) >= 0 && markers[i].title.indexOf(address) >= 0 && markers[i].title.indexOf(city) >= 0) {
-                locationMarker = markers[i];
-                break;
+            if (markers[i].title.indexOf(locationName) >= 0 && markers[i].title.indexOf(address) >= 0 
+                && markers[i].title.indexOf(phone) >= 0 && markers[i].title.indexOf(openHours) >= 0
+                && markers[i].title.indexOf(closeHours) >= 0 && markers[i].title.indexOf(specialty) >= 0
+                && markers[i].title.indexOf(insur) >= 0 ) {
+                
+                    locationMarker = markers[i];
+                    break;
             }
         }
         // close current info window if one is opened
@@ -112,7 +125,12 @@ function createListItemClosure(locationName, address, city, insur) {
                 currentInfoWindow.close()
             }
             var infowindow = new google.maps.InfoWindow({
-                content: '<strong>'+locationName+'<strong><br>'+ address + city + insur +
+                content: '<strong>'+locationName+'<strong>'+ 
+                "<br> " + "Address: "+address + 
+                "<br> " + "Phone: "+ phone + 
+                "<br> " + "Hours: " + openHours + " - " + closeHours +
+                "<br> " + "Specialty: " + specialty +
+                "<br> " + "Accepted Insurance: " + insur +
                 '<br><br><a href="https://www.google.com/maps/dir/?api=1&destination='  + 
                 encodeURIComponent(address) + '" target="_blank">Get Directions</a>'
             });
