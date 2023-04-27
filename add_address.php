@@ -23,13 +23,11 @@ if (isset($_POST['submit'])) {
     $phone_number = sanitize($_POST['phone']);
     $start_hour = sanitize($_POST['startTime']);
     $end_hour = sanitize($_POST['endTime']);
-    $insurance = sanitize($_POST['insurance']);
 
 
     // Validate input fields
     if (empty($location_name) || empty($type)|| empty($address) || empty($city) || empty($state) ||
-        empty($zip) || empty($phone_number) || empty($start_hour) || empty($end_hour) 
-        || empty($insurance) || empty($specialty_types)){
+        empty($zip) || empty($phone_number) || empty($start_hour) || empty($end_hour)){
         $_SESSION['error'] = "Please fill out all fields.";
         header("Location: location_insert.php");
         exit();
@@ -73,40 +71,71 @@ if (isset($_POST['submit'])) {
     //get the value of the recently added location ID
     $locID = $conn->insert_id;
 
-    foreach($specialty_types as $specialty_type) { 
-        $specialty_type = $_POST['specialty'];
+     // Retrieve multiple specialty types
+    $specialty_types = $_POST['specialty'];
 
+    // Prepare the SQL statement for inserting multiple specialty types
+    $stmt_specialty = $conn->prepare("INSERT INTO specialty(locID, specialty_type) VALUES (?,?)");
+    if (!$stmt_specialty) {
+        $_SESSION['error'] = "Error preparing statement: " . $conn->error;
+        header("Location: location_insert.php");
+        exit();
+    }
 
-        $stmt = $conn->prepare("INSERT INTO specialty(locID, specialty_type) VALUES (?,?)");
-        if (!$stmt) {
-            $_SESSION['error'] = "Error preparing statement: " . $conn->error;
-            header("Location: location_insert.php");
-            exit();
-        }
+    // Loop through each selected specialty type and execute the SQL statement
+    foreach ($specialty_types as $specialty_type) {
+        $specialty_type = sanitize($specialty_type);
 
         // Bind parameters
-        if (!$stmt->bind_param("is", $locID, $specialty_type)) {
-            $_SESSION['error'] = "Error binding parameters: " . $stmt->error;
+        if (!$stmt_specialty->bind_param("is", $locID, $specialty_type)) {
+            $_SESSION['error'] = "Error binding parameters: " . $stmt_specialty->error;
             header("Location: location_insert.php");
             exit();
         }
 
         // Execute statement
-        if (!$stmt->execute()) {
-            $_SESSION['error'] = "Error executing statement: " . $stmt->error;
+        if (!$stmt_specialty->execute()) {
+            $_SESSION['error'] = "Error executing statement: " . $stmt_specialty->error;
+            header("Location: location_insert.php");
+            exit();
+        }
+    }
+
+    $stmt_specialty->close();
+
+    // Retrieve multiple accepted insurances
+    $accepted_insurances = $_POST['insurance'];
+
+    // Prepare the SQL statement for inserting multiple accepted insurances
+    $stmt_insurance = $conn->prepare("INSERT INTO location_insurance(locID, insurance_name) VALUES (?,?)");
+    if (!$stmt_insurance) {
+        $_SESSION['error'] = "Error preparing statement: " . $conn->error;
+        header("Location: location_insert.php");
+        exit();
+    }
+
+    // Loop through each selected accepted insurance and execute the SQL statement
+    foreach ($accepted_insurances as $accepted_insurance) {
+        $accepted_insurance = sanitize($accepted_insurance);
+
+        // Bind parameters
+        if (!$stmt_insurance->bind_param("is", $locID, $accepted_insurance)) {
+            $_SESSION['error'] = "Error binding parameters: " . $stmt_insurance->error;
             header("Location: location_insert.php");
             exit();
         }
 
-        // Set success message
-        $_SESSION['message'] = "Location inserted successfully.";
-        header("Location: vendor_reg.php");
-
-        // Close statement and connection
-        $stmt->close();
+        // Execute statement
+        if (!$stmt_insurance->execute()) {
+            $_SESSION['error'] = "Error executing statement: " . $stmt_insurance->error;
+            header("Location: location_insert.php");
+            exit();
+        }
     }
 
-    //Send data to insurance accepts location
+    $stmt_insurance->close();
+
+        //Send data to insurance accepts location
 
 
 
