@@ -94,7 +94,7 @@
 
     <div class="tab-pane fade" id="pills-general" role="tabpanel" aria-labelledby="pills-general-tab"> 
       <div class="container">
-          <div class="card text-dark border-dark mb-4 w-75 h-100 mt-5 mx-auto">
+          <div class="card text-dark border-dark mb-5 w-75 h-100  mx-auto">
             <div class="card-header">
               <h3 class="display-6">Profile Details</h3>
             </div>
@@ -121,6 +121,14 @@
                   
                 </div>
                 <div class="col-sm-9 insurance">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Vendor</p>
+                  
+                </div>
+                <div class="col-sm-9 vendor">
                 </div>
               </div>
             </div>

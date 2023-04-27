@@ -8,15 +8,8 @@ $(document).ready(function() {
 			$('.email').append('<p class="text-muted mb-0">' + response[0].email + '</p>');
 			$('.username').append('<p class="text-muted mb-0">' + response[0].username + '</p>');
 			$('.insurance').append('<p class="text-muted mb-0">' + response[0].insurance_name + '</p>');
+			$('.vendor').append('<p class="text-muted mb-0">' + response[0].isVendor + '</p>');
 
-			var vend = response[0].isVendor;
-
-			if(vend == 'yes'){
-				$('.userData').append('<h2>' + 'You are a Vendor ' + '</h2>');
-			}
-			else {
-				$('.userData').append('<h2>' + 'You are not a Vendor ' + '</h2>');
-			}
 
 
 
