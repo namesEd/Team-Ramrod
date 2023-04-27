@@ -10,7 +10,6 @@
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 		<link rel="stylesheet" href="App/css/header.css">
-        <link rel="stylesheet" href="App/css/style.css">
         <link rel="stylesheet" href="App/css/about.css">
         <script defer src = "App/js/app.js"></script>
 		<script type = "text/javascript" src="App/js/header.js"></script>

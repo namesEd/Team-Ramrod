@@ -22,7 +22,7 @@
     background: #ffffff;
 }
 /* For smaller screens, such as phones */
-@media (max-width: 768px) {
+@media (max-width: 980px) {
   .article img {
     max-width: 50%;
     max-height: 50%;
