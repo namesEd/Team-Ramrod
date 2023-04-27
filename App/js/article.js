@@ -106,6 +106,7 @@ function update_articles(category) {
 
 //Function retrieve normal articles-----------------------
 function normal_articles(category) {
+  //var url = 'https://newsapi.org/v2/everything?q=' + category + '&searchIn=description&sortBy=relevancy&apiKey=fa866543d18b41079d52374abb103298'
   var url = 'https://gnews.io/api/v4/top-headlines?category=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
   get_articles(url);
 }

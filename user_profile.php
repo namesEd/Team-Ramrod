@@ -33,7 +33,7 @@
 
 
    <div class="card border-secondary overflow-hidden text-center w-90 h-70 mt-5">
-  <div id="profHead" class="card-header text-center">
+  <div id="profHead" class="card-header-text-center">
       
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
