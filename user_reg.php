@@ -7,7 +7,6 @@
 		  <link rel="stylesheet" href="App/css/user_reg.css">
     	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet'>
- 		 <meta name="viewport" content="width=device-width, initial-scale=1">
 		
     
  			<link rel="stylesheet" href="App/css/header.css">
@@ -139,14 +138,14 @@
   }
   ?>
 
- <div class="c2">
+<!--  <div class="c2">
    <img class="img-fluid" src="placeholder.png" alt="Placeholder">
- </div>
+ </div> -->
  
  </div>
 
   <h3> Have an Account already login here</h3>
-  <button class="btn btn-success btn-rounded button button2" ><a href="userLogin.php"> Login  </a> </button> 
+  <button class="btn btn-success btn-rounded button button2" ><a href="user_login.php"> Login  </a> </button> 
   <?php require_once "footer.php"?>
     </body>
 </html>
