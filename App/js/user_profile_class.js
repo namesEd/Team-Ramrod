@@ -4,7 +4,7 @@ $(document).ready(function() {
 //  https://codepen.io/richerimage/pen/jEXWWG
   var alterClass = function() {
     var ww = document.body.clientWidth;
-    if (ww <= 562 {
+    if (ww <= 562) {
        $('.card').addClass('overflow-scroll');
          $('.card').removeClass('overflow-hidden');
   };

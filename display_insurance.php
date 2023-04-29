@@ -41,15 +41,23 @@
 	        <input type="text" id="policy_number" name="policy_number" class="form-control" placeholder="Policy Number"><br><br>
         </div>
         <div class="col-auto">
-        	<label class="visually-hidden" for="insurance_name">Insurance Name:</label>
-	        <select id="insurance_name" name="insurance_name" class="form-select">
-	        		<option value="" disabled selected>Choose insurance</option>
-					<option value="Kaiser">Kasier</option>
-					<option value="Medi-Cal">Medi-Cal</option>
-					<option value="Medicare">Medicare</option>
-					<option value="Blue">BlueCross/BlueShied</option>
-					<option value="Cash">Cash Only</option>
-			</select>
+
+        <label class="visually-hidden" for="insurance_name">Insurance Name:</label>
+		<select id="insurance_name" name="insurance_name" class="form-select">
+    	<option value="" disabled selected>Choose insurance</option>
+    	<?php
+    		require 'connect.php'; 
+		    $result = mysqli_query($conn, "SELECT insurance_name FROM insurance");
+
+		    while ($row = mysqli_fetch_assoc($result)) {
+		        echo '<option value="' . $row['insurance_list'] . '">' . $row['insurance_list'] . '</option>';
+		    }
+		    mysqli_close($conn);
+		 ?>
+		</select>
+
+
+
 			<br><br>
 		</div>
 		<div class="row">
