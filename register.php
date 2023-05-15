@@ -19,13 +19,11 @@ if (isset($_POST["submit"])) {
 
 
 
-  //Check if fields are empty
   if (emptyInputReg($first_name, $last_name, $email, $username, $password, $password_repeat) !== false) {
     header("Location:user_reg.php?error=emptyinput");
     exit();
     }
   
-  //check for valid username
   if(invalidUsername($username) !== false) { 
     header("Location: user_reg.php?error=invalidusername");
     exit();
@@ -41,20 +39,17 @@ if (isset($_POST["submit"])) {
     exit();
   }
 
-  //check if paswords match
   if(passwordMismatch($password, $password_repeat) !== false) {
     echo "Error: passwords do not match";
     header("Location: user_reg.php?error=passwordmismatch");
     exit();
   }
 
-  //check is username or email is in the db
   if(userExists($conn, $username, $email) !== false) {
     header("Location: user_reg.php?error=userexists");
     exit();
   }
 
-  //else: insert user into database
   $sql = "INSERT INTO users (first_name, last_name, email, username, password) VALUES (?, ?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
