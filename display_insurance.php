@@ -47,7 +47,7 @@
     	<option value="" disabled selected>Choose insurance</option>
     	<?php
     		require 'connect.php'; 
-		    $result = mysqli_query($conn, "SELECT insurance_name FROM insurance");
+		    $result = mysqli_query($conn, "SELECT insurance_list FROM insurance");
 
 		    while ($row = mysqli_fetch_assoc($result)) {
 		        echo '<option value="' . $row['insurance_list'] . '">' . $row['insurance_list'] . '</option>';
