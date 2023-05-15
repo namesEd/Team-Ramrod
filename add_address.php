@@ -60,9 +60,6 @@ if (isset($_POST['submit'])) {
 
     $stmt->close();
 
-    //prepare and execute the the specialty statment 
-
-    //get the value of the recently added location ID
     $locID = $conn->insert_id;
 
     $specialty_types = isset($_POST['specialty']) ? $_POST['specialty'] : array();
@@ -78,14 +75,12 @@ if (isset($_POST['submit'])) {
     foreach ($specialty_types as $specialty_type) {
         $specialty_type = sanitize($specialty_type);
 
-        // Bind parameters
         if (!$stmt_specialty->bind_param("is", $locID, $specialty_type)) {
             $_SESSION['error'] = "Error binding parameters: " . $stmt_specialty->error;
             header("Location: location_insert.php");
             exit();
         }
 
-        // Execute statement
         if (!$stmt_specialty->execute()) {
             $_SESSION['error'] = "Error executing statement: " . $stmt_specialty->error;
             header("Location: location_insert.php");
