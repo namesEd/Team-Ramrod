@@ -142,7 +142,9 @@
                   <a class="nav-link active" aria-current="page" href="display_insurance.php" target="_blank"><button class="btn btn-sm btn-outline-info text-dark">Add/Edit Insurance</button></a>
                 </li>
                 <li class="nav-item">
-                 <a class="nav-link active" aria-current="page" href="#" target="_blank"><button class="btn btn-sm btn-outline-info text-dark">Become a Vendor!</button></a>
+                 <form action = "change_vendor_status.php">
+                 <a class="nav-link active" aria-current="page" href="#" target="_blank"><button class="btn btn-sm btn-outline-info text-dark" name = "submit" id ="BecomeVendor">Become a Vendor!</button></a>
+                </form>
                 </li>
               </ul>
             </div>
