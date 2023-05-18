@@ -16,12 +16,22 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $data = array();
-if ($result->num_rows > 0) {
-    // Output data of each row
+if ($result->num_rows == 0) {
+    $stmt = $conn -> prepare("SELECT email, username, isVendor FROM users u WHERE u.userID AND u.userID = ?");
+    $stmt ->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+} else { 
     while($row = $result->fetch_assoc()) {
         $data[] = $row;
     }
 }
+
+
 $stmt ->close();
 $conn->close();
 
