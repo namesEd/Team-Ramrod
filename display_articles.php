@@ -18,27 +18,17 @@
 </head>
 <body>
   <?php require_once "header.php"?>
-<!--      <article-component loginStatus='<?= $_SESSION['isLoggedIn'] ?>'></article-component>
- -->  <h1>Health News</h1> 
+<!--      <article-component loginStatus='<?= $_SESSION['isLoggedIn'] ?>'></article-component> -->  
+  <!-- <h1>Health News</h1>  -->
   <div class="container">
     <div class="dropdown">
       <select class="form-control" id="mySelect">
         <option value="">Search...</option>
-<!--         <option value="Anxiety">Anxiety</option>
-        <option value="Depression">Depression</option>
-        <option value="COPD">COPD</option>
-        <option value="Congestive Heart Failure">Congestive Heart Failure</option>
-        <option value="High Blood Pressure">High Blood Pressure</option>
-        <option value="Diabetes">Diabetes</option>
-        <option value="Asthma">Asthma</option>
-        <option value="Stroke">Stroke</option>
-        <option value="High Cholesterol">High Cholesterol</option>
-        <option value="Heart Attack">Heart Attack</option>
- -->
       </select>
     </div>
   </div>
-  <div id ="articles"></div>
+  <div id ="articles">
+  </div>
   <script defer src = "App\js\article.js"></script>
   <?php require_once "footer.php"?>
 </body>
