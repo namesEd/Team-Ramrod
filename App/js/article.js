@@ -11,7 +11,6 @@ class article extends HTMLElement{
       return this.getAttribute('loginStatus');
     }
     
-    //Function that sets up everyting that is needed for the header
     connectedCallback(){
       $(document).ready(function() {
       //console.log("here")
@@ -27,7 +26,7 @@ class article extends HTMLElement{
             console.log("user-medial-problems")
             console.log(response);
             $.each(response,function (index, medprob) {
-              console.log("index:", index, ", medprob:",medprob.medical_problem );
+              // console.log("index:", index, ", medprob:",medprob.medical_problem );
               $('#mySelect').append('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
             });
           }
@@ -41,17 +40,14 @@ class article extends HTMLElement{
               console.log("medical_problem")
               console.log(response);
               $.each(response,function (index, medprob) {
-                console.log("index:", index, ", medprob:",medprob.medical_problem );
+                // console.log("index:", index, ", medprob:",medprob.medical_problem );
                 $('#mySelect').append('<option value="' + medprob.medical_problem + '">'+ medprob.medical_problem + '</option>')
               });
             }
           })
         }
  
-        // Initialize Select2
         $('#mySelect').select2();
-
-        // Add search placeholder
         $('.select2-search__field').attr('placeholder', 'Search...');
 
         // Filter options based on search query
@@ -68,7 +64,6 @@ class article extends HTMLElement{
             });
           });
         });
-
         // Get selected option value
         $('#mySelect').on('change', function() {
           category = $('#mySelect').val();
@@ -78,25 +73,17 @@ class article extends HTMLElement{
         });
         //---------------------------------------Display articles without selecting  filter
         normal_articles('health');
-      })
-        
-      console.log(this.getLoginStatus());
-      
-  
+      })        
+      // console.log(this.getLoginStatus());
     }
-  }
+}
     customElements.define('article-component', article);
 
 //------------------------------------------------------------------------
 // Functions for articles
 //------------------------------------------------------------------------
-// url = 'https://gnews.io/api/v4/top-headlines?category=' + 'health' + '&lang=en&country=us&max=10&apikey=' + apikey;
 function update_articles(category) {
-  //console.log("entered update_articles");
-  //console.log("update_articles:", category);
-  
   category = 'health AND '+ category;
-  //console.log("update_articles new category: ", category);
   var url = 'https://gnews.io/api/v4/search?q=' + category + '&lang=en&country=us&max=10&apikey=' + apikey;
   //console.log(url);
   // Clear existing articles
@@ -113,72 +100,29 @@ function normal_articles(category) {
 
 
 // function to retrieve articles------------------------------ 
-// console.log(url);
 function get_articles(url) {
-  console.log("caling url");
-  // Create a new XMLHttpRequest object
-  const xhr = new XMLHttpRequest();
-  
-  // Initialize a GET request with the specified URL
-  xhr.open('GET', url);
-
-  // Set up a callback function to execute when the server responds
-  xhr.onload = function() {
-    // Check if the response was successful
-    if (xhr.status === 200) {
-      // Parse the JSON response
-      const data = JSON.parse(xhr.responseText);
-
-      // Loop through the articles array
-      data.articles.forEach(function(article) {
-        // Extract the title, description, and image for each article
-        const title = article.title;
-        const description = article.description;
-        const image = article.image;
-        const url = article.url;
-
-        // Create a div to hold the article
-        const article_div = document.createElement("div");
-        article_div.className = "article";
-
-        // Create an img element for the image
-        const image_element = document.createElement("img");
-        image_element.src = image;
-
-        // Create a div for the title and description
-        const text_div = document.createElement("div");
-
-        // Create an h3 element for the title
-        const title_element = document.createElement("h3");
-        title_element.innerHTML = title;
-
-        // Create a p element for the description
-        const description_element = document.createElement("p");
-        description_element.innerHTML = description;
-
-        // Create an element for the url
-        const url_element = document.createElement("a");
-        url_element.href = url;
-        url_element.innerHTML = "Read More"
-
-        // Append the title, description, and url to the text div
-        text_div.appendChild(title_element);
-        text_div.appendChild(description_element);
-        text_div.appendChild(url_element);
-
-        // Append the image and text div to the article div
-        article_div.appendChild(image_element);
-        article_div.appendChild(text_div);
-
-        // Append the article div to the document
-        document.getElementById("articles").appendChild(article_div);
-      });
-    } else {
-      // If the response was not successful, log an error message
-      console.error('Error:', xhr.statusText);
-    }
-  };
-
-  // Send the request to the server
-  xhr.send();
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // var $art = $('#articles')
+      articles = data.articles;
+      var dynamic = document.querySelector('#articles');
+      console.log(articles.length)
+      for (i = 0; i < articles.length; i++) {
+        var current_content = dynamic.innerHTML;
+        // Html that will hold the article contents
+        dynamic.innerHTML = `
+        <div class="card">
+          <img class="card-img" src="${articles[i].image}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"> ${articles[i].title} </h5>
+            <p class="card-text">${articles[i].description}</p>
+            <a href="${articles[i].url}" class="btn btn-primary"> Read More </a>
+          </div>
+        </div>` + current_content;
+      }
+    })
 }
+
