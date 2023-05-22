@@ -128,16 +128,22 @@
 				<option value="Pediatric">Pediatric Center</option>
 				<option value="Orthopedic">Orthopedic</option>
 				<option value="Psycho">Mental Health</option>
+				<option value="Trauma">Trauma Center</option>
 			</select>
+			<br></br>
+			<label>Select insurance carriers that your facility accepts:</label>
+			<br></br>
 
-			<label for="insurance">Select what Insurance the location accepts:</label>
-			<select id="insurance" name="insurance[]" multiple>
-				<option value="Kaiser">Kasier</option>
-				<option value="Medi-Cal">Medi-Cal</option>
-				<option value="Medicare">Medicare</option>
-				<option value="Blue">BlueCross/BlueShied</option>
-				<option value="Cash">Cash Only</option>
-			</select>
+			<?php
+			    require 'connect.php'; 
+			    $result = mysqli_query($conn, "SELECT insurance_list FROM insurance");
+
+			    while ($row = mysqli_fetch_assoc($result)) {
+			        echo '<label><input type="checkbox" name="insurance_list[]" value="' . $row['insurance_list'] . '"> ' . $row['insurance_list'] . '</label><br>';
+			    }
+			    mysqli_close($conn);
+			?>
+
 
 			<br></br>
 

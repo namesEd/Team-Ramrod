@@ -65,15 +65,12 @@ function passwordMismatch($password, $password_repeat)
 function userExists($conn, $username)
 {
 	$query = "SELECT * FROM users WHERE username = ? OR email = ?;";
-	//initialize prepared statment for db connection
 	$stmt = mysqli_stmt_init($conn);
-	//check if sql query will fail or not before continuing
 	if (!mysqli_stmt_prepare($stmt, $query)) {
 		header("Location: user_reg.php?error=stmtFailed");
 		exit();
 	}
 
-	//bind statement before executing
 	mysqli_stmt_bind_param($stmt, "ss", $username, $username);
 	mysqli_stmt_execute($stmt);
 
@@ -126,7 +123,6 @@ function isVendor($userID, $conn) {
 
 function loginUser($conn, $username, $password) 
 {	
-	//check for username or email to login the user 
 	$userExists = userExists($conn, $username);
 
 	if ($userExists === false) {

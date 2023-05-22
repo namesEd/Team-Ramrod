@@ -36,6 +36,21 @@ DELIMITER //
 
 CREATE OR REPLACE PROCEDURE LocationInfo()
 BEGIN
+SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour,
+       GROUP_CONCAT(s.specialty_type SEPARATOR ', ') AS specialties, GROUP_CONCAT(i.insurance_list SEPARATOR ', ') AS accepted_insurances
+FROM location l
+INNER JOIN specialty s
+ON l.locID = s.locID
+INNER JOIN location_insurance i
+ON l.locID = i.locID
+GROUP BY l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour, s.specialty_type;
+END;
+//
+DELIMITER ;
+
+
+
+
   SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour,
          s.specialty_type, GROUP_CONCAT(i.insurance_name SEPARATOR ', ') AS accepted_insurances
   FROM location l
@@ -44,23 +59,6 @@ BEGIN
   INNER JOIN location_insurance i
   ON l.locID = i.locID
   GROUP BY l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour, s.specialty_type;
-
-END;
-//
-DELIMITER ;
-
-
-SELECT l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour,
-       s.specialty_type, GROUP_CONCAT(i.insurance_name SEPARATOR ', ') AS accepted_insurances
-FROM location l
-INNER JOIN specialty s
-ON l.locID = s.locID
-INNER JOIN location_insurance i
-ON l.locID = i.locID
-GROUP BY l.location_name, l.address, l.city, l.state, l.zip, l.phone_number, l.start_hour, l.end_hour, s.specialty_type;
-
-
-
 
 CREATE TABLE `location` (                                                                       
   `locID` int(15) NOT NULL AUTO_INCREMENT,                                                                   
@@ -90,7 +88,8 @@ CREATE TABLE specialty(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE insurance (
+
+CREATE TABLE user_insurance (
   `policy_number` varchar(100) NOT NULL,
   `insurance_name` varchar(100) NOT NULL, 
   `userID` int(15) NOT NULL,
@@ -101,21 +100,56 @@ CREATE TABLE insurance (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 ;
 
-ALTER TABLE `insurance` ADD INDEX `idx_insurance_name` (`insurance_name`);
+
+ALTER TABLE `insurance` ADD INDEX `idx_insurance_list` (`insurance_list`);
 
 CREATE TABLE `location_insurance` (
   `locID` int(15) NOT NULL,
-  `insurance_name` varchar(100) NOT NULL,
-  PRIMARY KEY (`locID`, `insurance_name`),
+  `insurance_list` varchar(100) NOT NULL,
+  PRIMARY KEY (`locID`, `insurance_list`),
   CONSTRAINT `fk_location_insurance_location`
     FOREIGN KEY (`locID`) REFERENCES `location` (`locID`)
     ON DELETE CASCADE,
   CONSTRAINT `fk_location_insurance_insurance`
-    FOREIGN KEY (`insurance_name`) REFERENCES `insurance` (`insurance_name`)
+    FOREIGN KEY (`insurance_list`) REFERENCES `insurance` (`insurance_list`)
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+  CREATE TABLE insurance (
+  `insuranceID` int (15) AUTO_INCREMENT,
+  `insurance_list` varchar(100) NOT NULL, 
+  PRIMARY KEY (`insuranceID`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+  ;
+
+INSERT INTO insurance (insurance_list) VALUES 
+('Aetna'),
+('Anthem Blue Cross'),
+('Blue Shield of California'),
+('Cigna'),
+('Humana'),
+('Kaiser Permanente'),
+('Medicare'),
+('Medicaid'),
+('Kern Family'),
+('UnitedHealthcare'),
+('Molina Healthcare'),
+('Health Net'),
+('Oscar Health'),
+('Tricare'),
+('Ambetter'),
+('Molina Healthcare'),
+('CareFirst Blue Cross/Blue Shield'),
+('BCBS of Florida'),
+('Amerigroup'),
+('WellCare Health Plans'),
+('Coventry Health Care'),
+('Highmark'),
+('Empire BlueCross'),
+('Independence Blue Cross'),
+('Centene Corporation'),
+('AARP');
 
 
 

@@ -1,36 +1,34 @@
 <?php
-session_start();
-require 'connect.php';
 
-if (!isset($_SESSION["userID"])) {
-    header('HTTP/1.1 401 Unauthorized');
-    echo json_encode(array("error" => "notauthorized"));
-    exit();
-}
+require 'connect.php';
+session_start();
 $userID = $_SESSION['userID'];
 
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-$stmt = $conn->prepare("SELECT u.userID, u.first_name, u.last_name, mp.medical_problem
+
+$sql = "SELECT u.userID, u.first_name, u.last_name, mp.medical_problem
 FROM medical_history mh
 INNER JOIN medical_problems mp ON mh.medical_problemID = mp.probID
 INNER JOIN users u ON u.userID = mh.userID
-WHERE u.userID = ?
-ORDER BY u.userID");
+WHERE u.userID = $userID ORDER BY u.userID";
 
-$stmt->bind_param("i", $userID);
-$stmt->execute();
-$result = $stmt->get_result();
 
-$data = array();
-if ($result->num_rows > 0) {
-    // Output data of each row
-    while($row = $result->fetch_assoc()) {
-        $data[] = $row;
-    }
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    die('Error: ' . mysqli_error($conn));
 }
 
-$conn->close();
+$problems = array();
+while ($row = mysqli_fetch_assoc($result)) {
+    $problems[] = $row;
+}
 
-header("Content-Type: application/json");
-echo json_encode($data);
+echo json_encode($problems);
+
+mysqli_close($conn);
+
 ?>

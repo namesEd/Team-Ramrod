@@ -94,7 +94,6 @@ function getMedicalProbs($conn)
 
     $data = array();
     if ($result->num_rows > 0) {
-        // Output data of each row
         while($row = $result->fetch_assoc()) {
             $data[] = $row;
         }
@@ -112,22 +111,17 @@ function addMedicalProblems($conn, $userID)
     if (isset($_POST['probID'])) {
         $probID = $_POST['probID'];
 
-        // Prepare the SQL statement
         $stmt = $conn->prepare("INSERT INTO medical_history (userID, medical_problemID) VALUES (?, ?)");
         $stmt->bind_param("ii", $userID, $probID);
         
-        // Execute the statement
         if ($stmt->execute()) {
-            // Return success message
             $response = array('status' => 'success', 'message' => 'Medical problem inserted successfully');
             echo json_encode($response);
         } else {
-            // Return error message
             $response = array('status' => 'error', 'message' => 'Error inserting medical problem');
             echo json_encode($response);
         }
     } else {
-        // Return error message
         $response = array('status' => 'error', 'message' => 'No medical problem submitted');
         echo json_encode($response);
     }

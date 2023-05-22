@@ -1,22 +1,27 @@
 <?php
-require 'connect.php';
 session_start();
+require 'connect.php';
 $userID = $_SESSION['userID'];
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 
 if (isset($_POST['allergyID'])) {
     $allergyID = $_POST['allergyID'];
-    $sql = "INSERT INTO user_allergies (userID, allergyID) VALUES ('$userID', '$allergyID')";
-    if (mysqli_query($conn, $sql)) {
-        echo "New record added successfully!";
+
+    $stmt = $conn->prepare("INSERT INTO user_allergies (userID, allergyID) VALUES (?,?)");
+    $stmt->bind_param("ii", $userID, $allergyID);
+    
+    if ($stmt->execute()) {
+        $rows_affected = $stmt->affected_rows;
+        var_dump($rows_affected);
+        $response = array('status' => 'success', 'message' => 'Allergy inserted successfully');
+        echo json_encode($response);
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        $response = array('status' => 'error', 'message' => 'Error inserting Allergy');
+        echo json_encode($response);
     }
 } else {
-    echo "Error: allergyID not set";
+    $response = array('status' => 'error', 'message' => 'No Allergy submitted');
+    echo json_encode($response);
 }
-mysqli_close($conn);
+
+$conn->close();
 ?>

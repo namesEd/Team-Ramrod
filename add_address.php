@@ -25,7 +25,6 @@ if (isset($_POST['submit'])) {
     $end_hour = sanitize($_POST['endTime']);
 
 
-    // Validate input fields
     if (empty($location_name) || empty($type)|| empty($address) || empty($city) || empty($state) ||
         empty($zip) || empty($phone_number) || empty($start_hour) || empty($end_hour)){
         $_SESSION['error'] = "Please fill out all fields.";
@@ -36,7 +35,6 @@ if (isset($_POST['submit'])) {
     $start_time = date('h:i:s', strtotime($start_hour));
     $end_time = date('h:i:s', strtotime($end_hour));
     
-    // Prepare the SQL statement
     $stmt = $conn->prepare("INSERT INTO location(location_name, address, city, state, zip, phone_number, start_hour, end_hour, 
         type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
@@ -45,36 +43,28 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    // Bind parameters
     if (!$stmt->bind_param("ssssissss", $location_name, $address, $city, $state, $zip, $phone_number, $start_time, $end_time, $type)) {
         $_SESSION['error'] = "Error binding parameters: " . $stmt->error;
         header("Location: location_insert.php");
         exit();
     }
 
-    // Execute statement
     if (!$stmt->execute()) {
         $_SESSION['error'] = "Error executing statement: " . $stmt->error;
         header("Location: location_insert.php");
         exit();
     }
 
-    // Set success message
     $_SESSION['message'] = "Location inserted successfully.";
     header("Location: vendor_reg.php");
 
-    // Close statement and connection
     $stmt->close();
 
-    //prepare and execute the the specialty statment 
-
-    //get the value of the recently added location ID
     $locID = $conn->insert_id;
 
-     // Retrieve multiple specialty types
-    $specialty_types = $_POST['specialty'];
+    $specialty_types = isset($_POST['specialty']) ? $_POST['specialty'] : array();
 
-    // Prepare the SQL statement for inserting multiple specialty types
+
     $stmt_specialty = $conn->prepare("INSERT INTO specialty(locID, specialty_type) VALUES (?,?)");
     if (!$stmt_specialty) {
         $_SESSION['error'] = "Error preparing statement: " . $conn->error;
@@ -82,18 +72,15 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    // Loop through each selected specialty type and execute the SQL statement
     foreach ($specialty_types as $specialty_type) {
         $specialty_type = sanitize($specialty_type);
 
-        // Bind parameters
         if (!$stmt_specialty->bind_param("is", $locID, $specialty_type)) {
             $_SESSION['error'] = "Error binding parameters: " . $stmt_specialty->error;
             header("Location: location_insert.php");
             exit();
         }
 
-        // Execute statement
         if (!$stmt_specialty->execute()) {
             $_SESSION['error'] = "Error executing statement: " . $stmt_specialty->error;
             header("Location: location_insert.php");
@@ -103,29 +90,25 @@ if (isset($_POST['submit'])) {
 
     $stmt_specialty->close();
 
-    // Retrieve multiple accepted insurances
-    $accepted_insurances = $_POST['insurance'];
+    $accepted_insurances = isset($_POST['insurance_list']) ? $_POST['insurance_list'] : array();
 
-    // Prepare the SQL statement for inserting multiple accepted insurances
-    $stmt_insurance = $conn->prepare("INSERT INTO location_insurance(locID, insurance_name) VALUES (?,?)");
+
+    $stmt_insurance = $conn->prepare("INSERT INTO location_insurance(locID, insurance_list) VALUES (?,?)");
     if (!$stmt_insurance) {
         $_SESSION['error'] = "Error preparing statement: " . $conn->error;
         header("Location: location_insert.php");
         exit();
     }
 
-    // Loop through each selected accepted insurance and execute the SQL statement
     foreach ($accepted_insurances as $accepted_insurance) {
         $accepted_insurance = sanitize($accepted_insurance);
 
-        // Bind parameters
         if (!$stmt_insurance->bind_param("is", $locID, $accepted_insurance)) {
             $_SESSION['error'] = "Error binding parameters: " . $stmt_insurance->error;
             header("Location: location_insert.php");
             exit();
         }
 
-        // Execute statement
         if (!$stmt_insurance->execute()) {
             $_SESSION['error'] = "Error executing statement: " . $stmt_insurance->error;
             header("Location: location_insert.php");
@@ -135,7 +118,6 @@ if (isset($_POST['submit'])) {
 
     $stmt_insurance->close();
 
-        //Send data to insurance accepts location
 
 
 

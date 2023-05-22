@@ -1,22 +1,28 @@
 <?php
-require 'connect.php';
 session_start();
+require 'connect.php';
 $userID = $_SESSION['userID'];
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 
 if (isset($_POST['medicationID'])) {
     $medicationID = $_POST['medicationID'];
-    $sql = "INSERT INTO user_medications (userID, medicationID) VALUES ('$userID', '$medicationID')";
-    if (mysqli_query($conn, $sql)) {
-        echo "New record added successfully!";
+
+
+    $stmt = $conn->prepare("INSERT INTO user_medications (userID, medicationID) VALUES (?,?)");
+    $stmt->bind_param("ii", $userID, $medicationID);
+    
+    if ($stmt->execute()) {
+        $rows_affected = $stmt->affected_rows;
+        var_dump($rows_affected);
+        $response = array('status' => 'success', 'message' => 'Medication inserted successfully');
+        echo json_encode($response);
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        $response = array('status' => 'error', 'message' => 'Error inserting Medication');
+        echo json_encode($response);
     }
 } else {
-    echo "Error: medicationID not set";
+    $response = array('status' => 'error', 'message' => 'No Medication submitted');
+    echo json_encode($response);
 }
-mysqli_close($conn);
+
+$conn->close();
 ?>
